@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="com.siigna"
+		module="siigna-base_2.9.2"
+		revision="nightly"
+		conf="runtime"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
+		date="20121107202315"/>
+	<dependencies>
+		<module organisation="com.siigna" name="siigna-main_2.9.2">
+			<revision name="nightly" status="release" pubdate="20121103211659" resolver="Siigna" artresolver="Siigna" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<metadata-artifact status="no" details="" size="2409" time="0" location="/home/csp/.ivy2/cache/com.siigna/siigna-main_2.9.2/ivy-nightly.xml" searched="false" origin-is-local="false" origin-location="http://rls.siigna.com/com/siigna/siigna-main_2.9.2/nightly/siigna-main_2.9.2-nightly.pom"/>
+				<caller organisation="com.siigna" name="siigna-base_2.9.2" conf="compile, runtime" rev="nightly" rev-constraint-default="nightly" rev-constraint-dynamic="nightly" callerrev="nightly"/>
+				<artifacts>
+					<artifact name="siigna-main_2.9.2" type="jar" ext="jar" status="no" details="" size="1017572" time="0" location="/home/csp/.ivy2/cache/com.siigna/siigna-main_2.9.2/jars/siigna-main_2.9.2-nightly.jar">
+						<origin-location is-local="false" location="http://rls.siigna.com/com/siigna/siigna-main_2.9.2/nightly/siigna-main_2.9.2-nightly.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.9.2" status="release" pubdate="20121011100752" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2391" time="0" location="/home/csp/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/releases/org/scala-lang/scala-library/2.9.2/scala-library-2.9.2.pom"/>
+				<caller organisation="com.siigna" name="siigna-base_2.9.2" conf="compile, runtime" rev="2.9.2" rev-constraint-default="2.9.2" rev-constraint-dynamic="2.9.2" callerrev="nightly"/>
+				<caller organisation="com.siigna" name="siigna-main_2.9.2" conf="default, compile, runtime, master" rev="2.9.2" rev-constraint-default="2.9.2" rev-constraint-dynamic="2.9.2" callerrev="nightly"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
