@@ -131,7 +131,6 @@ class DXFImport extends Module{
       g draw loadBar(((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)).toInt)
     } else if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)) > 394)
       g draw loadBar(390)
-
   }
 }
 
@@ -153,7 +152,7 @@ class DXFExtractor{
       input.close()
       var line = plines.get(0)
       println("A: "+line)
-      //var vertex : DXFVertex = line.getVertex(2)
+      //var vertex : DXFVertex = line.getVertex(1)
       //iterate over all vertex of the polyline
       //for (i <- line) {
         //var vertex = line.getVertex(i)
