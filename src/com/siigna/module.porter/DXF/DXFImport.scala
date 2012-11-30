@@ -71,8 +71,6 @@ class DXFImport extends Module{
 
   def loadFrame: Shape = PolylineShape(Rectangle2D(Vector2D(100, 294), Vector2D(500, 306))).setAttribute(color)
 
-  private var polylines : Option[List[_]] = None
-
   private var startTime: Option[Long] = None
 
 
@@ -110,10 +108,10 @@ class DXFImport extends Module{
 
             // Import!
             val readDXF = new DXFExtractor
-            polylines = Some(readDXF.read(file, "0").get)
+            val polylines = readDXF.read(file, "0")
 
-            //run the
-            createPolylines(polylines.get)
+            //run a function that create the polylines in Siigna
+            //println(polylines.get(0))
 
             Siigna display "Loading completed."
           } else Siigna display "please select a .dxf file"
@@ -138,7 +136,7 @@ class DXFImport extends Module{
 }
 
 class DXFExtractor{
-  def read(file : File, layerid : String) : Option[List[_]] = {
+  def read(file : File, layerid : String) = {
     val input : InputStream = new FileInputStream(file)
     val plines = None
     val parser : Parser = ParserBuilder.createDefaultParser()
@@ -150,12 +148,19 @@ class DXFExtractor{
       val doc : DXFDocument = parser.getDocument()
       val layer : DXFLayer = doc.getDXFLayer(layerid)
       //get all polylines from the layer
-      val plines : List[_] = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
+      val plines = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
       //work with the first polyline
       input.close()
+      var line = plines.get(0)
+      println("A: "+line)
+      //var vertex : DXFVertex = line.getVertex(2)
+      //iterate over all vertex of the polyline
+      //for (i <- line) {
+        //var vertex = line.getVertex(i)
+      //}
       Some(plines)
-      //doSomething((DXFPolyline) plines.get(0));
       } catch {case e => {
+
       input.close()
       println("found error: "+ e)
       None
