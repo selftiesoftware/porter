@@ -13,15 +13,12 @@ package com.siigna.module.porter.DXF
 
 import com.siigna.module.Module
 import com.siigna._
+import app.Siigna
 import java.awt.{FileDialog, Frame, Color}
 import module.io.dxf._
 import java.io.{FileInputStream, File}
 
 import java.io.{FileInputStream, File, InputStream}
-import java.util.ArrayList
-import java.util.Iterator
-import java.util.List
-import org.kabeja.dxf.DXFConstants
 import org.kabeja.dxf.DXFDocument
 import org.kabeja.dxf.DXFLayer
 import org.kabeja.dxf.DXFLine
@@ -31,8 +28,8 @@ import org.kabeja.dxf.DXFConstants
 import org.kabeja.dxf.helpers.Point
 import java.awt.FileDialog
 import com.siigna._
-import scala.Some
 import sun.security.provider.certpath.Vertex
+import scala.Some
 
 //import org.kabeja.parser.DXFParseException
 import org.kabeja.parser.Parser
@@ -52,23 +49,8 @@ class DXFImport extends Module{
 
   var fileLength: Int = 0
 
-  //get the individual polylines from a list of polylines and create them in Siigna
-  def createPolylines(plines : List[_]) {
-    var lines = plines.size
-    //iterate over all polylines in the list
-    for (i <- 1 to lines) {
-      var polyline = plines.get(i)
-      println(polyline)//iterate over all vertex of the polyline
-      //for (i <- polyline) {
-      //  val vertex : Vertex = polyline.getVertex(i)
-      //  println("Vertex: "+vertex)
-      //}
-    }
-  }
-
   //graphics to show the loading progress
   def loadBar(point: Int): Shape = PolylineShape(Rectangle2D(Vector2D(103, 297), Vector2D(point + 103, 303))).setAttribute("raster" -> anthracite)
-
   def loadFrame: Shape = PolylineShape(Rectangle2D(Vector2D(100, 294), Vector2D(500, 306))).setAttribute(color)
 
   private var startTime: Option[Long] = None
@@ -94,25 +76,13 @@ class DXFImport extends Module{
           val extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase
           if (extension == "dxf") {
             //these two lines are needed to draw a loading bar
-            startTime = Some(System.currentTimeMillis().toLong)
+            startTime = Some(System.currentTimeMillis())
             //TODO: find the correct scaling factor to make loading bar fit large DXF files.
             fileLength = file.length().toInt * 4
 
-            //var data: Int = input.read();
-            //while(data != -1) {
-            //do something with data...
-            //   println(data)
-
-            //data = input.read()
-            //}
-
             // Import!
             val readDXF = new DXFExtractor
-            val polyline : Seq[Shape] = readDXF.read(file, "0")
-
-            println("B: "+polyline)
-            //run a function that create the polylines in Siigna
-            //println(polylines.get(0))
+            readDXF.read(file, "0")
 
             Siigna display "Loading completed."
           } else Siigna display "please select a .dxf file"
@@ -128,51 +98,58 @@ class DXFImport extends Module{
   )
   override def paint(g: Graphics, t: TransformationMatrix) {
     g draw loadFrame
-    if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)) < 394) {
-      g draw loadBar(((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)).toInt)
-    } else if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)) > 394)
+    if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30)) < 394) {
+      g draw loadBar(((System.currentTimeMillis() - startTime.get) / (fileLength / 30)).toInt)
+    } else if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30)) > 394)
       g draw loadBar(390)
 
   }
 }
 
 class DXFExtractor{
-  /// NEW RETURN TYPE: Seq[Shape]
-  def read(file : File, layerid : String) : Seq[Shape] = {
-    val input : InputStream = new FileInputStream(file)
+  import scala.collection.immutable.List
 
+  var points : List[Vector2D] = List()
+
+  /// NEW RETURN TYPE: Seq[Shape]
+  def read(file : File, layerid : String) = {
+    val input : InputStream = new FileInputStream(file)
     val parser : Parser = ParserBuilder.createDefaultParser()
+
     try {
       //parse
       parser.parse(input, DXFParser.DEFAULT_ENCODING)
 
       //get the document and the layer
-      val doc : DXFDocument = parser.getDocument()
+      val doc : DXFDocument = parser.getDocument
       val layer : DXFLayer = doc.getDXFLayer(layerid)
 
-      //todo: try doc.getEntities("objects") eller circa sådan...
-      val entities = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
+      val lines = layer.getDXFEntities("LINE")
+      val mLines = layer.getDXFEntities("MLINE")
+      val polylines = layer.getDXFEntities("POLYLINE")
+      val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
 
+      //todo: collect all possible types in a list here:
+      val entities = polylines
 
-
-      println("NUMBER OF POLYLINES: "+entities.size)
+      //println(entities)
 
       entities.toArray.collect {
         case p : DXFPolyline => {
           var size = p.getVertexCount
-
-            for (i <- 0 until size) {
-              var point = (p.getVertex(i).getPoint)
-              var coordX = point.getX
-              var coordY = point.getY
-              //points = points :+ Vector2D(coordX,coordY)
-            }
-          //create the polyline
-          //Create(PolylineShape(points))
-          //points = None
+          for (i <- 0 until size) {
+            var point = (p.getVertex(i).getPoint)
+            var vector = Vector2D(point.getX,point.getY)
+            if (vector.length != 0) points = points :+ vector
+          }
+          Create(PolylineShape(points))
+          points = List()
+        }
+        case p : DXFLine => {
+          var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
+          Create(line)
         }
       }
-        // ... etc
 
 
       //var vertex : DXFVertex = line.getVertex(2)
@@ -188,7 +165,5 @@ class DXFExtractor{
       }
     }
     input.close()
-
-    Seq(PolylineShape(Vector2D(0, 0)), PolylineShape(Vector2D(10, 0)))
   }
 }
