@@ -9,11 +9,21 @@
  * Share Alike — If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
  */
 
-package com.siigna.porter
+package com.siigna.module
+
+import com.siigna._
 
 /**
  * a class for an Input-output dialog, if it is needed
  */
-class ModuleInit {
-  println("DRAW I/0 DIALOG HERE... if needed?")
+
+class ModuleInit extends Module {
+  def stateMap = Map(
+    'Start -> {
+      case MouseDown(p, _, _) :: tail => {
+        Start('DXFImport, "com.siigna.module.porter.DXF")
+      }
+      case _ => println("running module.porter...")
+    }
+  )
 }
