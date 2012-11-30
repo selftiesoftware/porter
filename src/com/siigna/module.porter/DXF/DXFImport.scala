@@ -57,7 +57,7 @@ class DXFImport extends Module{
     var lines = plines.size
     //iterate over all polylines in the list
     for (i <- 1 to lines) {
-     var polyline = plines.get(i)
+      var polyline = plines.get(i)
       println(polyline)//iterate over all vertex of the polyline
       //for (i <- polyline) {
       //  val vertex : Vertex = polyline.getVertex(i)
@@ -108,8 +108,9 @@ class DXFImport extends Module{
 
             // Import!
             val readDXF = new DXFExtractor
-            val polylines = readDXF.read(file, "0")
+            val polyline : Seq[Shape] = readDXF.read(file, "0")
 
+            println("B: "+polyline)
             //run a function that create the polylines in Siigna
             //println(polylines.get(0))
 
@@ -131,13 +132,15 @@ class DXFImport extends Module{
       g draw loadBar(((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)).toInt)
     } else if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30000)) > 394)
       g draw loadBar(390)
+
   }
 }
 
 class DXFExtractor{
-  def read(file : File, layerid : String) = {
+  /// NEW RETURN TYPE: Seq[Shape]
+  def read(file : File, layerid : String) : Seq[Shape] = {
     val input : InputStream = new FileInputStream(file)
-    val plines = None
+
     val parser : Parser = ParserBuilder.createDefaultParser()
     try {
       //parse
@@ -147,23 +150,35 @@ class DXFExtractor{
       val doc : DXFDocument = parser.getDocument()
       val layer : DXFLayer = doc.getDXFLayer(layerid)
       //get all polylines from the layer
-      val plines = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
+      // RENAMED pline -> entities (we don't know it's PL's)
+      val entities = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
       //work with the first polyline
       input.close()
-      var line = plines.get(0)
-      println("A: "+line)
-      //var vertex : DXFVertex = line.getVertex(1)
+      // RENAMED line -> entity
+      // OLD:
+      //var entity = plines.get(0)
+      //println("A: "+line)
+      // NEW:
+      entities.toArray.collect{
+        case p : DXFPolyline => {
+          // Get stuff
+          println(p.getVertex(0))
+          PolylineShape(Vector2D(0, 0))
+        }
+        // ... etc
+      }
+
+      //var vertex : DXFVertex = line.getVertex(2)
       //iterate over all vertex of the polyline
       //for (i <- line) {
-        //var vertex = line.getVertex(i)
+      //var vertex = line.getVertex(i)
       //}
-      Some(plines)
-      } catch {case e => {
+    } catch {case e => {
 
       input.close()
       println("found error: "+ e)
-      None
-      }
+      Nil
+    }
     }
   }
 }
