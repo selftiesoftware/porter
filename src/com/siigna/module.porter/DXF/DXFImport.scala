@@ -136,9 +136,10 @@ class DXFImport extends Module{
 }
 
 class DXFExtractor{
-  def read(file : File, layerid : String) = {
+  /// NEW RETURN TYPE: Seq[Shape]
+  def read(file : File, layerid : String) : Seq[Shape] = {
     val input : InputStream = new FileInputStream(file)
-    val plines = None
+    // NEW LIST:
     val parser : Parser = ParserBuilder.createDefaultParser()
     try {
       //parse
@@ -148,22 +149,33 @@ class DXFExtractor{
       val doc : DXFDocument = parser.getDocument()
       val layer : DXFLayer = doc.getDXFLayer(layerid)
       //get all polylines from the layer
-      val plines = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
+      // RENAMED pline -> entities (we don't know it's PL's)
+      val entities = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
       //work with the first polyline
       input.close()
-      var line = plines.get(0)
-      println("A: "+line)
+      // RENAMED line -> entity
+      // OLD:
+      //var entity = plines.get(0)
+      //println("A: "+line)
+      // NEW:
+      entities.toArray.collect{
+        case p : DXFPolyline => {
+          // Get stuff
+          PolylineShape(Vector2D(0, 0))
+        }
+        // ... etc
+      }
+
       //var vertex : DXFVertex = line.getVertex(2)
       //iterate over all vertex of the polyline
       //for (i <- line) {
         //var vertex = line.getVertex(i)
       //}
-      Some(plines)
-      } catch {case e => {
+    } catch {case e => {
 
-      input.close()
-      println("found error: "+ e)
-      None
+        input.close()
+        println("found error: "+ e)
+        Nil
       }
     }
   }
