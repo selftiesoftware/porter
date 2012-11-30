@@ -23,7 +23,7 @@ class ModuleInit extends Module {
       case MouseDown(p, _, _) :: tail => {
         Start('DXFImport, "com.siigna.module.porter.DXF")
       }
-      case _ => println("running module.porter...")
+      case _ =>
     }
   )
 }
