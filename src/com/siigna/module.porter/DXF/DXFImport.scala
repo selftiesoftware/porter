@@ -149,36 +149,46 @@ class DXFExtractor{
       //get the document and the layer
       val doc : DXFDocument = parser.getDocument()
       val layer : DXFLayer = doc.getDXFLayer(layerid)
-      //get all polylines from the layer
-      // RENAMED pline -> entities (we don't know it's PL's)
+
+      //todo: try doc.getEntities("objects") eller circa sådan...
       val entities = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_POLYLINE)
-      //work with the first polyline
-      input.close()
-      // RENAMED line -> entity
-      // OLD:
-      //var entity = plines.get(0)
-      //println("A: "+line)
-      // NEW:
-      entities.toArray.collect{
+
+
+
+      println("NUMBER OF POLYLINES: "+entities.size)
+
+      entities.toArray.collect {
         case p : DXFPolyline => {
-          // Get stuff
-          println(p.getVertex(0))
-          PolylineShape(Vector2D(0, 0))
+          var size = p.getVertexCount
+
+            for (i <- 0 until size) {
+              var point = (p.getVertex(i).getPoint)
+              var coordX = point.getX
+              var coordY = point.getY
+              //points = points :+ Vector2D(coordX,coordY)
+            }
+          //create the polyline
+          //Create(PolylineShape(points))
+          //points = None
         }
-        // ... etc
       }
+        // ... etc
+
 
       //var vertex : DXFVertex = line.getVertex(2)
       //iterate over all vertex of the polyline
       //for (i <- line) {
       //var vertex = line.getVertex(i)
       //}
-    } catch {case e => {
-
+    } catch {
+      case e => {
       input.close()
       println("found error: "+ e)
       Nil
+      }
     }
-    }
+    input.close()
+
+    Seq(PolylineShape(Vector2D(0, 0)), PolylineShape(Vector2D(10, 0)))
   }
 }
