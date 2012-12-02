@@ -15,7 +15,7 @@ import com.siigna.module.Module
 import com.siigna._
 import app.Siigna
 import java.awt.{FileDialog, Frame, Color}
-import module.io.dxf._
+//import module.io.dxf._
 import java.io.{FileInputStream, File}
 
 import java.io.{FileInputStream, File, InputStream}
@@ -23,12 +23,12 @@ import org.kabeja.dxf.DXFDocument
 import org.kabeja.dxf.DXFLayer
 import org.kabeja.dxf.DXFLine
 import org.kabeja.dxf.DXFPolyline
-import org.kabeja.dxf.DXFVertex
-import org.kabeja.dxf.DXFConstants
-import org.kabeja.dxf.helpers.Point
+//import org.kabeja.dxf.DXFVertex
+//import org.kabeja.dxf.DXFConstants
+//import org.kabeja.dxf.helpers.Point
 import java.awt.FileDialog
 import com.siigna._
-import sun.security.provider.certpath.Vertex
+//import sun.security.provider.certpath.Vertex
 import scala.Some
 
 //import org.kabeja.parser.DXFParseException
@@ -46,7 +46,6 @@ class DXFImport extends Module{
   val color = "Color" -> "#AAAAAA".color
 
   val frame = new Frame
-
   var fileLength: Int = 0
 
   //graphics to show the loading progress
@@ -54,10 +53,6 @@ class DXFImport extends Module{
   def loadFrame: Shape = PolylineShape(Rectangle2D(Vector2D(100, 294), Vector2D(500, 306))).setAttribute(color)
 
   private var startTime: Option[Long] = None
-
-
-
-
 
   def stateMap = Map(
     'Start -> {
@@ -81,8 +76,14 @@ class DXFImport extends Module{
             fileLength = file.length().toInt * 4
 
             // Import!
+            //todo: when a paper stack is implemented in Siigna, then import each layer to its own paper.
             val readDXF = new DXFExtractor
+
+            //todo: find all layers in the DXF file generically and import them.
             readDXF.read(file, "0")
+            readDXF.read(file, "default")
+            readDXF.read(file, "Default")
+
 
             Siigna display "Loading completed."
           } else Siigna display "please select a .dxf file"
@@ -111,43 +112,55 @@ class DXFExtractor{
 
   var points : List[Vector2D] = List()
 
-  /// NEW RETURN TYPE: Seq[Shape]
+  //a function to read a DXF file and create the shapes in it.
   def read(file : File, layerid : String) = {
     val input : InputStream = new FileInputStream(file)
     val parser : Parser = ParserBuilder.createDefaultParser()
 
     try {
-      //parse
-      parser.parse(input, DXFParser.DEFAULT_ENCODING)
+      parser.parse(input, DXFParser.DEFAULT_ENCODING)//parse
 
-      //get the document and the layer
-      val doc : DXFDocument = parser.getDocument
-      val layer : DXFLayer = doc.getDXFLayer(layerid)
+      val doc : DXFDocument = parser.getDocument  //get the document and the layer
+      val layers = doc.getDXFLayerIterator //get the layers in the DXF file
+      //TODO: extract the layer name and give to the doc.getDXFLayer method
+      while(layers.hasNext) {
+        val l = layers.next()
+        val entityList = List()
+        val layer : DXFLayer = doc.getDXFLayer(layerid)
 
-      val lines = layer.getDXFEntities("LINE")
-      val mLines = layer.getDXFEntities("MLINE")
-      val polylines = layer.getDXFEntities("POLYLINE")
-      val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
+        //get extractable objects:
+        val lines = layer.getDXFEntities("LINE")
+        val mLines = layer.getDXFEntities("MLINE")
+        val polylines = layer.getDXFEntities("POLYLINE")
+        val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
 
-      //todo: collect all possible types in a list here:
-      val entities = polylines
+        println("A: "+lines)
+        println("B: "+polylines)
 
-      //println(entities)
+        if (lines != null) println(lines)
+        if (mLines != null) println(mLines)
+        if (polylines != null) println(polylines)
+        if (LwPolylines != null) println(LwPolylines)
 
-      entities.toArray.collect {
-        case p : DXFPolyline => {
-          var size = p.getVertexCount
-          for (i <- 0 until size) {
-            var point = (p.getVertex(i).getPoint)
-            var vector = Vector2D(point.getX,point.getY)
-            if (vector.length != 0) points = points :+ vector
+        //todo: collect all possible types in a list here:
+        //val entities = List(lines, mLines, polylines, LwPolylines)
+        val entities = polylines
+
+        entities.toArray.collect {
+          case p : DXFPolyline => {
+            var size = p.getVertexCount
+            for (i <- 0 until size) {
+              var point = (p.getVertex(i).getPoint)
+              var vector = Vector2D(point.getX,point.getY)
+              if (vector.length != 0) points = points :+ vector
+            }
+            Create(PolylineShape(points))
+            points = List()
           }
-          Create(PolylineShape(points))
-          points = List()
-        }
-        case p : DXFLine => {
-          var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
-          Create(line)
+          case p : DXFLine => {
+            var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
+            Create(line)
+          }
         }
       }
 
