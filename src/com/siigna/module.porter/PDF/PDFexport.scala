@@ -26,7 +26,7 @@ import sun.misc.BASE64Encoder
 //TODO: implement lines, rectangles, arcs, and circles generation as done in https://github.com/MrRio/jsPDF/blob/master/jspdf.js
 class PDFexport {
 
-  def scalaPDF (orientation : String, unit :String, PDFFormat : String) = {
+  def scalaPDF (orientation : String, unit :String, PDFFormat : String) : String = {
 
     // Private properties
     val version = Siigna.version
@@ -77,6 +77,17 @@ class PDFexport {
       k = 72
     }
 
+    //write to buffer?
+    def out(s : String) = {
+      if(state == 2) {
+        //pages[page] += s + "\n"
+        //pages += s + "\n"
+        Array()
+      } else {
+        buffer.toArray + (s + "\n")
+      }
+    }
+
     // Private functions
     def newObject = {
       //Begin a new object
@@ -93,7 +104,7 @@ class PDFexport {
       var wPt = pageWidth * k
       var hPt = pageHeight * k
 
-      for(n <- page) {
+      for(n <- 0 to page) {
         newObject
         out("<</Type /Page")
         out("/Parent 1 0 R")
@@ -114,7 +125,7 @@ class PDFexport {
       out("1 0 obj")
       out("<</Type /Pages")
       var kids="/Kids ["
-      for (i <- page) kids += (3 + 2 * i) + " 0 R "
+      for (i <- 0 to page) kids += (3 + 2 * i) + " 0 R "
       out(kids + "]")
       out("/Count " + page)
       out(format("/MediaBox [0 0 %.2f %.2f]", wPt, hPt))
@@ -128,17 +139,24 @@ class PDFexport {
       out("endstream")
     }
 
-    var putResources = {
-      putFonts
-      putImages
+    // TODO: Loop through images
+    var putXobjectDict = {
+    }
 
-      //Resource dictionary
-      offsets(2) == buffer.length
-      out("2 0 obj")
-      out("<<")
-      putResourceDictionary
+    def putResourceDictionary = {
+      out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
+      out("/Font <<")
+      // Do this for each font, the "1" bit is the index of the font
+      // fontNumber is currently the object number related to "putFonts"
+      out("/F1 " + fontNumber + " 0 R")
       out(">>")
-      out("endobj")
+      out("/XObject <<")
+      putXobjectDict
+      out(">>")
+    }
+
+    // ADD IMAGES HERE...
+    var putImages = {
     }
 
     def putFonts = {
@@ -154,26 +172,25 @@ class PDFexport {
       out("endobj")
     }
 
-    // ADD IMAGES HERE...
-    var putImages = {
-    }
 
-    var putResourceDictionary = {
-      out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
-      out("/Font <<")
-      // Do this for each font, the "1" bit is the index of the font
-      // fontNumber is currently the object number related to "putFonts"
-      out("/F1 " + fontNumber + " 0 R")
+    var putResources = {
+      putFonts
+      putImages
+
+      //Resource dictionary
+      offsets(2) == buffer.length
+      out("2 0 obj")
+      out("<<")
+      putResourceDictionary
       out(">>")
-      out("/XObject <<")
-      putXobjectDict
-      out(">>")
+      out("endobj")
     }
 
-    // TODO: Loop through images
-    var putXobjectDict = {
+    // Escape text TODO: ACTIVATE THIS??
+    def pdfEscape (s : String) = {
+      //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+      //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
     }
-
 
     def putInfo = {
       out("/Producer (SIIGNA " + version + ")")
@@ -242,7 +259,7 @@ class PDFexport {
       out("xref")
       out("0 " + (objectNumber + 1))
       out("0000000000 65535 f ")
-      for (i <- objectNumber) {
+      for (i <- 0 to objectNumber) {
         out(format("%010d 00000 n ", offsets(i)))
       }
       //Trailer
@@ -262,21 +279,11 @@ class PDFexport {
       // Do dimension stuff
       state = 2
       //pages(page) = ""
-      pages.update(page, _)
+      //pages.update(page, _)
 
       // TODO: Hardcoded at A4 and portrait
       pageHeight = 841 / k
       pageWidth = 596 / k
-    }
-
-    //write to buffer?
-    def out(s : String) = {
-      if(state == 2) {
-        //pages[page] += s + "\n"
-        pages.tail += s + "\n"
-      } else {
-        buffer += s + "\n"
-      }
     }
 
     var _addPage = {
@@ -293,12 +300,6 @@ class PDFexport {
     // Add the first page automatically
     _addPage
 
-    // Escape text TODO: ACTIVATE THIS??
-    def pdfEscape (s : String) = {
-      //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
-      //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
-    }
-
     return {
       def addPage = {
         _addPage
@@ -314,22 +315,24 @@ class PDFexport {
       }
       //ADD IMAGES HERE
       //addImage: function(imageData, format, x, y, w, h) {
-
-      }
-      def output(inputType : Option[String]) = {
-        endDocument
-        if(inputType == None) {
-          buffer
-        }
-        if(inputType == Some("datauri")) {
-          var encodedBuffer =new BASE64Encoder().encode(buffer.toString.getBytes())
-          var document = "c:/siigna/pdf;base64," + encodedBuffer
-          document
-        }
-        //TODO: Add different output options
-      }
-      def setFontSize(size : Int) =  {
-        fontSize = size
-      }
+      "test"
     }
+
+    def output(inputType : Option[String]) = {
+      endDocument
+      if(inputType == None) {
+        buffer
+      }
+      if(inputType == Some("datauri")) {
+        var encodedBuffer =new BASE64Encoder().encode(buffer.toString.getBytes())
+        var document = "c:/siigna/pdf;base64," + encodedBuffer
+        document
+      }
+      //TODO: Add different output options
+    }
+    def setFontSize(size : Int) =  {
+      fontSize = size
+    }
+    "test2"
+  }
 }
