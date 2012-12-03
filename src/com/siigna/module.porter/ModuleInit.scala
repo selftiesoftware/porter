@@ -20,8 +20,13 @@ import com.siigna._
 class ModuleInit extends Module {
   def stateMap = Map(
     'Start -> {
-      case MouseDown(p, _, _) :: tail => {
+      case MouseDown(p, MouseButtonLeft, _) :: tail => {
+        Siigna display "opening dxf import"
         Start('DXFImport, "com.siigna.module.porter.DXF")
+      }
+      case MouseDown(p, MouseButtonRight, _) :: tail => {
+        Siigna display ("testing pdf export")
+        Start('PDFExport, "com.siigna.module.porter.PDF")
       }
       case _ =>
     }
