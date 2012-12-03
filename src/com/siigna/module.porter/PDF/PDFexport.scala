@@ -14,8 +14,6 @@ package com.siigna.module.porter.PDF
 import java.util.Date
 import com.siigna.app.Siigna
 import sun.misc.BASE64Encoder
-import sun.misc.BASE64Decoder
-import lib.sprintf
 
 /**
  * PDFexport is adapted from:
@@ -25,9 +23,10 @@ import lib.sprintf
  * Some parts based on FPDF.
  */
 
+//TODO: implement lines, rectangles, arcs, and circles generation as done in https://github.com/MrRio/jsPDF/blob/master/jspdf.js
 class PDFexport {
 
-  def scalaPDF = {
+  def scalaPDF (orientation : String, unit :String, PDFFormat : String) = {
 
     // Private properties
     val version = Siigna.version
@@ -55,7 +54,15 @@ class PDFexport {
     var k = 1.0 // Scale factor
     var unit = "mm" // Default to mm for units
     var fontNumber = 1 // TODO: This is temp, replace with real font handling
-    var documentProperties = List()
+
+    //document properties
+    val title = None
+    val subject = None
+    val author = None
+    val keywords = None
+    val creator = None
+
+
     var fontSize = 12 // Default font size
     var pageFontSize = 12
 
@@ -110,7 +117,7 @@ class PDFexport {
       for (i <- page) kids += (3 + 2 * i) + " 0 R "
       out(kids + "]")
       out("/Count " + page)
-      //out(sprintf("/MediaBox [0 0 %.2f %.2f]", wPt, hPt));
+      out(format("/MediaBox [0 0 %.2f %.2f]", wPt, hPt))
       out(">>")
       out("endobj")
     }
@@ -170,20 +177,20 @@ class PDFexport {
 
     def putInfo = {
       out("/Producer (SIIGNA " + version + ")")
-      if(documentProperties.title != undefined) {
-        out("/Title (" + pdfEscape(documentProperties.title) + ")");
+      if(title.isDefined) {
+        out("/Title (" + pdfEscape(title.get) + ")")
       }
-      if(documentProperties.subject != undefined) {
-        out("/Subject (" + pdfEscape(documentProperties.subject) + ")");
+      if(subject.isDefined) {
+        out("/Subject (" + pdfEscape(subject.get) + ")")
       }
-      if(documentProperties.author != undefined) {
-        out("/Author (" + pdfEscape(documentProperties.author) + ")");
+      if(author.isDefined) {
+        out("/Author (" + pdfEscape(author.get) + ")")
       }
-      if(documentProperties.keywords != undefined) {
-        out("/Keywords (" + pdfEscape(documentProperties.keywords) + ")");
+      if(keywords.isDefined) {
+        out("/Keywords (" + pdfEscape(keywords.get) + ")")
       }
-      if(documentProperties.creator != undefined) {
-        out("/Creator (" + pdfEscape(documentProperties.creator) + ")");
+      if(creator.isDefined) {
+        out("/Creator (" + pdfEscape(creator.get) + ")")
       }
       //TODO: use non-deprecated scale date and time classes.
       val created = new Date()
@@ -193,7 +200,7 @@ class PDFexport {
       val hour = created.getHours()
       val minute = created.getMinutes()
       val second = created.getSeconds()
-      out("/CreationDate (D:" + sprintf("%02d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second) + ")");
+      out("/CreationDate (D:" + format("%02d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second) + ")")
     }
 
     var putCatalog =  {
@@ -236,7 +243,7 @@ class PDFexport {
       out("0 " + (objectNumber + 1))
       out("0000000000 65535 f ")
       for (i <- objectNumber) {
-        out(sprintf("%010d 00000 n ", offsets(i)))
+        out(format("%010d 00000 n ", offsets(i)))
       }
       //Trailer
       out("trailer")
@@ -273,9 +280,9 @@ class PDFexport {
     }
 
     var _addPage = {
-      beginPage()
+      beginPage
       // Set line width
-      out(sprintf("%.2f w", (lineWidth * k)))
+      out(format("%.2f w", (lineWidth * k)))
 
       //TODO:set font.
       // 12 is the font size
@@ -286,7 +293,7 @@ class PDFexport {
     // Add the first page automatically
     _addPage
 
-    // Escape text TODO: ACTIVATE THIS!!
+    // Escape text TODO: ACTIVATE THIS??
     def pdfEscape (s : String) = {
       //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
       //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
@@ -302,25 +309,22 @@ class PDFexport {
           out("BT /F1 " + fontSize + ".00 Tf ET")
           pageFontSize = fontSize
         }
-        var str = sprintf("BT %.2f %.2f Td (%s) Tj ET", x * k, (pageHeight - y) * k, pdfEscape(text))
+        var str = format("BT %.2f %.2f Td (%s) Tj ET", x * k, (pageHeight - y) * k, pdfEscape(text))
         out(str)
-      }
-      //DEACTIVATED...
-      def setProperties(properties : List) =  {
-        documentProperties = List()
       }
       //ADD IMAGES HERE
       //addImage: function(imageData, format, x, y, w, h) {
 
       }
-      def output(inputType : Option[String], options : String) = {
+      def output(inputType : Option[String]) = {
         endDocument
         if(inputType == None) {
-          return buffer
+          buffer
         }
         if(inputType == Some("datauri")) {
           var encodedBuffer =new BASE64Encoder().encode(buffer.toString.getBytes())
-          document.location.href = "data:application/pdf;base64," + encodedBuffer
+          var document = "c:/siigna/pdf;base64," + encodedBuffer
+          document
         }
         //TODO: Add different output options
       }
