@@ -18,15 +18,16 @@ class PDFExport extends Module {
   def stateMap = Map(
     'Start -> {
       case _ => {
+        //instantiate the PDF class:
         val PDFdoc = new PDF
 
+        //add text to the buffer:
         PDFdoc.text(20, 20, "TESTING:")
         PDFdoc.text(20, 30, "first export of SIIGNA PDF exporter!")
         //doc.addPage
         //doc.text(20, 20, "testing page 2")
 
-        // Output as Data URI
-        //println(doc.output(Some("datauri")))
+        // Initiate the output creation:
         PDFdoc.output(Some("datauri"))
         End
       }

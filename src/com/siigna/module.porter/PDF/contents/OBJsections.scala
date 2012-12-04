@@ -23,19 +23,19 @@ object OBJsections {
 
   //document properties
   val author = None
-  var buffer : Array[String] = Array()
+  var buffer : List[String] = List()
   val creator = None
   var fontNumber = 1 // TODO: This is temp, replace with real font handling
   var k = 1.0 // Scale factor
   val keywords = None
   var lineWidth = 0.200025 // 2mm
-  var objectNumber = 1 // "n" Current object number
+  var objectNumber = 0 // "n" Current object number
   var offsets = Array() // List of offsets
   var pageHeight = 595.28
+  var pageWidth = 841.89
   var pdfVersion = 1.3 // PDF Version
   var page = 0
   var pages = Array()
-  var pageWidth = 841.89
   var state = 0 // Current document state
   val subject = None
   val title = None
@@ -43,31 +43,28 @@ object OBJsections {
 
   //write to buffer
   def out(s : String) = {
-    println("running def out with string: "+s)
     if(state == 2) {
       //pages[page] += s + "\n"
       //pages += s + "\n"
       Array()
     } else {
-      buffer.toArray + (s + "\n")
+      buffer = (s + "\n") :: buffer
     }
   }
 
   //create a header
-  def putHeader = out("%PDF-" + pdfVersion)
+  def header = out("%PDF-" + pdfVersion)
 
   //Start a new object entry
   def newObject = {
-    println("running newObject")
     //Begin a new object
     objectNumber += 1
-    offsets(objectNumber) == buffer.length
+    //offsets(objectNumber) == buffer.length //TODO: this currently crashes the exporter -- should be fixed
     out(objectNumber.toString + " 0 obj")
   }
 
   // TODO: Fix, hardcoded to a4 portrait
-  def putPages = {
-    println("running putPages")
+  def pageDefinition = {
     var wPt = pageWidth * k
     var hPt = pageHeight * k
 
@@ -80,15 +77,15 @@ object OBJsections {
       out("endobj")
 
       //Page content
-      var p = pages(n)
-      newObject
+      //var p = pages(n) //TODO: setting var causes crash
+      //newObject //TODO: running newObject stops the process. fix it!
       //out("<</Length " + p.length  + ">>");   //p.length does not work
-      out("<</Length " + p.toString.length  + ">>")
+      //out("<</Length " + p.toString.length  + ">>")
 
-      putStream(p)
+      //putStream(p)
       out("endobj")
     }
-    offsets(1) == buffer.length
+    //offsets(1) == buffer.length //TODO: nt possible. fix it!
     out("1 0 obj")
     out("<</Type /Pages")
     var kids="/Kids ["
@@ -100,18 +97,18 @@ object OBJsections {
     out("endobj")
   }
 
-  def putStream (s : String) = {
+  def stream (s : String) = {
     out("stream")
     out(s)
     out("endstream")
   }
 
   // TODO: allow placement of Xobjects
-  def putXobjectDict = {
+  def XobjectDict = {
     println("adding xObjects not implemented")
   }
 
-  def putResourceDictionary = {
+  def resourceDictionary = {
     out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
     out("/Font <<")
     // Do this for each font, the "1" bit is the index of the font
@@ -119,17 +116,16 @@ object OBJsections {
     out("/F1 " + fontNumber + " 0 R")
     out(">>")
     out("/XObject <<")
-    putXobjectDict
+    XobjectDict
     out(">>")
   }
 
   // ADD IMAGES HERE...
-  var putImages = {
+  def images = {
     println("adding images to PDF is not possible yet")
   }
 
-  def putFonts = {
-    println("runnin gputFonts")
+  def fonts = {
     // TODO: Only supports core font hardcoded to Helvetica
     newObject
     fontNumber = objectNumber
@@ -142,27 +138,27 @@ object OBJsections {
     out("endobj")
   }
 
-  def putResources = {
-    putFonts
-    putImages
+  def resources = {
+    fonts
+    //putImages
 
     //Resource dictionary
-    offsets(2) == buffer.length
+    //offsets(2) == buffer.length //TODO: activate this
     out("2 0 obj")
     out("<<")
-    putResourceDictionary
+    //putResourceDictionary //TODO: activate this
     out(">>")
     out("endobj")
   }
 
-  // Escape text TODO: ACTIVATE THIS??
+  // Escape text TODO: reimplement the replace method
   def pdfEscape (s : String) = {
     s
     //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
     //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
   }
 
-  def putInfo = {
+  def info = {
     out("/Producer (SIIGNA " + version + ")")
     if(title.isDefined) {
       out("/Title (" + pdfEscape(title.get) + ")")
@@ -190,7 +186,7 @@ object OBJsections {
     out("/CreationDate (D:" + format("%02d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second) + ")")
   }
 
-  def putCatalog =  {
+  def catalog =  {
     out("/Type /Catalog")
     out("/Pages 1 0 R")
     // TODO: Add zoom and layout modes
@@ -198,7 +194,7 @@ object OBJsections {
     out("/PageLayout /OneColumn")
   }
 
-  def putTrailer = {
+  def trailer = {
     out("/Size " + (objectNumber + 1))
     out("/Root " + objectNumber + " 0 R")
     out("/Info " + (objectNumber - 1) + " 0 R")
