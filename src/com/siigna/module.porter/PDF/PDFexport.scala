@@ -30,8 +30,8 @@ class PDFExport extends Module {
         val PDFdoc = new PDF
 
         //add text to the buffer:
-        PDFdoc.text(20, 20, "TESTING:")
-        PDFdoc.text(20, 30, "first export of SIIGNA PDF exporter!")
+        //PDFdoc.text(20, 20, "TESTING:")
+        //PDFdoc.text(20, 30, "first export of SIIGNA PDF exporter!")
         //doc.addPage
         //doc.text(20, 20, "testing page 2")
 

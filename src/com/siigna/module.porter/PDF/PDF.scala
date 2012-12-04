@@ -48,6 +48,7 @@ class PDF {
     out("[ /PDF ] ")
     out("endobj")
 
+    //cross-reference table
     var endBufferTag = buffer.size.toString //prepare to write the buffersize before EOF.
     out("xref")
     out("0 " + (objectNumber + 1))
@@ -78,11 +79,11 @@ class PDF {
       buffer
     }
     if(inputType == Some("datauri")) {
-      var encodedBuffer = new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
+      //var encodedBuffer = new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
       //println("encoded buffer: "+encodedBuffer)
       println(buffer.reverse.mkString)
-      println("B")
-      encodedBuffer
+      buffer.reverse.mkString
+      //encodedBuffer
     } else "PDF FILE INVALID"
   }
 

@@ -33,7 +33,7 @@ object OBJsections {
   var offsets : List[Int] = List() // List of offsets
   var pageHeight = 595.28
   var pageWidth = 841.89
-  var pdfVersion = 1.4 // PDF Version
+  var pdfVersion = "1. 4" // PDF Version
   var page = 1
   var pages = Array()
   var state = 0 // Current document state
@@ -54,8 +54,8 @@ object OBJsections {
 
   def catalog =  {
     out("<</Type /Catalog")
-    out("Outlines 2 0 R")
-    out("Pages 3 0 R")
+    out("/Outlines 2 0 R")
+    out("/Pages 3 0 R")
     out(">>")
     out("endobj")
 
@@ -99,7 +99,7 @@ object OBJsections {
 
 
   def outlines =  {
-    out("<</Type /Outlines")
+    out("<</Type Outlines")
     out("/Count 0")
     out(">>")
     out("endobj")
@@ -110,12 +110,14 @@ object OBJsections {
     var wPt = pageWidth * k
     var hPt = pageHeight * k
 
-    for(n <- 0 to page) {
+    for(n <- 1 to page) {
       out("<</Type /Pages")
-      var kids="/Kids ["
-      for (i <- 0 to page) kids += (3 + 2 * i) + " 0 R "
-      out(kids + "]")
+      //var kids="/Kids ["
+      //for (i <- 0 to page) kids += (3 + 2 * i) + " 0 R "
+      //out(kids + "]")
+      out("/Kids [ 4 0 R ]")
       out("/Count " + page)
+      out(">>")
 
       //Page content
       //var p = pages(n) //TODO: setting var causes crash
@@ -132,7 +134,7 @@ object OBJsections {
     out("<</Type /Page")
     out("/Parent 3 0 R")
     out("/MediaBox [0 0 "+ wPt +" " + hPt + "]")
-    out("/Contents " + (objectNumber + 1) + " 0 R>>")
+    out("/Contents " + (objectNumber + 1) + " 0 R")
     out("/Resources << /ProcSet 6 0 R>>")
     out(">>")
     out("endobj")
@@ -175,6 +177,7 @@ object OBJsections {
     out("stream")
     out("… Page-marking operators …")
     out("endstream")
+    out("endobj")
   }
 
   // TODO: allow placement of Xobjects
@@ -212,7 +215,8 @@ object OBJsections {
 
   def trailer = {
     out("/Size " + (objectNumber + 1))
-    out("/Root " + objectNumber + " 0 R")
+    //out("/Root " + objectNumber + " 0 R")
+    out("/Root 1 0 R")
     //out("/Info " + (objectNumber - 1) + " 0 R")
   }
 }
