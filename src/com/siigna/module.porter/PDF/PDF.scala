@@ -24,33 +24,6 @@ class PDF {
   var fontSize = 12
   var pageFontSize = 12
 
-  //a function to add a page to the PDF file
-  def _addPage = {
-    beginPage
-    // Set line width
-    out(format("%.2f w", (lineWidth * k)))
-
-    //TODO:set font.
-    // 12 is the font size
-    pageFontSize = fontSize
-    out("BT /F1 " + fontSize + ".00 Tf ET")
-  }
-
-  // Add the first page automatically
-  _addPage
-
-  def beginPage = {
-    page += 1
-    // Do dimension stuff
-    state = 2
-    //pages(page) = ""
-    //pages.update(page, _)
-
-    // TODO: Hardcoded at A4 and portrait
-    pageHeight = 841 / k
-    pageWidth = 596 / k
-  }
-
   /*
     this function adds the obligatory OBJsections to the buffer (by callig functions in the OBJsections object:
     - the header
@@ -60,24 +33,21 @@ class PDF {
     - the trailer
    */
 
-  def endDocument = {
+  def parseDocument = {
     state = 1
-    header
-    pageDefinition
-    resources
-    //Info
+    header //%PDF-1.4
+    newObject //create the first obj tag
+    catalog
     newObject
-    out("<<")
-    // putInfo //TODO: not functional. fix it!
-    out(">>")
+    outlines
+    newObject
+    pageDefinition
+    newObject
+    stream
+    newObject
+    out("[ /PDF ] ")
     out("endobj")
 
-    //Catalog
-    newObject
-    out("<<")
-    catalog
-    out(">>")
-    out("endobj")
     //Cross-ref
     //var o = buffer.length //TODO: ???
     out("xref")
@@ -96,15 +66,15 @@ class PDF {
     trailer
     out(">>")
     out("startxref")
-    //out(o) //type should be string?
-    out("o")
+    out("408")
     out("%%EOF")
     state = 3
   }
 
   //create the PDF output
   def output(inputType : Option[String]) = {
-    endDocument
+    //run the main paring function
+    parseDocument
     if(inputType == None) {
       buffer
     }

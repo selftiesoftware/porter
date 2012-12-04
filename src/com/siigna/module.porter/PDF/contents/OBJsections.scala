@@ -33,8 +33,8 @@ object OBJsections {
   var offsets : List[Int] = List() // List of offsets
   var pageHeight = 595.28
   var pageWidth = 841.89
-  var pdfVersion = 1.3 // PDF Version
-  var page = 0
+  var pdfVersion = 1.4 // PDF Version
+  var page = 1
   var pages = Array()
   var state = 0 // Current document state
   val subject = None
@@ -70,62 +70,17 @@ object OBJsections {
     out(objectNumber.toString + " 0 obj")
   }
 
-  // TODO: Fix, hardcoded to a4 portrait
-  def pageDefinition = {
-    var wPt = pageWidth * k
-    var hPt = pageHeight * k
-
-    for(n <- 0 to page) {
-      newObject
-      out("<</Type /Page")
-      out("/Parent 1 0 R")
-      out("/Resources 2 0 R")
-      out("/Contents " + (objectNumber + 1) + " 0 R>>")
-      out("endobj")
-
-      //Page content
-      //var p = pages(n) //TODO: setting var causes crash
-      //newObject //TODO: running newObject stops the process. fix it!
-      //out("<</Length " + p.length  + ">>");   //p.length does not work
-      //out("<</Length " + p.toString.length  + ">>")
-
-      //putStream(p)
-      out("endobj")
-    }
-
-    //offsets(1) = buffer.length //TODO: nt possible. fix it!
-    out("1 0 obj")
-    out("<</Type /Pages")
-    var kids="/Kids ["
-    for (i <- 0 to page) kids += (3 + 2 * i) + " 0 R "
-    out(kids + "]")
-    out("/Count " + page)
-    out(format("/MediaBox [0 0 %.2f %.2f]", wPt, hPt))
-    out(">>")
-    out("endobj")
-  }
-
-  def stream (s : String) = {
+  //TODO: not implemented
+  def stream = {
+    out("<</Length 35>>")
     out("stream")
-    out(s)
+    out("… Page-marking operators …")
     out("endstream")
   }
 
   // TODO: allow placement of Xobjects
   def XobjectDict = {
     println("adding xObjects not implemented")
-  }
-
-  def resourceDictionary = {
-    out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
-    out("/Font <<")
-    // Do this for each font, the "1" bit is the index of the font
-    // fontNumber is currently the object number related to "putFonts"
-    out("/F1 " + fontNumber + " 0 R")
-    out(">>")
-    out("/XObject <<")
-    XobjectDict
-    out(">>")
   }
 
   // ADD IMAGES HERE...
@@ -146,15 +101,76 @@ object OBJsections {
     out("endobj")
   }
 
+  def catalog =  {
+    out("<</Type /Catalog")
+    out("Outlines 2 0 R")
+    out("Pages 3 0 R")
+    out(">>")
+    out("endobj")
+
+  }
+
+  def outlines =  {
+    out("<</Type /Outlines")
+    out("/Count 0")
+    out(">>")
+    out("endobj")
+  }
+
+  // TODO: Fix, hardcoded to a4 portrait
+  def pageDefinition = {
+    var wPt = pageWidth * k
+    var hPt = pageHeight * k
+
+
+    for(n <- 1 to page) {
+      out("<</Type /Pages")
+      var kids="/Kids ["
+      for (i <- 0 to page) kids += (3 + 2 * i) + " 0 R "
+      out(kids + "]")
+      out("/Count " + page)
+
+      //Page content
+      //var p = pages(n) //TODO: setting var causes crash
+      //newObject //TODO: running newObject stops the process. fix it!
+      //out("<</Length " + p.length  + ">>");   //p.length does not work
+      //out("<</Length " + p.toString.length  + ">>")
+
+      //putStream(p)
+      out("endobj")
+    }
+
+    //offsets(1) = buffer.length //TODO: nt possible. fix it!
+    newObject
+    out("<</Type /Page")
+    out("/Parent 3 0 R")
+    out("/MediaBox [0 0 "+ wPt +" " + hPt + "]")
+    out("/Contents " + (objectNumber + 1) + " 0 R>>")
+    out("/Resources << /ProcSet 6 0 R>>")
+    out(">>")
+    out("endobj")
+  }
+
+  def resourceDictionary = {
+    out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
+    out("/Font <<")
+    // Do this for each font, the "1" bit is the index of the font
+    // fontNumber is currently the object number related to "putFonts"
+    out("/F1 " + fontNumber + " 0 R")
+    out(">>")
+    out("/XObject <<")
+    XobjectDict
+    out(">>")
+  }
+
   def resources = {
     fonts
     //putImages
 
     //Resource dictionary
     //offsets(2) == buffer.length //TODO: activate this
-    out("2 0 obj")
     out("<<")
-    //putResourceDictionary //TODO: activate this
+      resourceDictionary //TODO: activate this
     out(">>")
     out("endobj")
   }
@@ -192,14 +208,6 @@ object OBJsections {
     val minute = created.getMinutes()
     val second = created.getSeconds()
     out("/CreationDate (D:" + format("%02d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second) + ")")
-  }
-
-  def catalog =  {
-    out("/Type /Catalog")
-    out("/Pages 1 0 R")
-    // TODO: Add zoom and layout modes
-    out("/OpenAction [3 0 R /FitH null]")
-    out("/PageLayout /OneColumn")
   }
 
   def trailer = {
