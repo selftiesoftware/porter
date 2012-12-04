@@ -41,12 +41,6 @@ object OBJsections {
   val title = None
   val version = Siigna.version
 
-  //write offsets: (a series of numbers pr. object describing the size of the buffer)
-  def offsetDefinition : String = {
-    (offsets(3).toString)
-    //format("%010d 00000 n ", offsets(i).toString)
-  }
-
   //write to buffer
   def out(s : String) = {
     if(state == 2) {
@@ -58,34 +52,13 @@ object OBJsections {
     }
   }
 
-  //create a header
-  def header = out("%PDF-" + pdfVersion)
+  def catalog =  {
+    out("<</Type /Catalog")
+    out("Outlines 2 0 R")
+    out("Pages 3 0 R")
+    out(">>")
+    out("endobj")
 
-  //Start a new object entry
-  def newObject = {
-    //Begin a new object
-    objectNumber += 1
-    offsets = offsets :+ buffer.length
-    //offsets(objectNumber) = buffer.size //TODO: this currently crashes the exporter -- should be fixed
-    out(objectNumber.toString + " 0 obj")
-  }
-
-  //TODO: not implemented
-  def stream = {
-    out("<</Length 35>>")
-    out("stream")
-    out("… Page-marking operators …")
-    out("endstream")
-  }
-
-  // TODO: allow placement of Xobjects
-  def XobjectDict = {
-    println("adding xObjects not implemented")
-  }
-
-  // ADD IMAGES HERE...
-  def images = {
-    println("adding images to PDF not implemented")
   }
 
   def fonts = {
@@ -101,14 +74,29 @@ object OBJsections {
     out("endobj")
   }
 
-  def catalog =  {
-    out("<</Type /Catalog")
-    out("Outlines 2 0 R")
-    out("Pages 3 0 R")
-    out(">>")
-    out("endobj")
-
+  // ADD IMAGES HERE...
+  def images = {
+    println("adding images to PDF not implemented")
   }
+
+  //create a header
+  def header = out("%PDF-" + pdfVersion)
+
+  //Start a new object entry
+  def newObject = {
+    //Begin a new object
+    objectNumber += 1
+    offsets = offsets :+ buffer.length
+    //offsets(objectNumber) = buffer.size //TODO: this currently crashes the exporter -- should be fixed
+    out(objectNumber.toString + " 0 obj")
+  }
+
+
+  //write offsets: (a series of numbers pr. object describing the size of the buffer)
+  def offsetDefinition = {
+    for(i <- 0 to objectNumber -1) out(String.format("%010d 00000 n", new java.lang.Integer(offsets(i))))
+  }
+
 
   def outlines =  {
     out("<</Type /Outlines")
@@ -121,7 +109,6 @@ object OBJsections {
   def pageDefinition = {
     var wPt = pageWidth * k
     var hPt = pageHeight * k
-
 
     for(n <- 0 to page) {
       out("<</Type /Pages")
@@ -151,6 +138,13 @@ object OBJsections {
     out("endobj")
   }
 
+  // Escape text TODO: reimplement the replace method
+  def pdfEscape (s : String) = {
+    s
+    //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+    //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+  }
+
   def resourceDictionary = {
     out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
     out("/Font <<")
@@ -170,16 +164,22 @@ object OBJsections {
     //Resource dictionary
     //offsets(2) == buffer.length //TODO: activate this
     out("<<")
-      resourceDictionary //TODO: activate this
+    resourceDictionary //TODO: activate this
     out(">>")
     out("endobj")
   }
 
-  // Escape text TODO: reimplement the replace method
-  def pdfEscape (s : String) = {
-    s
-    //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
-    //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+  //TODO: not implemented
+  def stream = {
+    out("<</Length 35>>")
+    out("stream")
+    out("… Page-marking operators …")
+    out("endstream")
+  }
+
+  // TODO: allow placement of Xobjects
+  def XobjectDict = {
+    println("adding xObjects not implemented")
   }
 
   def info = {
@@ -213,6 +213,6 @@ object OBJsections {
   def trailer = {
     out("/Size " + (objectNumber + 1))
     out("/Root " + objectNumber + " 0 R")
-    out("/Info " + (objectNumber - 1) + " 0 R")
+    //out("/Info " + (objectNumber - 1) + " 0 R")
   }
 }

@@ -55,7 +55,7 @@ class PDF {
 
     //create the offset tables (a description of the buffer size at each of the objects:
     //for (i <- 0 to objectNumber) out(offsetDefinition(i))
-    out(offsetDefinition)
+    "offsetdefs: " +offsetDefinition
 
     //out(format("%010d 00000 n ", offsets(i)))
 
@@ -78,26 +78,26 @@ class PDF {
       buffer
     }
     if(inputType == Some("datauri")) {
-      var encodedBuffer =new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
-      var document = "c:/siigna;base64," + encodedBuffer
-      println("buffer: "+ buffer.reverse.mkString)
+      var encodedBuffer = new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
       //println("encoded buffer: "+encodedBuffer)
-      document
-    }
+      println(buffer.reverse.mkString)
+      println("B")
+      encodedBuffer
+    } else "PDF FILE INVALID"
   }
 
   def setFontSize(size : Int) =  {
     fontSize = size
   }
 
-  //add text to the PDF document: (x : position, y : position, text string)
+  //TODO: activate: add text to the PDF document: (x : position, y : position, text string)
   def text(x : Int, y : Int, text : String) = {
     if(pageFontSize != fontSize) {   //evaluate the current page´s font size:
-      out("BT /F1 " + fontSize + ".00 Tf ET")
+      //out("BT /F1 " + fontSize + ".00 Tf ET")
       pageFontSize = fontSize
     }
     var str = format("BT %.2f %.2f Td (%s) Tj ET", x * k, (pageHeight - y) * k, pdfEscape(text))
-    out(str)
+    //out(str)
   }
 }
 
