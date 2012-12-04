@@ -15,7 +15,7 @@ import com.siigna.module.porter.PDF.contents.OBJsections._
 import sun.misc.BASE64Encoder
 
 //TODO: implement lines, rectangles, arcs, and circles generation as done in https://github.com/MrRio/jsPDF/blob/master/jspdf.js
-//adapted from the jsPDF project.
+
 class PDF {
   var defaultPageFormat = "a4"
   var k = 72/25.4 // Scale factor - hardcoded to mm.
@@ -61,7 +61,6 @@ class PDF {
    */
 
   def endDocument = {
-    println("buffer, start EndDocument: "+buffer)
     state = 1
     header
     pageDefinition
@@ -84,9 +83,12 @@ class PDF {
     out("xref")
     out("0 " + (objectNumber + 1))
     out("0000000000 65535 f ")
-    //for (i <- 0 to objectNumber) { //TODO: not functional - fix this
-    //  out(format("%010d 00000 n ", offsets(i)))
-    //}
+
+    //create the xref entries:
+    for (i <- 0 to objectNumber) { //TODO: not functional - fix this
+      println(i)
+      //out(format("%010d 00000 n ", offsets(i)))
+    }
     //Trailer
     out("trailer")
     out("<<")
@@ -109,7 +111,7 @@ class PDF {
       var encodedBuffer =new BASE64Encoder().encode(buffer.reverse.toString.getBytes())
       var document = "c:/siigna;base64," + encodedBuffer
       println("buffer: "+ buffer.reverse.toString)
-      println("encoded buffer: "+encodedBuffer)
+      //println("encoded buffer: "+encodedBuffer)
       document
     }
   }

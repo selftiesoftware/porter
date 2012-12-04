@@ -85,7 +85,7 @@ object OBJsections {
       //putStream(p)
       out("endobj")
     }
-    //offsets(1) == buffer.length //TODO: nt possible. fix it!
+    //offsets(1) = buffer.length //TODO: nt possible. fix it!
     out("1 0 obj")
     out("<</Type /Pages")
     var kids="/Kids ["
