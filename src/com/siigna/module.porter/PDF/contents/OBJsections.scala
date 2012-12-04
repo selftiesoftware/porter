@@ -123,7 +123,7 @@ object OBJsections {
     var hPt = pageHeight * k
 
 
-    for(n <- 1 to page) {
+    for(n <- 0 to page) {
       out("<</Type /Pages")
       var kids="/Kids ["
       for (i <- 0 to page) kids += (3 + 2 * i) + " 0 R "

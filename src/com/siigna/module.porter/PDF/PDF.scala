@@ -48,8 +48,7 @@ class PDF {
     out("[ /PDF ] ")
     out("endobj")
 
-    //Cross-ref
-    //var o = buffer.length //TODO: ???
+    var endBufferTag = buffer.size.toString //prepare to write the buffersize before EOF.
     out("xref")
     out("0 " + (objectNumber + 1))
     out("0000000000 65535 f ")
@@ -66,7 +65,7 @@ class PDF {
     trailer
     out(">>")
     out("startxref")
-    out("408")
+    out(endBufferTag)
     out("%%EOF")
     state = 3
   }
