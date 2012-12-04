@@ -28,7 +28,9 @@ class ModuleInit extends Module {
         Siigna display ("testing pdf export")
         Start('PDFExport, "com.siigna.module.porter.PDF")
       }
-      case _ =>
+      case MouseMove(p, _ , _) :: tail =>
+
+      case _ => None
     }
   )
 }

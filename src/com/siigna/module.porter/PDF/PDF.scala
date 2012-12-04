@@ -84,11 +84,12 @@ class PDF {
     out("0 " + (objectNumber + 1))
     out("0000000000 65535 f ")
 
-    //create the xref entries:
-    for (i <- 0 to objectNumber) { //TODO: not functional - fix this
-      println(i)
-      //out(format("%010d 00000 n ", offsets(i)))
-    }
+    //create the offset tables (a description of the buffer size at each of the objects:
+    //for (i <- 0 to objectNumber) out(offsetDefinition(i))
+    out(offsetDefinition)
+
+    //out(format("%010d 00000 n ", offsets(i)))
+
     //Trailer
     out("trailer")
     out("<<")
@@ -108,9 +109,9 @@ class PDF {
       buffer
     }
     if(inputType == Some("datauri")) {
-      var encodedBuffer =new BASE64Encoder().encode(buffer.reverse.toString.getBytes())
+      var encodedBuffer =new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
       var document = "c:/siigna;base64," + encodedBuffer
-      println("buffer: "+ buffer.reverse.toString)
+      println("buffer: "+ buffer.reverse.mkString)
       //println("encoded buffer: "+encodedBuffer)
       document
     }

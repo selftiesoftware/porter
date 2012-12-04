@@ -18,6 +18,7 @@ class PDFExport extends Module {
   def stateMap = Map(
     'Start -> {
       case _ => {
+
         //instantiate the PDF class:
         val PDFdoc = new PDF
 

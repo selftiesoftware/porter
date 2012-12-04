@@ -29,8 +29,8 @@ object OBJsections {
   var k = 1.0 // Scale factor
   val keywords = None
   var lineWidth = 0.200025 // 2mm
-  var objectNumber = 0 // "n" Current object number
-  var offsets = Array() // List of offsets
+  var objectNumber : Int = 0 // "n" Current object number
+  var offsets : List[Int] = List() // List of offsets
   var pageHeight = 595.28
   var pageWidth = 841.89
   var pdfVersion = 1.3 // PDF Version
@@ -40,6 +40,12 @@ object OBJsections {
   val subject = None
   val title = None
   val version = Siigna.version
+
+  //write offsets: (a series of numbers pr. object describing the size of the buffer)
+  def offsetDefinition : String = {
+    (offsets(3).toString)
+    //format("%010d 00000 n ", offsets(i).toString)
+  }
 
   //write to buffer
   def out(s : String) = {
@@ -59,7 +65,8 @@ object OBJsections {
   def newObject = {
     //Begin a new object
     objectNumber += 1
-    //offsets(objectNumber) == buffer.length //TODO: this currently crashes the exporter -- should be fixed
+    offsets = offsets :+ buffer.length
+    //offsets(objectNumber) = buffer.size //TODO: this currently crashes the exporter -- should be fixed
     out(objectNumber.toString + " 0 obj")
   }
 
@@ -85,6 +92,7 @@ object OBJsections {
       //putStream(p)
       out("endobj")
     }
+
     //offsets(1) = buffer.length //TODO: nt possible. fix it!
     out("1 0 obj")
     out("<</Type /Pages")
@@ -122,7 +130,7 @@ object OBJsections {
 
   // ADD IMAGES HERE...
   def images = {
-    println("adding images to PDF is not possible yet")
+    println("adding images to PDF not implemented")
   }
 
   def fonts = {
