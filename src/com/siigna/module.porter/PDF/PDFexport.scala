@@ -15,17 +15,19 @@ import com.siigna._
 
 class PDFExport extends Module {
 
- val getPdf = new PDFgenerator
-
   def stateMap = Map(
     'Start -> {
       case _ => {
-        println("A")
-        println(getPdf)
+        val PDFdoc = new PDF
 
-        val document = getPdf.scalaPDF("portrait", "mm", "Default")
-        println("PDF export result: "+document)
+        PDFdoc.text(20, 20, "TESTING:")
+        PDFdoc.text(20, 30, "first export of SIIGNA PDF exporter!")
+        //doc.addPage
+        //doc.text(20, 20, "testing page 2")
 
+        // Output as Data URI
+        //println(doc.output(Some("datauri")))
+        PDFdoc.output(Some("datauri"))
         End
       }
     }
