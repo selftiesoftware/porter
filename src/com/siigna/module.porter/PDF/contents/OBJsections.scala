@@ -31,8 +31,8 @@ object OBJsections {
   var lineWidth = 0.200025 // 2mm
   var objectNumber : Int = 0 // "n" Current object number
   var offsets : List[Int] = List() // List of offsets
-  var pageHeight = 595.28
-  var pageWidth = 841.89
+  var pageHeight = 841
+  var pageWidth = 597
   var pdfVersion = "1. 4" // PDF Version
   var page = 1
   var pages = Array()
@@ -80,7 +80,10 @@ object OBJsections {
   }
 
   //create a header
-  def header = out("%PDF-" + pdfVersion)
+  def header = {
+    out("%PDF export for www.siigna.com")
+    out("%PDF-" + pdfVersion)
+  }
 
   //Start a new object entry
   def newObject = {
@@ -140,67 +143,28 @@ object OBJsections {
     out("endobj")
   }
 
-  // Escape text TODO: reimplement the replace method
-  def pdfEscape (s : String) = {
-    s
-    //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
-    //text.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
-  }
-
-  def resourceDictionary = {
-    out("/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]")
-    out("/Font <<")
-    // Do this for each font, the "1" bit is the index of the font
-    // fontNumber is currently the object number related to "putFonts"
-    out("/F1 " + fontNumber + " 0 R")
-    out(">>")
-    out("/XObject <<")
-    XobjectDict
-    out(">>")
-  }
-
-  def resources = {
-    fonts
-    //putImages
-
-    //Resource dictionary
-    //offsets(2) == buffer.length //TODO: activate this
-    out("<<")
-    resourceDictionary //TODO: activate this
-    out(">>")
-    out("endobj")
-  }
-
-  //TODO: not implemented
-  def stream = {
-    out("<</Length 35>>")
-    out("stream")
-    out("… Page-marking operators …")
-    out("endstream")
-    out("endobj")
-  }
-
   // TODO: allow placement of Xobjects
   def XobjectDict = {
     println("adding xObjects not implemented")
   }
 
+  //TODO: implement info
   def info = {
     out("/Producer (SIIGNA " + version + ")")
     if(title.isDefined) {
-      out("/Title (" + pdfEscape(title.get) + ")")
+      out("/Title (" + title.get + ")")
     }
     if(subject.isDefined) {
-      out("/Subject (" + pdfEscape(subject.get) + ")")
+      out("/Subject (" + subject.get + ")")
     }
     if(author.isDefined) {
-      out("/Author (" + pdfEscape(author.get) + ")")
+      out("/Author (" + author.get + ")")
     }
     if(keywords.isDefined) {
-      out("/Keywords (" + pdfEscape(keywords.get) + ")")
+      out("/Keywords (" + keywords.get + ")")
     }
     if(creator.isDefined) {
-      out("/Creator (" + pdfEscape(creator.get) + ")")
+      out("/Creator (" + creator.get + ")")
     }
     //TODO: use non-deprecated scale date and time classes.
     val created = new Date()

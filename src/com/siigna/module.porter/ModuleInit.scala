@@ -12,25 +12,54 @@
 package com.siigna.module
 
 import com.siigna._
+import java.awt.Color
+import com.siigna.module.porter._
 
 /**
  * a class for an Input-output dialog, if it is needed
  */
 
 class ModuleInit extends Module {
+  val t = TransformationMatrix
+  val boundary = View.screen
+  val DXFtopRight = Vector2D(boundary.bottomLeft.x + 38 , boundary.bottomLeft.y + 4)
+  val DXFbottomLeft = Vector2D(DXFtopRight.x+20,DXFtopRight.y+20)
+
+  val PDFtopRight = Vector2D(boundary.bottomLeft.x + 68 , boundary.bottomLeft.y + 4)
+  val PDFbottomLeft = Vector2D(PDFtopRight.x+20,PDFtopRight.y+20)
+
+  def isDXF : Boolean = {
+    if((DXFbottomLeft.x > mousePosition.x && DXFbottomLeft.y > mousePosition.y) && ((DXFtopRight.x < mousePosition.x && DXFtopRight.y < mousePosition.y))) true
+ else false
+  }
+
+  def isPDF : Boolean ={
+    if((PDFbottomLeft.x > mousePosition.x && PDFbottomLeft.y > mousePosition.y) && ((PDFtopRight.x < mousePosition.x && PDFtopRight.y < mousePosition.y))) true
+  else false
+  }
+
   def stateMap = Map(
     'Start -> {
       case MouseDown(p, MouseButtonLeft, _) :: tail => {
-        Siigna display "opening dxf import"
-        Start('DXFImport, "com.siigna.module.porter.DXF")
-      }
-      case MouseDown(p, MouseButtonRight, _) :: tail => {
-        Siigna display ("testing pdf export")
-        Start('PDFExport, "com.siigna.module.porter.PDF")
+        if (isDXF == true) {
+          Start('DXFImport, "com.siigna.module.porter.DXF")
+          End
+        } else if (isPDF == true) {
+          val exporter = new Export
+          exporter.exporter("pdf")
+          End
+        }
       }
       case MouseMove(p, _ , _) :: tail =>
-
       case _ => None
     }
   )
+  override def paint(g : Graphics, t : TransformationMatrix) {
+    def drawIcon = {
+     //draw a load icon:
+      g draw PolylineShape(Rectangle2D(DXFtopRight, DXFbottomLeft)).setAttributes("Color" -> new Color(0.25f, 0.85f, 0.25f, 0.80f), "StrokeWidth" -> 2.0)
+      g draw PolylineShape(Rectangle2D(PDFtopRight, PDFbottomLeft)).setAttributes("Color" -> new Color(0.85f, 0.25f, 0.25f, 0.80f), "StrokeWidth" -> 2.0)
+    }
+    drawIcon
+  }
 }
