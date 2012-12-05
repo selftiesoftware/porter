@@ -28,9 +28,25 @@ object STREAMsection {
 
   //add a line. TODO: add width and color.
   def line(p1 : Vector2D, p2 : Vector2D) = {
-    out(p1.x * mm + " " + p1.y  * mm + " m")
-    out(p2.x * mm + " " + p2.y  * mm + " l")
+    out(p1.x + " " + p1.y + " m")
+    out(p2.x + " " + p2.y + " l")
     out("S")
+  }
+
+  def rePosition(v : Vector2D) = {
+    //find the bounding box of the drawing
+    val box = Drawing.boundary.center
+    val landscape = OBJsections.pageSize._3
+    //transform all objects so that the center point of the bounding box matches that of the PDF.
+    val paperCenter = if (landscape == true) Vector2D(420.5, 298.5) else Vector2D(298.5,420.5)
+    //move the center of the shapes to 0,0, then scale them to millimeters. (PDF is in inches per default)
+    val t = TransformationMatrix(-box,1) //move to 0,0
+    val t2 = TransformationMatrix(Vector2D(0,0),mm / Siigna.paperScale) //scale to mm and divide by the paper scale.
+    val t3 = TransformationMatrix(paperCenter,1) // move the shapes to the center of the paper
+    val transformed = v.transform(t)  //perform the first transformation
+    val transformed2 = transformed.transform(t2) //perform the second.
+    val transformed3 = transformed2.transform(t3) //perform the third.
+    transformed3
   }
 
   def linesEvaluation = {
@@ -39,7 +55,7 @@ object STREAMsection {
       shapes.foreach(s =>
         s match {
           case l : LineShape => {
-            line(l.p1.transform(View.drawingTransformation),l.p2.transform(View.drawingTransformation))
+            line(rePosition(l.p1),rePosition(l.p2))
           }
           case _ => println("no match on shapes: "+shapes)
         }
@@ -64,7 +80,7 @@ object STREAMsection {
       //out("BT /F1 " + fontSize + ".00 Tf ET")
       pageFontSize = fontSize
     }
-    var str = format("BT %.2f %.2f Td (%s) Tj ET", x * k, (pageHeight - y) * k, text)
+    //var str = format("BT %.2f %.2f Td (%s) Tj ET", x, (pageHeight - y), text)
     //var str = format("BT %.2f %.2f Td (%s) Tj ET", x * k, (pageHeight - y) * k, pdfEscape(text))
     //out(str)
   }

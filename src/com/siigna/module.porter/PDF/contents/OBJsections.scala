@@ -15,6 +15,8 @@ import java.util.Date
 import com.siigna.app.Siigna
 import com.siigna.module.porter.PDF
 import PDF.PDF
+import com.siigna.app.view.View
+import com.siigna.app.model.Drawing
 
 /**
  * methods that generate various sections of the PDF file.
@@ -26,13 +28,11 @@ object OBJsections {
   var buffer : List[String] = List()
   val creator = None
   var fontNumber = 1 // TODO: This is temp, replace with real font handling
-  var k = 1.0 // Scale factor
+  var pageScale = 1.0 // Scale factor
   val keywords = None
   var lineWidth = 0.200025 // 2mm
   var objectNumber : Int = 0 // "n" Current object number
   var offsets : List[Int] = List() // List of offsets
-  var pageHeight = 841
-  var pageWidth = 597
   var pdfVersion = "1. 4" // PDF Version
   var page = 1
   var pages = Array()
@@ -108,10 +108,20 @@ object OBJsections {
     out("endobj")
   }
 
+  def pageSize : (Int, Int, Boolean) = {
+    if(Drawing.boundary.width > Drawing.boundary.height) {
+      println("landscape")
+      (841,597, true)
+    } else {
+      println("portrait")
+      (597,841, false)
+    }
+  }
+
   // TODO: Fix, hardcoded to a4 portrait
   def pageDefinition = {
-    var wPt = pageWidth * k
-    var hPt = pageHeight * k
+    var wPt = pageSize._1 * pageScale
+    var hPt = pageSize._2 * pageScale
 
     for(n <- 1 to page) {
       out("<</Type /Pages")

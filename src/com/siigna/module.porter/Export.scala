@@ -26,8 +26,8 @@ class Export {
   private var frameIsLoaded: Boolean = false
 
   def exporter(extension : String) = {
-
-    println(com.siigna.module.porter.PDF.contents.STREAMsection.linesEvaluation)
+    //create a testshape
+    Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
 
     try {
       val frame = new Frame()
