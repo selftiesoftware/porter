@@ -77,7 +77,7 @@ class PDF {
     if(inputType == Some("datauri")) {
       //var encodedBuffer = new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
       //println("encoded buffer: "+encodedBuffer)
-      println(buffer.reverse.mkString)
+      //println(buffer.reverse.mkString)
       buffer.reverse.mkString
       //encodedBuffer
     } else "PDF FILE INVALID"

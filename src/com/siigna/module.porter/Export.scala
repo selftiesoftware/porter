@@ -14,17 +14,21 @@ package com.siigna.module.porter
 import java.awt.{FileDialog, Frame}
 import java.io.{FileOutputStream, BufferedWriter, FileWriter}
 import com.siigna._
+import com.siigna.app.model.Drawing
 import com.siigna.module.porter.PDF._
 import io.Codec
+import scala.Some
 
 class Export {
 
   // The exporters that can export a given extension (string)
   protected var exporters : Map[String, Exporter] = Map()
-
   private var frameIsLoaded: Boolean = false
 
   def exporter(extension : String) = {
+
+    println(com.siigna.module.porter.PDF.contents.STREAMsection.linesEvaluation)
+
     try {
       val frame = new Frame()
       val dialog = new FileDialog(frame, "Export to file", FileDialog.SAVE)

@@ -14,6 +14,7 @@ package com.siigna.module.porter.PDF.contents
 import com.siigna.module.porter.PDF.contents.OBJsections._
 import com.siigna.util.geom.Vector2D
 import com.siigna._
+import com.siigna.Drawing
 
 /**
  * an object containing code that parse Siigna shapes and text into a PDF stream
@@ -32,17 +33,27 @@ object STREAMsection {
     out("S")
   }
 
-  def lineEvaluation = {
-    val model = app.model.Drawing
-    println(model.shapes)
+  def linesEvaluation = {
+    if(Drawing.shapes.size != 0) {
+      val shapes = Drawing.shapes.map (t => (t._2))
+      shapes.foreach(s =>
+        s match {
+          case l : LineShape => {
+            line(l.p1.transform(View.drawingTransformation),l.p2.transform(View.drawingTransformation))
+          }
+          case _ => println("no match on shapes: "+shapes)
+        }
+      )
+    } else {
+      println("no lines in the drawing")
+    }
   }
 
-  //TODO: not implemented
+  //add shapes to the stream
   def stream = {
     out("<</Length 35>>")
     out("stream")
-    lineEvaluation //test line evaluation
-    line(Vector2D(0,0),Vector2D(150,200))
+    linesEvaluation
     out("endstream")
     out("endobj")
   }
