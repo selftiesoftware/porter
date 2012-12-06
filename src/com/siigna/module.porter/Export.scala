@@ -14,8 +14,8 @@ package com.siigna.module.porter
 import java.awt.{FileDialog, Frame}
 import java.io.{FileOutputStream, BufferedWriter, FileWriter}
 import com.siigna._
-import com.siigna.module.porter.PDF._
 import io.Codec
+import PDF.PDF
 import scala.Some
 
 class Export {
