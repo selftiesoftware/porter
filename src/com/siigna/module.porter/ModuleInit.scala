@@ -42,11 +42,16 @@ class ModuleInit extends Module {
     'Start -> {
       case MouseDown(p, MouseButtonLeft, _) :: tail => {
         if (isDXF == true) {
-          Start('DXFImport, "com.siigna.module.porter.DXF")
+          //instantiate the Import class
+          val importClass = new Import
+          //run the importer method
+          importClass.importer
           End
         } else if (isPDF == true) {
-          val exporter = new Export
-          exporter.exporter("pdf")
+          //instantiate the Export class
+          val exportClass = new Export
+          //run the exporter method with PDF extension
+          exportClass.exporter("pdf")
           End
         }
       }

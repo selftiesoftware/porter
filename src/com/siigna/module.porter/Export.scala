@@ -14,7 +14,6 @@ package com.siigna.module.porter
 import java.awt.{FileDialog, Frame}
 import java.io.{FileOutputStream, BufferedWriter, FileWriter}
 import com.siigna._
-import com.siigna.app.model.Drawing
 import com.siigna.module.porter.PDF._
 import io.Codec
 import scala.Some
@@ -22,12 +21,11 @@ import scala.Some
 class Export {
 
   // The exporters that can export a given extension (string)
-  protected var exporters : Map[String, Exporter] = Map()
   private var frameIsLoaded: Boolean = false
 
   def exporter(extension : String) = {
-    //create a testshape
-    Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
+    //create a testshape used to evaluate scaling and positioning on the PDF page. //TODO: add a test
+    //Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
 
     try {
       val frame = new Frame()
@@ -59,16 +57,4 @@ class Export {
       case e => Siigna display "Export cancelled."
     }
   }
-
-
-  /**
-   * Adds a hook that uses the file-extension in the given Exporter to match known file types, so they
-   * can be exported using the apply-method in the Exporter itself. Overrides any hooks defined on that
-   * given extension.
-   * @param exporter  The exporter containing the file extension and the algorithms to export a given file-type.
-   */
-  def addExporter(exporter : Exporter) {
-    exporters = exporters + (exporter.extension.toLowerCase -> exporter)
-  }
-
 }

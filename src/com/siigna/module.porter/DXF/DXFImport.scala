@@ -36,76 +36,7 @@ import org.kabeja.parser.Parser
 import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
 
-/**
- * An import module using Kabeja 0.4 DXF import JAR library.
- * Kabeja version 0.4 is released under the apache 2.0 license.
- * See the Kabeja 0.4 licence for more information.
- */
-class DXFImport extends Module{
-  lazy val anthracite = new Color(0.25f, 0.25f, 0.25f, 1.00f)
-  val color = "Color" -> "#AAAAAA".color
 
-  val frame = new Frame
-  var fileLength: Int = 0
-
-  //graphics to show the loading progress
-  def loadBar(point: Int): Shape = PolylineShape(Rectangle2D(Vector2D(103, 297), Vector2D(point + 103, 303))).setAttribute("raster" -> anthracite)
-  def loadFrame: Shape = PolylineShape(Rectangle2D(Vector2D(100, 294), Vector2D(500, 306))).setAttribute(color)
-
-  private var startTime: Option[Long] = None
-
-  def stateMap = Map(
-    'Start -> {
-      case _ => {
-
-        try {
-          //opens a file dialog
-          val dialog = new FileDialog(frame)
-          dialog.setVisible(true)
-
-          val fileName = dialog.getFile
-          val fileDir = dialog.getDirectory
-          val file = new File(fileDir + fileName)
-
-          // Can we import the file-type?
-          val extension = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase
-          if (extension == "dxf") {
-            //these two lines are needed to draw a loading bar
-            startTime = Some(System.currentTimeMillis())
-            //TODO: find the correct scaling factor to make loading bar fit large DXF files.
-            fileLength = file.length().toInt * 4
-
-            // Import!
-            //todo: when a paper stack is implemented in Siigna, then import each layer to its own paper.
-            val readDXF = new DXFExtractor
-
-            //todo: find all layers in the DXF file generically and import them.
-            readDXF.read(file, "0")
-            readDXF.read(file, "default")
-            readDXF.read(file, "Default")
-
-
-            Siigna display "Loading completed."
-          } else Siigna display "please select a .dxf file"
-
-        } catch {
-          case e => {
-            Siigna display "Import cancelled."
-          }
-        }
-        End
-      }
-    }
-  )
-  override def paint(g: Graphics, t: TransformationMatrix) {
-    g draw loadFrame
-    if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30)) < 394) {
-      g draw loadBar(((System.currentTimeMillis() - startTime.get) / (fileLength / 30)).toInt)
-    } else if (fileLength > 0 && ((System.currentTimeMillis() - startTime.get) / (fileLength / 30)) > 394)
-      g draw loadBar(390)
-
-  }
-}
 
 class DXFExtractor{
   import scala.collection.immutable.List
@@ -125,7 +56,6 @@ class DXFExtractor{
       //TODO: extract the layer name and give to the doc.getDXFLayer method
       while(layers.hasNext) {
         val l = layers.next()
-        val entityList = List()
         val layer : DXFLayer = doc.getDXFLayer(layerid)
 
         //get extractable objects:
@@ -134,8 +64,7 @@ class DXFExtractor{
         val polylines = layer.getDXFEntities("POLYLINE")
         val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
 
-        println("A: "+lines)
-        println("B: "+polylines)
+        val entityList = List(mLines,polylines,LwPolylines).toArray
 
         if (lines != null) println(lines)
         if (mLines != null) println(mLines)
@@ -144,22 +73,27 @@ class DXFExtractor{
 
         //todo: collect all possible types in a list here:
         //val entities = List(lines, mLines, polylines, LwPolylines)
-        val entities = polylines
 
-        entities.toArray.collect {
-          case p : DXFPolyline => {
-            var size = p.getVertexCount
-            for (i <- 0 until size) {
-              var point = (p.getVertex(i).getPoint)
-              var vector = Vector2D(point.getX,point.getY)
-              if (vector.length != 0) points = points :+ vector
+        for (i <- 0 to 3) {
+          val entity = entityList(i)
+          println("I_:" +i + "entry: "+entity)
+          if (entity != null) {
+            entity.toArray.collect {
+              case p : DXFPolyline => {
+                var size = p.getVertexCount
+                for (i <- 0 until size) {
+                  var point = (p.getVertex(i).getPoint)
+                  var vector = Vector2D(point.getX,point.getY)
+                  if (vector.length != 0) points = points :+ vector
+                }
+                Create(PolylineShape(points))
+                points = List()
+              }
+              case p : DXFLine => {
+                var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
+                Create(line)
+              }
             }
-            Create(PolylineShape(points))
-            points = List()
-          }
-          case p : DXFLine => {
-            var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
-            Create(line)
           }
         }
       }
