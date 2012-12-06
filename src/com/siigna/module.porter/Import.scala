@@ -15,31 +15,20 @@ import com.siigna.module.Module
 import java.awt.{FileDialog, Frame, Color}
 import com.siigna._
 import app.Siigna
+import DXF._
+import java.awt.Frame
+import java.awt.FileDialog
+import java.awt.Color
 import scala.Some
 import java.io.File
-import com.siigna.module.porter.DXF._
 
 /**
  * An import module for Siigna.
- * Currently supports the following file types:
- *
- *  -- DXF
- *  --
- *
+ * Currently supports the following file types: DXF
  */
 
 class Import {
-  lazy val anthracite = new Color(0.25f, 0.25f, 0.25f, 1.00f)
-  val color = "Color" -> "#AAAAAA".color
-
   val frame = new Frame
-  var fileLength: Int = 0
-
-  //graphics to show the loading progress
-  def loadBar(point: Int): Shape = PolylineShape(Rectangle2D(Vector2D(103, 297), Vector2D(point + 103, 303))).setAttribute("raster" -> anthracite)
-  def loadFrame: Shape = PolylineShape(Rectangle2D(Vector2D(100, 294), Vector2D(500, 306))).setAttribute(color)
-
-  private var startTime: Option[Long] = None
 
   def importer = {
 
@@ -57,20 +46,11 @@ class Import {
 
       //DXF IMPORT
       if (extension == "dxf") {
-        //these two lines are needed to draw a loading bar
-        startTime = Some(System.currentTimeMillis())
-        //TODO: find the correct scaling factor to make loading bar fit large DXF files.
-        fileLength = file.length().toInt * 4
 
-        // Import!
-        //todo: when a paper stack is implemented in Siigna, then import each layer to its own paper.
+        // Import! TODO: when a paper stack is implemented in Siigna, then import each layer to its own paper.
         val readDXF = new DXFExtractor
 
-        //todo: find all layers in the DXF file generically and import them.
-        //readDXF.read(file, "0")
-        //readDXF.read(file, "default")
-        readDXF.read(file, "Default")
-
+        readDXF.read(file)
 
         Siigna display "Loading completed."
       } else Siigna display "please select a .dxf file"

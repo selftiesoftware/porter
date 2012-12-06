@@ -11,32 +11,13 @@
 
 package com.siigna.module.porter.DXF
 
-import com.siigna.module.Module
 import com.siigna._
-import app.Siigna
-import java.awt.{FileDialog, Frame, Color}
-//import module.io.dxf._
-import java.io.{FileInputStream, File}
-
 import java.io.{FileInputStream, File, InputStream}
-import org.kabeja.dxf.DXFDocument
-import org.kabeja.dxf.DXFLayer
-import org.kabeja.dxf.DXFLine
-import org.kabeja.dxf.DXFPolyline
-//import org.kabeja.dxf.DXFVertex
-//import org.kabeja.dxf.DXFConstants
-//import org.kabeja.dxf.helpers.Point
-import java.awt.FileDialog
-import com.siigna._
-//import sun.security.provider.certpath.Vertex
-import scala.Some
 
-//import org.kabeja.parser.DXFParseException
+import org.kabeja.dxf._
 import org.kabeja.parser.Parser
 import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
-
-
 
 class DXFExtractor{
   import scala.collection.immutable.List
@@ -44,7 +25,7 @@ class DXFExtractor{
   var points : List[Vector2D] = List()
 
   //a function to read a DXF file and create the shapes in it.
-  def read(file : File, layerid : String) = {
+  def read(file : File) = {
     val input : InputStream = new FileInputStream(file)
     val parser : Parser = ParserBuilder.createDefaultParser()
 
@@ -54,9 +35,12 @@ class DXFExtractor{
       val doc : DXFDocument = parser.getDocument  //get the document and the layer
       val layers = doc.getDXFLayerIterator //get the layers in the DXF file
       //TODO: extract the layer name and give to the doc.getDXFLayer method
+
       while(layers.hasNext) {
-        val l = layers.next()
-        val layer : DXFLayer = doc.getDXFLayer(layerid)
+        val l = layers.next().asInstanceOf[DXFLayer]
+        println("LAYER: "+l)
+        val layer : DXFLayer = doc.getDXFLayer(l.getName)
+        println("layer name: "+layer)
 
         //get extractable objects:
         val lines = layer.getDXFEntities("LINE")
@@ -70,9 +54,9 @@ class DXFExtractor{
         //iterate through the list and collect the shapes:
         for (i <- 0 to 3) {
           val entity = entityList(i)
-          println("I_:" +i + "entry: "+entity)
           if (entity != null) {
             entity.toArray.collect {
+              //Polylines
               case p : DXFPolyline => {
                 var size = p.getVertexCount
                 for (i <- 0 until size) {
@@ -83,9 +67,14 @@ class DXFExtractor{
                 Create(PolylineShape(points))
                 points = List()
               }
+              //lines
               case p : DXFLine => {
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
                 Create(line)
+              }
+              case c : DXFCircle => {
+                var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
+                Create(circle)
               }
             }
           }

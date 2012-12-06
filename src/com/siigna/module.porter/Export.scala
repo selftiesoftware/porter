@@ -12,7 +12,7 @@
 package com.siigna.module.porter
 
 import java.awt.{FileDialog, Frame}
-import java.io.{FileOutputStream, BufferedWriter, FileWriter}
+import java.io.FileOutputStream
 import com.siigna._
 import io.Codec
 import PDF.PDF

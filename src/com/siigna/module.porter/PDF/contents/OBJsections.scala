@@ -110,10 +110,8 @@ object OBJsections {
 
   def pageSize : (Int, Int, Boolean) = {
     if(Drawing.boundary.width > Drawing.boundary.height) {
-      println("landscape")
       (841,597, true)
     } else {
-      println("portrait")
       (597,841, false)
     }
   }
