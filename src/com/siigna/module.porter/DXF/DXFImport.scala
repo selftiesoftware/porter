@@ -64,16 +64,10 @@ class DXFExtractor{
         val polylines = layer.getDXFEntities("POLYLINE")
         val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
 
-        val entityList = List(mLines,polylines,LwPolylines).toArray
+        //add the entities to a list
+        val entityList = List(lines,mLines,polylines,LwPolylines).toArray
 
-        if (lines != null) println(lines)
-        if (mLines != null) println(mLines)
-        if (polylines != null) println(polylines)
-        if (LwPolylines != null) println(LwPolylines)
-
-        //todo: collect all possible types in a list here:
-        //val entities = List(lines, mLines, polylines, LwPolylines)
-
+        //iterate through the list and collect the shapes:
         for (i <- 0 to 3) {
           val entity = entityList(i)
           println("I_:" +i + "entry: "+entity)
