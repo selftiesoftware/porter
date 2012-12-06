@@ -11,32 +11,13 @@
 
 package com.siigna.module.porter.DXF
 
-import com.siigna.module.Module
 import com.siigna._
-import app.Siigna
-import java.awt.{FileDialog, Frame, Color}
-//import module.io.dxf._
-import java.io.{FileInputStream, File}
-
 import java.io.{FileInputStream, File, InputStream}
-import org.kabeja.dxf.DXFDocument
-import org.kabeja.dxf.DXFLayer
-import org.kabeja.dxf.DXFLine
-import org.kabeja.dxf.DXFPolyline
-//import org.kabeja.dxf.DXFVertex
-//import org.kabeja.dxf.DXFConstants
-//import org.kabeja.dxf.helpers.Point
-import java.awt.FileDialog
-import com.siigna._
-//import sun.security.provider.certpath.Vertex
-import scala.Some
 
-//import org.kabeja.parser.DXFParseException
+import org.kabeja.dxf._
 import org.kabeja.parser.Parser
 import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
-
-
 
 class DXFExtractor{
   import scala.collection.immutable.List
@@ -75,6 +56,7 @@ class DXFExtractor{
           val entity = entityList(i)
           if (entity != null) {
             entity.toArray.collect {
+              //Polylines
               case p : DXFPolyline => {
                 var size = p.getVertexCount
                 for (i <- 0 until size) {
@@ -85,9 +67,14 @@ class DXFExtractor{
                 Create(PolylineShape(points))
                 points = List()
               }
+              //lines
               case p : DXFLine => {
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
                 Create(line)
+              }
+              case c : DXFCircle => {
+                var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
+                Create(circle)
               }
             }
           }

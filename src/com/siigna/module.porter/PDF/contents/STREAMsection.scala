@@ -14,6 +14,7 @@ package com.siigna.module.porter.PDF.contents
 import com.siigna.module.porter.PDF.contents.OBJsections._
 import com.siigna.util.geom.Vector2D
 import com.siigna._
+import app.model.shape.InnerPolylineShape
 import com.siigna.Drawing
 
 /**
@@ -33,7 +34,15 @@ object STREAMsection {
     out("S")
   }
 
-  def rePosition(v : Vector2D) = {
+  //add a polyline. TODO: add width and color.
+  def polyline(s : Vector2D, points : Seq[InnerPolylineShape]) = {
+    val pts = points.toList
+    out(s.x + " " + s.y + " m")
+    pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))
+    out("S")
+  }
+
+  def rePos(v : Vector2D) = {
     //find the bounding box of the drawing
     val box = Drawing.boundary.center
     val landscape = OBJsections.pageSize._3
@@ -55,7 +64,11 @@ object STREAMsection {
       shapes.foreach(s =>
         s match {
           case l : LineShape => {
-            line(rePosition(l.p1),rePosition(l.p2))
+            line(rePos(l.p1),rePos(l.p2))
+          }
+          case p : PolylineShape => {
+            val points = p.innerShapes
+            polyline(rePos(p.startPoint), points)
           }
           case _ => println("no match on shapes: "+shapes)
         }
