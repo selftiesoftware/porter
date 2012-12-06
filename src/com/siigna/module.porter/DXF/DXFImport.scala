@@ -44,7 +44,7 @@ class DXFExtractor{
   var points : List[Vector2D] = List()
 
   //a function to read a DXF file and create the shapes in it.
-  def read(file : File, layerid : String) = {
+  def read(file : File) = {
     val input : InputStream = new FileInputStream(file)
     val parser : Parser = ParserBuilder.createDefaultParser()
 
@@ -54,9 +54,12 @@ class DXFExtractor{
       val doc : DXFDocument = parser.getDocument  //get the document and the layer
       val layers = doc.getDXFLayerIterator //get the layers in the DXF file
       //TODO: extract the layer name and give to the doc.getDXFLayer method
+
       while(layers.hasNext) {
-        val l = layers.next()
-        val layer : DXFLayer = doc.getDXFLayer(layerid)
+        val l = layers.next().asInstanceOf[DXFLayer]
+        println("LAYER: "+l)
+        val layer : DXFLayer = doc.getDXFLayer(l.getName)
+        println("layer name: "+layer)
 
         //get extractable objects:
         val lines = layer.getDXFEntities("LINE")
@@ -70,7 +73,6 @@ class DXFExtractor{
         //iterate through the list and collect the shapes:
         for (i <- 0 to 3) {
           val entity = entityList(i)
-          println("I_:" +i + "entry: "+entity)
           if (entity != null) {
             entity.toArray.collect {
               case p : DXFPolyline => {

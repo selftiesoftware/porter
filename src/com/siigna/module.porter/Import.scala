@@ -11,13 +11,15 @@
 
 package com.siigna.module.porter
 
-import com.siigna.module.Module
-import java.awt.{FileDialog, Frame, Color}
+import DXF.DXFExtractor
 import com.siigna._
 import app.Siigna
+import java.awt.Frame
+import java.awt.FileDialog
+import java.awt.Color
 import scala.Some
 import java.io.File
-import com.siigna.module.porter.DXF._
+
 
 /**
  * An import module for Siigna.
@@ -69,7 +71,7 @@ class Import {
         //todo: find all layers in the DXF file generically and import them.
         //readDXF.read(file, "0")
         //readDXF.read(file, "default")
-        readDXF.read(file, "Default")
+        readDXF.read(file)
 
 
         Siigna display "Loading completed."

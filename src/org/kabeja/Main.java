@@ -31,8 +31,8 @@ import org.kabeja.parser.ParserBuilder;
 import org.kabeja.processing.ProcessPipeline;
 import org.kabeja.processing.ProcessingManager;
 import org.kabeja.tools.SAXProcessingManagerBuilder;
-import org.kabeja.ui.impl.ServiceContainer;
-import org.kabeja.ui.xml.SAXServiceContainerBuilder;
+//import org.kabeja.ui.impl.ServiceContainer;
+//import org.kabeja.ui.xml.SAXServiceContainerBuilder;
 
 /**
  * @author <a href="mailto:simon.mieth@gmx.de">Simon Mieth </a>
@@ -153,15 +153,15 @@ public class Main {
 			// ServiceContainer sc = SAXServiceContainerBuilder
 			// .buildFromStream(this.getClass().getResourceAsStream(
 			// "/conf/ui.xml"));
-			try {
-				ServiceContainer sc = SAXServiceContainerBuilder
-						.buildFromStream(new FileInputStream("conf/ui.xml"));
-				sc.setProcessingManager(this.processorManager);
-				sc.start();
-			} catch (FileNotFoundException e) {
+			//try {
+				//ServiceContainer sc = SAXServiceContainerBuilder
+				//		.buildFromStream(new FileInputStream("conf/ui.xml"));
+				//sc.setProcessingManager(this.processorManager);
+				//sc.start();
+			//} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//	e.printStackTrace();
+			//}
 		}
 	}
 
