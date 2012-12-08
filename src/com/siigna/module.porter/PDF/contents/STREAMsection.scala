@@ -42,6 +42,7 @@ object STREAMsection {
     out("S")
   }
 
+  //TODO: test if scaling is right across different zoom scales
   def rePos(v : Vector2D) = {
     //find the bounding box of the drawing
     val box = Drawing.boundary.center
