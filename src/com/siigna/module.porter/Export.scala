@@ -26,6 +26,7 @@ class Export {
   def exporter(extension : String) = {
     //create a testshape used to evaluate scaling and positioning on the PDF page. //TODO: add a test
     //Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
+    Create(TextShape("testing write text to PDF", Vector2D(50,50),10))
 
     try {
       val frame = new Frame()

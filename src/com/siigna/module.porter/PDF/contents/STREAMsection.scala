@@ -27,6 +27,13 @@ object STREAMsection {
   var fontSize = 12
   var pageFontSize = 12
 
+  //add a circle. TODO: add width and color.
+  def circle(p : Vector2D, r : Double) = {
+    out(p.x + " " + p.y + " m")
+    out("S")
+  }
+
+
   //add a line. TODO: add width and color.
   def line(p1 : Vector2D, p2 : Vector2D) = {
     out(p1.x + " " + p1.y + " m")
@@ -58,17 +65,26 @@ object STREAMsection {
     transformed3
   }
 
-  def linesEvaluation = {
+  def shapesEvaluation = {
     if(Drawing.shapes.size != 0) {
       val shapes = Drawing.shapes.map (t => (t._2))
       shapes.foreach(s =>
         s match {
+          case c : CircleShape => {
+            circle(rePos(c.center),c.radius)
+          }
           case l : LineShape => {
             line(rePos(l.p1),rePos(l.p2))
           }
           case p : PolylineShape => {
             val points = p.innerShapes
             polyline(rePos(p.startPoint), points)
+          }
+          case t : TextShape => {
+            val content = t.text
+            val pos = t.position
+            val size = t.fontSize.toInt
+            text(rePos(pos), content, size)
           }
           case _ => println("no match on shapes: "+shapes)
         }
@@ -82,19 +98,21 @@ object STREAMsection {
   def stream = {
     out("<</Length 35>>")
     out("stream")
-    linesEvaluation
+    shapesEvaluation //add shapes
     out("endstream")
     out("endobj")
   }
 
-  //add text
-  def text(x : Int, y : Int, text : String) = {
-    if(pageFontSize != fontSize) {   //evaluate the current page´s font size:
-      //out("BT /F1 " + fontSize + ".00 Tf ET")
-      pageFontSize = fontSize
-    }
-    //var str = format("BT %.2f %.2f Td (%s) Tj ET", x, (pageHeight - y), text)
-    //var str = format("BT %.2f %.2f Td (%s) Tj ET", x * k, (pageHeight - y) * k, pdfEscape(text))
-    //out(str)
+  def text(p : Vector2D, text : String, size : Int) {
+    //out("0.57 w")
+    //out("0 G")
+    out("BT")
+    out(p.x + " " + p.y + " TD")
+    out("/F1 " + size * mm + " Tf")
+    //out(size + "TL")
+    //out("0 g")
+    //out(x + y + "Td")
+    out("("+text + ")"+" Tj")
+    out("ET")
   }
 }
