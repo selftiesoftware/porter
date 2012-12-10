@@ -24,12 +24,10 @@ import com.siigna.Drawing
 object STREAMsection {
 
   var mm = 72/25.4
-  var fontSize = 12
-  var pageFontSize = 12
 
   //add a circle. TODO: add width and color.
   def circle(p : Vector2D, r : Double) = {
-    out(p.x + " " + p.y + " m")
+    out(p.x + " " + p.y + " "+r+" "+r+" c")
     out("S")
   }
 
@@ -72,7 +70,7 @@ object STREAMsection {
       shapes.foreach(s =>
         s match {
           case c : CircleShape => {
-            circle(rePos(c.center),c.radius)
+            //circle(rePos(c.center),c.radius)
           }
           case l : LineShape => {
             line(rePos(l.p1),rePos(l.p2))

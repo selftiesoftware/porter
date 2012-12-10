@@ -14,7 +14,7 @@ package com.siigna.module.porter.PDF.contents
 import java.util.Date
 import com.siigna.app.Siigna
 import com.siigna.module.porter.PDF
-import PDF.PDF
+import PDF.PDFFile
 import com.siigna.app.view.View
 import com.siigna.app.model.Drawing
 

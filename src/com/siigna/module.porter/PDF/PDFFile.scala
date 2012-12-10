@@ -18,7 +18,7 @@ import sun.misc.BASE64Encoder
 
 //TODO: implement lines, rectangles, arcs, and circles generation as done in https://github.com/MrRio/jsPDF/blob/master/jspdf.js
 
-class PDF {
+class PDFFile {
 
   /*
     this function adds the obligatory OBJsections to the buffer (by callig functions in the OBJsections object:

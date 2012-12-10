@@ -15,7 +15,7 @@ import java.awt.{FileDialog, Frame}
 import java.io.FileOutputStream
 import com.siigna._
 import io.Codec
-import PDF.PDF
+import PDF.PDFFile
 import scala.Some
 
 class Export {
@@ -39,7 +39,7 @@ class Export {
       if (extension == "pdf" ) {
         // Fetch the output stream
         val output = new FileOutputStream(directory + filename)
-        val PDFdoc = new PDF // instantiate the PDF class
+        val PDFdoc = new PDFFile // instantiate the PDF class
 
         val contents = PDFdoc.output(Some("datauri"))
         output.write(Codec.toUTF8(contents))
