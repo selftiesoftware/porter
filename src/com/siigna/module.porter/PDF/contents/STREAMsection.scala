@@ -25,25 +25,29 @@ object STREAMsection {
 
   var mm = 72/25.4
 
+
   //add a circle. TODO: add width and color.
-  def circle(p : Vector2D, r : Double) = {
+  def circle(p : Vector2D, r : Double, a : Attributes) = {
     out(p.x + " " + p.y + " "+r+" "+r+" c")
+    width(a)
     out("S")
   }
 
 
   //add a line. TODO: add width and color.
-  def line(p1 : Vector2D, p2 : Vector2D) = {
+  def line(p1 : Vector2D, p2 : Vector2D, a : Attributes) = {
     out(p1.x + " " + p1.y + " m")
     out(p2.x + " " + p2.y + " l")
+    width(a)
     out("S")
   }
 
   //add a polyline. TODO: add width and color.
-  def polyline(s : Vector2D, points : Seq[InnerPolylineShape]) = {
+  def polyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
     val pts = points.toList
     out(s.x + " " + s.y + " m")
     pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))
+    width(a)
     out("S")
   }
 
@@ -70,14 +74,14 @@ object STREAMsection {
       shapes.foreach(s =>
         s match {
           case c : CircleShape => {
-            //circle(rePos(c.center),c.radius)
+            //circle(rePos(c.center),c.radius, c.attributes)
           }
           case l : LineShape => {
-            line(rePos(l.p1),rePos(l.p2))
+            line(rePos(l.p1),rePos(l.p2),l.attributes)
           }
           case p : PolylineShape => {
             val points = p.innerShapes
-            polyline(rePos(p.startPoint), points)
+            polyline(rePos(p.startPoint), points, p.attributes)
           }
           case t : TextShape => {
             val content = t.text
@@ -113,5 +117,12 @@ object STREAMsection {
     //out(x + y + "Td")
     out("("+text + ")"+" Tj")
     out("ET")
+  }
+
+  def width(a : Attributes) {
+    val s = a.get("StrokeWidth")
+    val w = 0.60 //default line width for lines with no properties
+    if(!s.isEmpty) out(s.get + " w")
+    else None
   }
 }
