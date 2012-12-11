@@ -28,12 +28,12 @@ class ModuleInit extends Module {
   val PDFtopRight = Vector2D(boundary.bottomLeft.x + 68 , boundary.bottomLeft.y + 4)
   val PDFbottomLeft = Vector2D(PDFtopRight.x+20,PDFtopRight.y+20)
 
-  def isDXF : Boolean = {
+  def isImport : Boolean = {
     if((DXFbottomLeft.x > mousePosition.x && DXFbottomLeft.y > mousePosition.y) && ((DXFtopRight.x < mousePosition.x && DXFtopRight.y < mousePosition.y))) true
  else false
   }
 
-  def isPDF : Boolean ={
+  def isExport : Boolean ={
     if((PDFbottomLeft.x > mousePosition.x && PDFbottomLeft.y > mousePosition.y) && ((PDFtopRight.x < mousePosition.x && PDFtopRight.y < mousePosition.y))) true
   else false
   }
@@ -41,13 +41,13 @@ class ModuleInit extends Module {
   def stateMap = Map(
     'Start -> {
       case MouseDown(p, MouseButtonLeft, _) :: tail => {
-        if (isDXF == true) {
+        if (isImport == true) {
           //instantiate the Import class
           val importClass = new Import
           //run the importer method
           importClass.importer
           End
-        } else if (isPDF == true) {
+        } else if (isExport == true) {
           //instantiate the Export class
           val exportClass = new Export
           //run the exporter method with PDF extension

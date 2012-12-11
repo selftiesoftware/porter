@@ -17,6 +17,7 @@ import com.siigna._
 import io.Codec
 import PDF.PDFFile
 import scala.Some
+import com.siigna.module.porter.DXF._
 
 class Export {
 
@@ -47,6 +48,8 @@ class Export {
         // Flush and close
         output.flush()
         output.close()
+      } else if (extension == "dxf") {
+        println("export DXF here!")
       }
 
       dialog.dispose()
