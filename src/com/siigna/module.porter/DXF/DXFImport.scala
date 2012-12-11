@@ -59,17 +59,20 @@ class DXFExtractor{
               //Polylines
               case p : DXFPolyline => {
                 var size = p.getVertexCount
+                var width = p.getLineWeight.toDouble
+                println("WIDTH: "+width)
                 for (i <- 0 until size) {
                   var point = (p.getVertex(i).getPoint)
                   var vector = Vector2D(point.getX,point.getY)
                   if (vector.length != 0) points = points :+ vector
                 }
-                Create(PolylineShape(points))
+                Create(PolylineShape(points).addAttribute("StrokeWidth" -> width/100))
                 points = List()
               }
               //lines
               case p : DXFLine => {
-                var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
+                var width = p.getLineWeight.toDouble
+                var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
                 Create(line)
               }
               case c : DXFCircle => {
