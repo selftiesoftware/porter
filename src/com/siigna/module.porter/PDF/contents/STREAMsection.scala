@@ -35,14 +35,14 @@ object STREAMsection {
 
   //add colors to exported shapes
   def color(a : Attributes) {
-    val input = a.get("Color")
-    val c = input.get.asInstanceOf[Color]
-    val r = c.getRed/100
-    val g = c.getGreen/100
-    val b = c.getBlue/100
-    if(!input.isEmpty) {
+    if(a.isDefinedAt("Color")) {
+      val input = a.get("Color")
+      val c = input.get.asInstanceOf[java.awt.Color]
+      val r = c.getRed/100
+      val g = c.getGreen/100
+      val b = c.getBlue/100
       out(r +" "+ b +" "+ g + " RG") //R G B and (RG = stroke, rg = fill)
-    }
+      }
     else None
   }
 
@@ -114,11 +114,12 @@ object STREAMsection {
             val size = t.fontSize.toInt
             text(rePos(pos), content, size)
           }
-          case _ => println("no match on shapes: "+shapes)
+          case e => println("no match on shapes: "+shapes)
         }
       )
     } else {
       println("no lines in the drawing")
+      None
     }
   }
 

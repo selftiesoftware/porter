@@ -11,13 +11,13 @@
 
 package com.siigna.module.porter
 
+import DXF.DXFExporter
 import java.awt.{FileDialog, Frame}
-import java.io.FileOutputStream
 import com.siigna._
 import io.Codec
 import PDF.PDFFile
 import scala.Some
-import com.siigna.module.porter.DXF._
+import java.io.FileOutputStream
 
 class Export {
 
@@ -26,8 +26,16 @@ class Export {
 
   def exporter(extension : String) = {
     //create a testshape used to evaluate scaling and positioning on the PDF page. //TODO: add a test
-    //Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
+    Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
     //Create(TextShape("testing write text to PDF", Vector2D(50,50),10))
+
+    //call relevant exported on the basis of the typed-in file extension:
+    def getFileType(f : String) : String = {
+      if(f.toLowerCase.contains("dxf")) "dxf"
+      else if(f.contains("pdf"))"pdf"
+      else ""
+    }
+
 
     try {
       val frame = new Frame()
@@ -37,7 +45,7 @@ class Export {
       val directory = dialog.getDirectory
       val filename = dialog.getFile
 
-      if (extension == "pdf" ) {
+      if (getFileType(filename) == "pdf" ) {
         // Fetch the output stream
         val output = new FileOutputStream(directory + filename)
         val PDFdoc = new PDFFile // instantiate the PDF class
@@ -48,8 +56,15 @@ class Export {
         // Flush and close
         output.flush()
         output.close()
-      } else if (extension == "dxf") {
-        println("export DXF here!")
+      } else if (getFileType(filename) == "dxf") {
+        // Fetch the output stream
+        val output = new FileOutputStream(directory + filename)
+        try {
+          DXFExporter.apply(output)  //export!
+
+        } catch {
+          case e => Siigna display "DXF export failed: "+ e
+        }
       }
 
       dialog.dispose()
