@@ -17,6 +17,8 @@ import scala.collection.generic.{Addable, Subtractable}
 
 import com.siigna.app.model.shape._
 import com.siigna.util.geom.{Vector2D, Vector}
+import com.siigna.app.Siigna
+
 //import scala.Option.get
 //import com.siigna.module.base.file.fileformats.dxf.DXFValue
 
@@ -175,22 +177,22 @@ object DXFSection {
             //layer
             DXFValue(8, 0),
             DXFValue(100, "AcDbPolyline"),
-            //width
-            DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0),
+            //width TODO: something fishy in the width settings! makes the exporter crash.
+            //DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0)
             //number of points
             DXFValue(90, 2),
             DXFValue(70, 0),
             //LineWeight
             DXFValue(43, 0.0),
             //Points
-            DXFValue(10, l.p1.x), DXFValue(20, l.p1.y), DXFValue(10, l.p2.x), DXFValue(20, l.p2.y))
-        }
+            DXFValue(10, l.p1.x), DXFValue(20, l.p1.y), DXFValue(10, l.p2.x), DXFValue(20, l.p2.y)
+        )}
         case p: PolylineShape => {
           val vertices = p.geometry.vertices
           val numberOfVertices = vertices.size
+          println ("found PL: "+vertices)
 
           DXFSection(
-
             DXFValue(0, "LWPOLYLINE"),
             //random identifier number (HEX)
             DXFValue(5, (scala.util.Random.nextInt.toHexString)),
@@ -198,13 +200,13 @@ object DXFSection {
             //layer
             DXFValue(8, 0),
             DXFValue(100, "AcDbPolyline"),
-            //width
-            DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0),
+            //width TODO: something fishy in the width settings! makes the exporter crash.
+            //DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0),
             //number of points
             DXFValue(90, numberOfVertices),
-            DXFValue(70, 0),
+            DXFValue(70, 0)
             //LineWeight
-            DXFValue(43, 0.0)
+            //DXFValue(43, Siigna.)
             //Points
           ) ++ vertices.map(vectorToDXF).flatten
         }
@@ -256,6 +258,8 @@ object DXFSection {
           )
         }
       }
+
     }
   }
+  println("finished")
 }

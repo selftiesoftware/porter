@@ -26,7 +26,7 @@ class Export {
 
   def exporter(extension : String) = {
     //create a testshape used to evaluate scaling and positioning on the PDF page. //TODO: add a test
-    Create(LineShape(Vector2D(0,0),Vector2D(200,100)))
+    Create(PolylineShape(List(Vector2D(0,0),Vector2D(200,100),Vector2D(20,110),Vector2D(20,30))))
     //Create(TextShape("testing write text to PDF", Vector2D(50,50),10))
 
     //call relevant exported on the basis of the typed-in file extension:
