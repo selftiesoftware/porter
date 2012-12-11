@@ -37,9 +37,9 @@ object STREAMsection {
     val scaleText = header.scale
     val string = scaleText.text
     val pos = Vector2D(pageSize._1 - 90, 18)
-    val size = scaleText.scale * 1.5
-    text(pos,string,size.toInt)
-    text(Vector2D(pageSize._1 - 420, 18),"created @ www.siigna.com - free online drawing app and library", (scaleText.scale *1.2).toInt)
+    val size = 4
+    text(pos,string,size)
+    text(Vector2D(pageSize._1 - 420, 18),"created @ www.siigna.com - free online drawing app and library", 3)
   }
 
   //add a line. TODO: add width and color.
