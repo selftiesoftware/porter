@@ -31,7 +31,7 @@ class PDFFile {
 
   def parseDocument = {
     state = 1
-    header //%PDF-1.4
+    PDFheader //%PDF-1.4
     newObject //create obj tag
     catalog
     newObject //create obj tag

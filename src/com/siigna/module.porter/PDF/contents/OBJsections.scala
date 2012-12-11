@@ -80,8 +80,8 @@ object OBJsections {
   }
 
   //create a header
-  def header = {
-    out("%PDF export for www.siigna.com")
+  def PDFheader = {
+    out("%PDF exported from www.siigna.com - online graphics app and library")
     out("%PDF-" + pdfVersion)
   }
 

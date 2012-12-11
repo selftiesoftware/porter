@@ -25,14 +25,22 @@ object STREAMsection {
 
   var mm = 72/25.4
 
-
   //add a circle. TODO: add width and color.
   def circle(p : Vector2D, r : Double, a : Attributes) = {
     out(p.x + " " + p.y + " "+r+" "+r+" c")
     width(a)
     out("S")
   }
-
+  //add a drawing header
+  def header = {
+    val header = new com.siigna.module.base.paperHeader
+    val scaleText = header.scale
+    val string = scaleText.text
+    val pos = Vector2D(pageSize._1 - 90, 18)
+    val size = scaleText.scale * 1.5
+    text(pos,string,size.toInt)
+    text(Vector2D(pageSize._1 - 420, 18),"created @ www.siigna.com - free online drawing app and library", (scaleText.scale *1.2).toInt)
+  }
 
   //add a line. TODO: add width and color.
   def line(p1 : Vector2D, p2 : Vector2D, a : Attributes) = {
@@ -101,6 +109,8 @@ object STREAMsection {
   def stream = {
     out("<</Length 35>>")
     out("stream")
+    //CREATE THE HEADER:
+    header
     shapesEvaluation //add shapes
     out("endstream")
     out("endobj")
