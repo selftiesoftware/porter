@@ -34,33 +34,32 @@ class Import {
   val frame = new Frame
 
   def importer = {
-      try {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
 
-        //initiate the export dialog
-        val showSaveFileDialog = {
+      //initiate the export dialog
+      val showSaveFileDialog = {
 
-          val fileChooser = new JFileChooser()
+        val fileChooser = new JFileChooser()
 
-          //set file filters
-          val filterDXF = new FileNameExtensionFilter("DXF Documents", "dxf", "DXF")
+        //set file filters
+        val filterDXF = new FileNameExtensionFilter("DXF Documents", "dxf", "DXF")
 
-          fileChooser.setDialogTitle("Export Siigna paper contents")
-          fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY)
-          fileChooser.setFileFilter(filterDXF)
-          fileChooser.setAcceptAllFileFilterUsed(true)
+        fileChooser.setDialogTitle("Export Siigna paper contents")
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY)
+        fileChooser.setFileFilter(filterDXF)
+        fileChooser.setAcceptAllFileFilterUsed(true)
 
-          //check if the resulting filetype is accepted
-          val result : Int = fileChooser.showSaveDialog(fileChooser)
-          val ext = fileChooser.getFileFilter.getDescription
+        //check if the resulting filetype is accepted
+        val result : Int = fileChooser.showSaveDialog(fileChooser)
+        val ext = fileChooser.getFileFilter.getDescription
 
-          if (result == JFileChooser.APPROVE_OPTION) {
+        if (result == JFileChooser.APPROVE_OPTION) {
 
-            var f = fileChooser.getSelectedFile()
-            val filepath = f.getPath
+          var f = fileChooser.getSelectedFile()
 
-            //DXF IMPORT
-            if(ext == "DXF Documents") {
+          //DXF IMPORT
+          if(ext == "DXF Documents") {
 
             // Import! TODO: when a paper stack is implemented in Siigna, then import each layer to its own paper.
             val readDXF = new DXFExtractor
@@ -72,8 +71,8 @@ class Import {
         }
       }
     showSaveFileDialog //import!
-  } catch {
-     case e => Siigna display "Import cancelled."
+    } catch {
+      case e => Siigna display "Import cancelled."
     }
   End
   }
