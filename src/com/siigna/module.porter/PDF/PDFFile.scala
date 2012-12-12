@@ -52,7 +52,7 @@ class PDFFile {
 
     //create the offset tables (a description of the buffer size at each of the objects:
     //for (i <- 0 to objectNumber) out(offsetDefinition(i))
-    "offsetdefs: " +offsetDefinition
+    //"offsetdefs: " +offsetDefinition
 
     //out(format("%010d 00000 n ", offsets(i)))
 
@@ -76,9 +76,7 @@ class PDFFile {
     }
     if(inputType == Some("datauri")) {
       //var encodedBuffer = new BASE64Encoder().encode(buffer.reverse.mkString.getBytes())
-      //println("encoded buffer: "+encodedBuffer)
       buffer.reverse.mkString
-      //encodedBuffer
     } else "PDF FILE INVALID"
   }
 }

@@ -59,7 +59,7 @@ object STREAMsection {
 
   //add a line. TODO: add width and color.
   def line(p1 : Vector2D, p2 : Vector2D, a : Attributes) = {
-    color(a)
+    //color(a)
     out(p1.x + " " + p1.y + " m")
     out(p2.x + " " + p2.y + " l")
     width(a)
@@ -69,7 +69,7 @@ object STREAMsection {
   //add a polyline. TODO: add width and color.
   def polyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
     val pts = points.toList
-    color(a)
+    //color(a)
     out(s.x + " " + s.y + " m")
     pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))
     width(a)
