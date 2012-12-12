@@ -12,24 +12,16 @@
 package com.siigna.module.porter
 
 import DXF.DXFExporter
-import java.awt.event.{ActionEvent, ActionListener}
-
-//import java.awt.{FileDialog, Frame}
 import com.siigna._
 import io.Codec
 import PDF.PDFFile
-import scala.Some
 import java.io.FileOutputStream
 import javax.swing._
 import filechooser._
 import java.io.File
 import javax.swing.JFileChooser
-import javax.swing.filechooser.FileFilter
 
 class Export {
-
-  // The exporters that can export a given extension (string)
-  private var frameIsLoaded: Boolean = false
 
   def exporter(extension : String) = {
     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
