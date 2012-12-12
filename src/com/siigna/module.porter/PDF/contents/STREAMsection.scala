@@ -139,7 +139,7 @@ object STREAMsection {
     //out("0 G")
     out("BT")
     out(p.x + " " + p.y + " TD")
-    out("/F1 " + size * mm + " Tf")
+    out("/F1 " + size + " Tf")
     //out(size + "TL")
     //out("0 g")
     //out(x + y + "Td")
