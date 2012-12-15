@@ -35,7 +35,7 @@ object STREAMsection {
 
   //add colors to exported shapes
   def color(a : Attributes) {
-    if(a.isDefinedAt("Color")) {
+    if(a.isDefinedAt("Color") && a.get("Color") != Some(None)) {
       val input = a.get("Color")
       val c = input.get.asInstanceOf[java.awt.Color]
       val r = c.getRed/100
@@ -62,6 +62,7 @@ object STREAMsection {
     color(a)
     out(p1.x + " " + p1.y + " m")
     out(p2.x + " " + p2.y + " l")
+    println("A: "+a)
     width(a)
     out("S")
   }
@@ -147,9 +148,12 @@ object STREAMsection {
     out("ET")
   }
 
+  //add colors to exported shapes
   def width(a : Attributes) {
-    val s = a.get("StrokeWidth")
-    if(!s.isEmpty) out(s.get + " w")
-    else out(0.3 +" w")
+    if(a.isDefinedAt("StrokeWidth") && a.get("StrokeWidth") != Some(None)) {
+      val stroke = a.get("StrokeWidth").get
+      out(stroke.toString + " w") //R G B and (RG = stroke, rg = fill)
+    }
+    else out("0.0 w")
   }
 }
