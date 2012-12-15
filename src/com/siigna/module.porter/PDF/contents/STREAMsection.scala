@@ -43,7 +43,7 @@ object STREAMsection {
       val b = c.getBlue/100
       out(r +" "+ b +" "+ g + " RG") //R G B and (RG = stroke, rg = fill)
       }
-    else None
+    else out("0.0 0.0 0.0 RG")
   }
 
   //add a drawing header
@@ -59,7 +59,7 @@ object STREAMsection {
 
   //add a line. TODO: add width and color.
   def line(p1 : Vector2D, p2 : Vector2D, a : Attributes) = {
-    //color(a)
+    color(a)
     out(p1.x + " " + p1.y + " m")
     out(p2.x + " " + p2.y + " l")
     width(a)
@@ -69,7 +69,7 @@ object STREAMsection {
   //add a polyline. TODO: add width and color.
   def polyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
     val pts = points.toList
-    //color(a)
+    color(a)
     out(s.x + " " + s.y + " m")
     pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))
     width(a)
@@ -150,6 +150,6 @@ object STREAMsection {
   def width(a : Attributes) {
     val s = a.get("StrokeWidth")
     if(!s.isEmpty) out(s.get + " w")
-    else None
+    else out(0.3 +" w")
   }
 }

@@ -28,7 +28,7 @@ class Export {
 
     //create a testshape used to evaluate scaling and positioning on the PDF page. //TODO: add a test
     //Create(PolylineShape(List(Vector2D(0,0),Vector2D(200,100),Vector2D(20,110),Vector2D(20,30))))
-    Create(TextShape("testing write text to PDF", Vector2D(50,50),10))
+    //Create(TextShape("testing write text to PDF", Vector2D(50,50),10))
 
     //initiate the export dialog
     val showSaveFileDialog = {
