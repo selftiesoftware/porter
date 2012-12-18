@@ -62,7 +62,6 @@ object STREAMsection {
     color(a)
     out(p1.x + " " + p1.y + " m")
     out(p2.x + " " + p2.y + " l")
-    println("A: "+a)
     width(a)
     out("S")
   }
