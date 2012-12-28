@@ -60,11 +60,8 @@ class ModuleInit extends Module {
     }
   )
   override def paint(g : Graphics, t : TransformationMatrix) {
-    def drawIcon = {
-     //draw a load icon:
-      g draw PolylineShape(Rectangle2D(DXFtopRight, DXFbottomLeft)).setAttributes("Color" -> new Color(0.25f, 0.85f, 0.25f, 0.80f), "StrokeWidth" -> 2.0)
-      g draw PolylineShape(Rectangle2D(PDFtopRight, PDFbottomLeft)).setAttributes("Color" -> new Color(0.85f, 0.25f, 0.25f, 0.80f), "StrokeWidth" -> 2.0)
-    }
-    drawIcon
+    //draw a load icon:
+    g draw PolylineShape(Rectangle2D(DXFtopRight, DXFbottomLeft)).setAttributes("Color" -> new Color(0.25f, 0.85f, 0.25f, 0.80f), "StrokeWidth" -> 2.0)
+    g draw PolylineShape(Rectangle2D(PDFtopRight, PDFbottomLeft)).setAttributes("Color" -> new Color(0.85f, 0.25f, 0.25f, 0.80f), "StrokeWidth" -> 2.0)
   }
 }

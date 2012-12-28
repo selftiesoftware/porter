@@ -95,7 +95,7 @@ case class DXFSection(values: Seq[DXFValue]) extends Subtractable[DXFValue, DXFS
               y = value.toDouble
 
               if (x.isDefined && y.isDefined) {
-                points = points :+ Vector(x.get, y.get)
+                points = points :+ Vector2D(x.get, y.get)
                 x = None
                 y = None
               }
