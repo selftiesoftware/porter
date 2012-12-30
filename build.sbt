@@ -16,4 +16,5 @@ resolvers += "Siigna" at "http://rls.siigna.com"
 
 libraryDependencies ++= Seq(
   "com.siigna" %% "siigna-main" % "nightly"
+  "com.siigna" %% "siigna-base" % "nightly"
 )
