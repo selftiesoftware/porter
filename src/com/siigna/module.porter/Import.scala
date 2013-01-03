@@ -29,7 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter
  * Currently supports the following file types: DXF
  */
 
-class Import {
+class Import extends Module {
 
   val frame = new Frame
 
@@ -76,4 +76,16 @@ class Import {
     }
   End
   }
+  val stateMap: StateMap = Map(
+    'Start -> {
+      case _ => {
+        //instantiate the Import class
+        val importClass = new Import
+        //run the importer method
+        importClass.importer
+        End
+      }
+
+    }
+  )
 }
