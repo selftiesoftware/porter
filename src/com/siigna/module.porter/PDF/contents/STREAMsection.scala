@@ -16,7 +16,7 @@ import com.siigna.util.geom.Vector2D
 import com.siigna._
 import app.model.shape.InnerPolylineShape
 import com.siigna.Drawing
-import java.awt.Color
+import com.siigna.module.base.paperHeader
 
 /**
  * an object containing code that parse Siigna shapes and text into a PDF stream
@@ -48,12 +48,10 @@ object STREAMsection {
 
   //add a drawing header
   def header = {
-    val header = new com.siigna.module.base.paperHeader
-    val scaleText = header.scale
-    val string = scaleText.text
+    val scaleText = "1: "+ Siigna.paperScale
     val pos = Vector2D(pageSize._1 - 90, 18)
     val size = 4
-    text(pos,string,size)
+    text(pos,scaleText,size)
     text(Vector2D(pageSize._1 - 420, 18),"created @ www.siigna.com - free online drawing app and library", 3)
   }
 
