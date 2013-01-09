@@ -16,7 +16,7 @@ import com.siigna.util.geom.Vector2D
 import com.siigna._
 import app.model.shape.InnerPolylineShape
 import com.siigna.Drawing
-import com.siigna.module.base.paperHeader
+import com.siigna.module.base.PaperHeader
 
 /**
  * an object containing code that parse Siigna shapes and text into a PDF stream
