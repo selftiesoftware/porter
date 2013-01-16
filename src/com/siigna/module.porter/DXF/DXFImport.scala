@@ -21,7 +21,7 @@ import org.kabeja.parser.ParserBuilder
 
 class DXFExtractor{
   import scala.collection.immutable.List
-
+  var shapes = 0
   var points : List[Vector2D] = List()
 
   //a function to read a DXF file and create the shapes in it.
@@ -60,23 +60,28 @@ class DXFExtractor{
               case p : DXFPolyline => {
                 var size = p.getVertexCount
                 var width = p.getLineWeight.toDouble
-                println("WIDTH: "+width)
                 for (i <- 0 until size) {
                   var point = (p.getVertex(i).getPoint)
                   var vector = Vector2D(point.getX,point.getY)
                   if (vector.length != 0) points = points :+ vector
                 }
                 Create(PolylineShape(points).addAttribute("StrokeWidth" -> width/100))
+                shapes += 1
+                Siigna display ("imported " + shapes +" shapes")
                 points = List()
               }
               //lines
               case p : DXFLine => {
                 var width = p.getLineWeight.toDouble
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
+                shapes += 1
+                Siigna display ("imported " + shapes +" shapes")
                 Create(line)
               }
               case c : DXFCircle => {
                 var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
+                shapes += 1
+                Siigna display ("imported " + shapes +" shapes")
                 Create(circle)
               }
             }

@@ -60,7 +60,7 @@ class Import extends Module {
 
           //DXF IMPORT
           if(ext == "DXF Documents") {
-
+            com.siigna.app.view.View.isImporting = true //disable drawing for performance purposes
             // Import! TODO: when a paper stack is implemented in Siigna, then import each layer to its own paper.
             val readDXF = new DXFExtractor
 
@@ -74,6 +74,8 @@ class Import extends Module {
     } catch {
       case e => Siigna display "Import cancelled."
     }
+  com.siigna.app.view.View.isImporting = false //enable drawing
+
   End
   }
   val stateMap: StateMap = Map(
