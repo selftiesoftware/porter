@@ -36,7 +36,7 @@ case class DXFValue(a: Int, b: Any) {
       }
     }
   } catch {
-    case e => {
+    case e : Throwable => {
       Debug.warning("DXFValue: Could not parse " + b + " into a Double. Returning None.")
       None
     }

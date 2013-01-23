@@ -96,7 +96,7 @@ class DXFExtractor{
       //var vertex = line.getVertex(i)
       //}
     } catch {
-      case e => {
+      case e : Throwable => {
       input.close()
       println("found error: "+ e)
       Nil

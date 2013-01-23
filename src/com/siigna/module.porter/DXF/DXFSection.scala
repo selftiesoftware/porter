@@ -24,11 +24,10 @@ package com.siigna.module.porter.DXF
 
 import scala.actors.Debug
 
-import scala.collection.generic.{Addable, Subtractable}
+import scala.collection.generic.Subtractable
 
 import com.siigna.app.model.shape._
-import com.siigna.util.geom.{Vector2D, Vector}
-import com.siigna.app.Siigna
+import com.siigna.util.geom.Vector2D
 
 //import scala.Option.get
 //import com.siigna.module.base.file.fileformats.dxf.DXFValue
@@ -140,7 +139,7 @@ case class DXFSection(values: Seq[DXFValue]) extends Subtractable[DXFValue, DXFS
         case _ => None
       }
     } catch {
-      case e => {
+      case e : Throwable => {
         Debug.warning("DXFSection: Failed to parse section to ShapeLike. Returned error: " + e)
         None
       }
