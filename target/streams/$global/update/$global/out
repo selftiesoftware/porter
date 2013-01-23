@@ -1,392 +1,811 @@
-[0m[[0minfo[0m] [0mUpdating {file:/home/csp/projects/siigna/base/}default-97916d...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/C:/workspace/siigna/porter/}default-a71db6...[0m
 [0m[[0mdebug[0m] [0mpost 1.3 ivy file: using exact as default matcher[0m
-[0m[[0mdebug[0m] [0m:: resolving dependencies :: com.siigna#siigna-base_2.9.2;nightly[0m
+[0m[[0mdebug[0m] [0m:: resolving dependencies :: com.siigna#siigna-porter_2.10;nightly[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
 [0m[[0mdebug[0m] [0m	refresh = false[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m	using sbt-chain to resolve org.scala-lang#scala-library;2.9.2[0m
-[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.9.2 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-library;2.9.2 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m	using sbt-chain to resolve org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-library;2.10.0 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: no namespace defined: using system[0m
-[0m[[0mdebug[0m] [0mNo entry is found in the ModuleDescriptorCache : /home/csp/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml[0m
+[0m[[0mdebug[0m] [0mNo entry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-library\ivy-2.10.0.xml[0m
 [0m[[0mdebug[0m] [0mpost 1.3 ivy file: using exact as default matcher[0m
-[0m[[0mdebug[0m] [0m	found ivy file in cache for org.scala-lang#scala-library;2.9.2 (resolved by sbt-chain): /home/csp/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.9.2[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for org.scala-lang#scala-library;2.10.0 (resolved by sbt-chain): C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-library\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.0[0m
 [0m[[0mdebug[0m] [0msbt-chain: no latest strategy defined: using default[0m
 [0m[[0mdebug[0m] [0mlocal: no namespace defined: using system[0m
-[0m[[0mdebug[0m] [0mEntry is found in the ModuleDescriptorCache : /home/csp/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml[0m
-[0m[[0mdebug[0m] [0m	found ivy file in cache for org.scala-lang#scala-library;2.9.2 (resolved by sbt-chain): /home/csp/.ivy2/cache/org.scala-lang/scala-library/ivy-2.9.2.xml[0m
-[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0m	checking org.scala-lang#scala-library;2.9.2 from sbt-chain against [none][0m
-[0m[[0mdebug[0m] [0m	module revision kept as first found: org.scala-lang#scala-library;2.9.2 from sbt-chain[0m
-[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.9.2 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m	using sbt-chain to resolve com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0minfo[0m] [0mResolving com.siigna#siigna-main_2.9.2;nightly ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.siigna#siigna-main_2.9.2;nightly {compile=[default(compile)]}[0m
-[0m[[0mdebug[0m] [0mNo entry is found in the ModuleDescriptorCache : /home/csp/.ivy2/cache/com.siigna/siigna-main_2.9.2/ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0mEntry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-library\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for org.scala-lang#scala-library;2.10.0 (resolved by sbt-chain): C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-library\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0m	checking org.scala-lang#scala-library;2.10.0 from sbt-chain against [none][0m
+[0m[[0mdebug[0m] [0m	module revision kept as first found: org.scala-lang#scala-library;2.10.0 from sbt-chain[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.0 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m	using sbt-chain to resolve com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.siigna#siigna-main_2.10;nightly {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0mNo entry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-main_2.10\ivy-nightly.xml[0m
 [0m[[0mdebug[0m] [0mpost 1.3 ivy file: using exact as default matcher[0m
-[0m[[0mdebug[0m] [0m	found ivy file in cache for com.siigna#siigna-main_2.9.2;nightly (resolved by Siigna): /home/csp/.ivy2/cache/com.siigna/siigna-main_2.9.2/ivy-nightly.xml[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0mEntry is found in the ModuleDescriptorCache : /home/csp/.ivy2/cache/com.siigna/siigna-main_2.9.2/ivy-nightly.xml[0m
-[0m[[0mdebug[0m] [0m	found ivy file in cache for com.siigna#siigna-main_2.9.2;nightly (resolved by Siigna): /home/csp/.ivy2/cache/com.siigna/siigna-main_2.9.2/ivy-nightly.xml[0m
-[0m[[0mdebug[0m] [0m	local: revision in cache: com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	checking com.siigna#siigna-main_2.9.2;nightly from Siigna against [none][0m
-[0m[[0mdebug[0m] [0m	module revision kept as first found: com.siigna#siigna-main_2.9.2;nightly from Siigna[0m
-[0m[[0mdebug[0m] [0m	found com.siigna#siigna-main_2.9.2;nightly in Siigna[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for com.siigna#siigna-main_2.10;nightly (resolved by Siigna): C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-main_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mEntry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-main_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for com.siigna#siigna-main_2.10;nightly (resolved by Siigna): C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-main_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	checking com.siigna#siigna-main_2.10;nightly from Siigna against [none][0m
+[0m[[0mdebug[0m] [0m	module revision kept as first found: com.siigna#siigna-main_2.10;nightly from Siigna[0m
+[0m[[0mdebug[0m] [0m	found com.siigna#siigna-main_2.10;nightly in Siigna[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m	using sbt-chain to resolve org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-actors;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
+[0m[[0mdebug[0m] [0mNo entry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-actors\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0mpost 1.3 ivy file: using exact as default matcher[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for org.scala-lang#scala-actors;2.10.0 (resolved by public): C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-actors\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mEntry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-actors\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for org.scala-lang#scala-actors;2.10.0 (resolved by public): C:\Users\JensEgholm\.ivy2\cache\org.scala-lang\scala-actors\ivy-2.10.0.xml[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0m	checking org.scala-lang#scala-actors;2.10.0 from public against [none][0m
+[0m[[0mdebug[0m] [0m	module revision kept as first found: org.scala-lang#scala-actors;2.10.0 from public[0m
+[0m[[0mdebug[0m] [0m	found org.scala-lang#scala-actors;2.10.0 in public[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
 [0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m	using sbt-chain to resolve com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.siigna#siigna-base_2.10;nightly {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0mNo entry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-base_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0mpost 1.3 ivy file: using exact as default matcher[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for com.siigna#siigna-base_2.10;nightly (resolved by Siigna): C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-base_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mEntry is found in the ModuleDescriptorCache : C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-base_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0m	found ivy file in cache for com.siigna#siigna-base_2.10;nightly (resolved by Siigna): C:\Users\JensEgholm\.ivy2\cache\com.siigna\siigna-base_2.10\ivy-nightly.xml[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	checking com.siigna#siigna-base_2.10;nightly from Siigna against [none][0m
+[0m[[0mdebug[0m] [0m	module revision kept as first found: com.siigna#siigna-base_2.10;nightly from Siigna[0m
+[0m[[0mdebug[0m] [0m	found com.siigna#siigna-base_2.10;nightly in Siigna[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile[0m
+[0m[[0mdebug[0m] [0mcompile is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=runtime[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime[0m
+[0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime[0m
 [0m[[0mdebug[0m] [0mruntime is loaded and no conf to load.  Skip loading[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [test][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [test][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test[0m
+[0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test[0m
 [0m[[0mdebug[0m] [0mtest is loaded and no conf to load.  Skip loading[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [provided][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=provided[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [provided][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=provided[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'optional'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [optional][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=optional[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [optional][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=optional[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile-internal'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile-internal][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=compile-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile-internal][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [optional][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [provided][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [optional][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=compile-internal[0m
+[0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [provided][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=compile-internal[0m
 [0m[[0mdebug[0m] [0mcompile-internal is loaded and no conf to load.  Skip loading[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime-internal'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [runtime-internal][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=runtime-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [runtime-internal][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [optional][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=runtime-internal[0m
+[0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [optional][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=runtime-internal[0m
 [0m[[0mdebug[0m] [0mruntime-internal is loaded and no conf to load.  Skip loading[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [test-internal][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [test][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [test-internal][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [test][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test-internal[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->runtime][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->compile][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.9.2;nightly->org.scala-lang#scala-library;2.9.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.9.2 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.9.2;nightly->com.siigna#siigna-main_2.9.2;nightly [compile->master][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [optional][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [provided][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-main_2.10;nightly->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-actors;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->runtime][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->master(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->org.scala-lang#scala-library;2.10.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of org.scala-lang#scala-library;2.10.0 of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-base_2.10;nightly->com.siigna#siigna-main_2.10;nightly [runtime->compile][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-main_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.siigna#siigna-porter_2.10;nightly->com.siigna#siigna-base_2.10;nightly [compile->master][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [optional][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test-internal[0m
+[0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [provided][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=test-internal[0m
 [0m[[0mdebug[0m] [0mtest-internal is loaded and no conf to load.  Skip loading[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'plugin'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [plugin][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=plugin[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [plugin][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=plugin[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'sources'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [sources][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=sources[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [sources][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=sources[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'docs'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [docs][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=docs[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [docs][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=docs[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'pom'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-base_2.9.2;nightly [pom][0m
-[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-base_2.9.2;nightly of rootConf=pom[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in test-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in test: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in compile: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in runtime: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in runtime-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in compile-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0m	resolved ivy file produced in /home/csp/projects/siigna/base/target/resolution-cache/com.siigna/siigna-base_2.9.2/nightly/resolved.xml.xml[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for com.siigna#siigna-porter_2.10;nightly [pom][0m
+[0m[[0mdebug[0m] [0mloadData of com.siigna#siigna-porter_2.10;nightly of rootConf=pom[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in test-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in test: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in compile: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in runtime: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in runtime-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in compile-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in C:\Users\JensEgholm\.ivy2\cache\resolved-com.siigna-siigna-porter_2.10-nightly.xml[0m
 [0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in test-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in test: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in compile: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in runtime: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in runtime-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in compile-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in test-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in test: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in compile: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in runtime: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in runtime-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.9.2 in compile-internal: excluding org.scala-lang#scala-library;2.9.2!scala-library.jar[0m
-[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.siigna#siigna-main_2.9.2;nightly!siigna-main_2.9.2.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 201ms :: artifacts dl 12ms[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly compile produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/compile-resolved.xml[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly runtime produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/runtime-resolved.xml[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly test produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/test-resolved.xml[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in test-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in test: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in compile: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in runtime: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in runtime-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in compile-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in test-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in test: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in compile: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in runtime: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in runtime-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0morg.scala-lang#scala-library;2.10.0 in compile-internal: excluding org.scala-lang#scala-library;2.10.0!scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.siigna#siigna-main_2.10;nightly!siigna-main_2.10.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.siigna#siigna-base_2.10;nightly!siigna-base_2.10.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-actors;2.10.0!scala-actors.jar[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 303ms :: artifacts dl 17ms[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly compile produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-compile.xml[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly runtime produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-runtime.xml[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly test produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-test.xml[0m
 [0m[[0mdebug[0m] [0mNbr of module to sort : 0[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly provided produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/provided-resolved.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly provided produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-provided.xml[0m
 [0m[[0mdebug[0m] [0mNbr of module to sort : 0[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly optional produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/optional-resolved.xml[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly compile-internal produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/compile-internal-resolved.xml[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly runtime-internal produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/runtime-internal-resolved.xml[0m
-[0m[[0mdebug[0m] [0mNbr of module to sort : 2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.9.2 / Number of dependencies = 0[0m
-[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.9.2;nightly / Number of dependencies = 1[0m
-[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.9.2[0m
-[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.9.2;nightly[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly test-internal produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/test-internal-resolved.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly optional produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-optional.xml[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly compile-internal produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly runtime-internal produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0mNbr of module to sort : 4[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-library;2.10.0 / Number of dependencies = 0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-main_2.10;nightly / Number of dependencies = 3[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : org.scala-lang#scala-actors;2.10.0 / Number of dependencies = 1[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-actors;2.10.0[0m
+[0m[[0mdebug[0m] [0mSort dependencies of : com.siigna#siigna-base_2.10;nightly / Number of dependencies = 2[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : org.scala-lang#scala-library;2.10.0[0m
+[0m[[0mdebug[0m] [0mModule descriptor is processed : com.siigna#siigna-main_2.10;nightly[0m
+[0m[[0mdebug[0m] [0mSort done for : com.siigna#siigna-base_2.10;nightly[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly test-internal produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-test-internal.xml[0m
 [0m[[0mdebug[0m] [0mNbr of module to sort : 0[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly plugin produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/plugin-resolved.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly plugin produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-plugin.xml[0m
 [0m[[0mdebug[0m] [0mNbr of module to sort : 0[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly sources produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/sources-resolved.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly sources produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-sources.xml[0m
 [0m[[0mdebug[0m] [0mNbr of module to sort : 0[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly docs produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/docs-resolved.xml[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly docs produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-docs.xml[0m
 [0m[[0mdebug[0m] [0mNbr of module to sort : 0[0m
-[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-base_2.9.2;nightly pom produced in /home/csp/projects/siigna/base/target/resolution-cache/reports/com.siigna-siigna-base_2.9.2/pom-resolved.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (201ms resolve - 12ms download)[0m
+[0m[[0mdebug[0m] [0m	report for com.siigna#siigna-porter_2.10;nightly pom produced in C:\Users\JensEgholm\.ivy2\cache\com.siigna-siigna-porter_2.10-pom.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (303ms resolve - 17ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

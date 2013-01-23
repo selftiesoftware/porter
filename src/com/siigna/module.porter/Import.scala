@@ -11,16 +11,10 @@
 
 package com.siigna.module.porter
 
-import com.siigna.module.Module
-import java.awt.{FileDialog, Frame, Color}
 import com.siigna._
 import app.Siigna
 import DXF._
 import java.awt.Frame
-import java.awt.FileDialog
-import java.awt.Color
-import scala.Some
-import java.io.File
 import javax.swing.{JFileChooser, UIManager}
 import javax.swing.filechooser.FileNameExtensionFilter
 
@@ -60,7 +54,6 @@ class Import extends Module {
 
           //DXF IMPORT
           if(ext == "DXF Documents") {
-            com.siigna.app.view.View.isImporting = true //disable drawing for performance purposes
             // Import! TODO: when a paper stack is implemented in Siigna, then import each layer to its own paper.
             val readDXF = new DXFExtractor
 
@@ -72,9 +65,8 @@ class Import extends Module {
       }
     showSaveFileDialog //import!
     } catch {
-      case e => Siigna display "Import cancelled."
+      case e : Throwable => Siigna display "Import cancelled."
     }
-  com.siigna.app.view.View.isImporting = false //enable drawing
 
   End
   }

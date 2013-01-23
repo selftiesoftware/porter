@@ -35,7 +35,7 @@ object OBJsections {
   var offsets : List[Int] = List() // List of offsets
   var pdfVersion = "1. 4" // PDF Version
   var page = 1
-  var pages = Array()
+  //var pages = Array()
   var state = 0 // Current document state
   val subject = None
   val title = None
@@ -46,7 +46,7 @@ object OBJsections {
     if(state == 2) {
       //pages[page] += s + "\n"
       //pages += s + "\n"
-      Array()
+      //Array()
     } else {
       buffer = (s + "\n") :: buffer
     }

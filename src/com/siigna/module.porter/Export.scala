@@ -73,7 +73,7 @@ class Export extends Module {
             output.flush()// Flush and close
             output.close()
           } catch {
-            case e => Siigna display "DXF export failed: "+ e
+            case e : Throwable => Siigna display "DXF export failed: "+ e
           }
         }
         Siigna display "Export successful."
