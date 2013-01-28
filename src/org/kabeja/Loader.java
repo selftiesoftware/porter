@@ -103,12 +103,12 @@ public class Loader {
                         String name = files[x].getName().toLowerCase();
 
                         if (name.endsWith(".jar") || name.endsWith(".zip")) {
-                            urls.add(files[x].toURL());
+                            urls.add(files[x].toURI().toURL());
                         }
                     }
                 }
 
-                urls.add(f.toURL());
+                urls.add(f.toURI().toURL());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
