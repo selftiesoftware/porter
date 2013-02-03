@@ -20,6 +20,7 @@ import io.Codec
  * Exports the current drawing in DXF format.
  */
 object DXFExporter {
+
   def apply(out : OutputStream) {
     val dxf = new DXFFile
 

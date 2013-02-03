@@ -19,15 +19,13 @@ import org.kabeja.parser.Parser
 import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
 
-class DXFExtractor{
-  import scala.collection.immutable.List
-  var shapes = 0
-  var points : List[Vector2D] = List()
+object DXFImport {
 
   //a function to read a DXF file and create the shapes in it.
-  def read(file : File) = {
-    val input : InputStream = new FileInputStream(file)
+  def apply(input : InputStream) = {
     val parser : Parser = ParserBuilder.createDefaultParser()
+    var shapes = 0
+    var points : List[Vector2D] = List()
 
     try {
       parser.parse(input, DXFParser.DEFAULT_ENCODING)//parse
@@ -102,6 +100,5 @@ class DXFExtractor{
       Nil
       }
     }
-    input.close()
   }
 }

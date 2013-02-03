@@ -25,58 +25,11 @@ import javax.swing.filechooser.FileNameExtensionFilter
 
 class Import extends Module {
 
-  val frame = new Frame
-
-  def importer = {
-    try {
-      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
-
-      //initiate the export dialog
-      val showSaveFileDialog = {
-
-        val fileChooser = new JFileChooser()
-
-        //set file filters
-        val filterDXF = new FileNameExtensionFilter("DXF Documents", "dxf", "DXF")
-
-        fileChooser.setDialogTitle("Export Siigna paper contents")
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY)
-        fileChooser.setFileFilter(filterDXF)
-        fileChooser.setAcceptAllFileFilterUsed(true)
-
-        //check if the resulting filetype is accepted
-        val result : Int = fileChooser.showSaveDialog(fileChooser)
-        val ext = fileChooser.getFileFilter.getDescription
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-
-          var f = fileChooser.getSelectedFile()
-
-          //DXF IMPORT
-          if(ext == "DXF Documents") {
-            // Import! TODO: when a paper stack is implemented in Siigna, then import each layer to its own paper.
-            val readDXF = new DXFExtractor
-
-            readDXF.read(f)
-
-            Siigna display "Loading completed."
-          } else Siigna display "please select a .dxf file"
-        }
-      }
-    showSaveFileDialog //import!
-    } catch {
-      case e : Throwable => Siigna display "Import cancelled."
-    }
-
-  End
-  }
   val stateMap: StateMap = Map(
     'Start -> {
       case _ => {
-        //instantiate the Import class
-        val importClass = new Import
-        //run the importer method
-        importClass.importer
+        Dialogue.readInputStream(Some(DXFFilenameFilter)).map(DXFImport.apply)
+
         End
       }
 
