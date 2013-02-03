@@ -24,7 +24,7 @@ object DXFImport {
   //a function to read a DXF file and create the shapes in it.
   def apply(input : InputStream) = {
     val parser : Parser = ParserBuilder.createDefaultParser()
-    var shapes = 0
+    var shapesCount = 0
     var points : List[Vector2D] = List()
 
     try {
@@ -33,12 +33,11 @@ object DXFImport {
       val doc : DXFDocument = parser.getDocument  //get the document and the layer
       val layers = doc.getDXFLayerIterator //get the layers in the DXF file
       //TODO: extract the layer name and give to the doc.getDXFLayer method
+      var shapes = List[Shape]()
 
       while(layers.hasNext) {
         val l = layers.next().asInstanceOf[DXFLayer]
-        println("LAYER: "+l)
         val layer : DXFLayer = doc.getDXFLayer(l.getName)
-        println("layer name: "+layer)
 
         //get extractable objects:
         val lines = layer.getDXFEntities("LINE")
@@ -63,28 +62,29 @@ object DXFImport {
                   var vector = Vector2D(point.getX,point.getY)
                   if (vector.length != 0) points = points :+ vector
                 }
-                Create(PolylineShape(points).addAttribute("StrokeWidth" -> width/100))
-                shapes += 1
-                Siigna display ("imported " + shapes +" shapes")
+                shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
+                shapesCount += 1
+                Siigna display ("imported " + shapesCount +" shapes")
                 points = List()
               }
               //lines
               case p : DXFLine => {
                 var width = p.getLineWeight.toDouble
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
-                shapes += 1
-                Siigna display ("imported " + shapes +" shapes")
-                Create(line)
+                shapesCount += 1
+                Siigna display ("imported " + shapesCount +" shapes")
+                shapes = shapes :+ line.addAttribute("StrokeWidth" -> width/100)
               }
               case c : DXFCircle => {
                 var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
-                shapes += 1
-                Siigna display ("imported " + shapes +" shapes")
-                Create(circle)
+                shapesCount += 1
+                Siigna display ("imported " + shapesCount +" shapes")
+                shapes = shapes :+circle
               }
             }
           }
         }
+        Create(shapes)
       }
 
 
@@ -100,5 +100,6 @@ object DXFImport {
       Nil
       }
     }
+    input.close()
   }
 }
