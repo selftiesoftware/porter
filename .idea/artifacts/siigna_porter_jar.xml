@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="siigna-porter:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/siigna_porter_jar</output-path>
+    <root id="archive" name="siigna-porter.jar">
+      <element id="module-output" name="siigna-porter" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/com.siigna/siigna-main_2.9.2/jars/siigna-main_2.9.2-nightly.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.sbt/boot/scala-2.9.2/lib/scala-library.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
