@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012. Siigna is released under the creative common license by-nc-sa. You are free
+ * Copyright (c) 2008-2013. Siigna is released under the creative common license by-nc-sa. You are free
  * to Share — to copy, distribute and transmit the work,
  * to Remix — to adapt the work
  *
@@ -35,7 +35,7 @@ object OBJsections {
   var offsets : List[Int] = List() // List of offsets
   var pdfVersion = "1. 4" // PDF Version
   var page = 1
-  var pages = Array()
+  //var pages = Array()
   var state = 0 // Current document state
   val subject = None
   val title = None
@@ -46,7 +46,7 @@ object OBJsections {
     if(state == 2) {
       //pages[page] += s + "\n"
       //pages += s + "\n"
-      Array()
+      //Array()
     } else {
       buffer = (s + "\n") :: buffer
     }

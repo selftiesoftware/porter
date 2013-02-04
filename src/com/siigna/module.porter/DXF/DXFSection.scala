@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2008-2013. Siigna is released under the creative common license by-nc-sa. You are free
+ * to Share — to copy, distribute and transmit the work,
+ * to Remix — to adapt the work
+ *
+ * Under the following conditions:
+ * Attribution —  You must attribute the work to http://siigna.com in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).
+ * Noncommercial — You may not use this work for commercial purposes.
+ * Share Alike — If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
+ */
+
 package com.siigna.module.porter.DXF
 
 /*
@@ -13,11 +24,10 @@ package com.siigna.module.porter.DXF
 
 import scala.actors.Debug
 
-import scala.collection.generic.{Addable, Subtractable}
+import scala.collection.generic.Subtractable
 
 import com.siigna.app.model.shape._
-import com.siigna.util.geom.{Vector2D, Vector}
-import com.siigna.app.Siigna
+import com.siigna.util.geom.Vector2D
 
 //import scala.Option.get
 //import com.siigna.module.base.file.fileformats.dxf.DXFValue
@@ -95,7 +105,7 @@ case class DXFSection(values: Seq[DXFValue]) extends Subtractable[DXFValue, DXFS
               y = value.toDouble
 
               if (x.isDefined && y.isDefined) {
-                points = points :+ Vector(x.get, y.get)
+                points = points :+ Vector2D(x.get, y.get)
                 x = None
                 y = None
               }
@@ -129,7 +139,7 @@ case class DXFSection(values: Seq[DXFValue]) extends Subtractable[DXFValue, DXFS
         case _ => None
       }
     } catch {
-      case e => {
+      case e : Throwable => {
         Debug.warning("DXFSection: Failed to parse section to ShapeLike. Returned error: " + e)
         None
       }
