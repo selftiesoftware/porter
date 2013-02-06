@@ -20,8 +20,6 @@ class Export extends Module {
   val stateMap: StateMap = Map(
     'Start -> {
       case _ => {
-        println("in exporter: "+Dialogue.)
-
         // Write the DXF or PDF exporter to a file
         //Dialogue.writeOutputStream(DXFExporter.apply, Some(DXFFilenameFilter))
         Dialogue.writeOutputStream(PDFExporter.apply, Some(PDFFilenameFilter))
