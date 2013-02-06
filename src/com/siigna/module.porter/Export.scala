@@ -23,7 +23,6 @@ class Export extends Module {
         // Write the DXF or PDF exporter to a file
         //Dialogue.writeOutputStream(DXFExporter.apply, Some(DXFFilenameFilter))
         Dialogue.writeOutputStream(PDFExporter.apply, Some(PDFFilenameFilter))
-
         End
       }
 

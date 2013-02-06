@@ -22,12 +22,12 @@ import io.Codec
 object DXFExporter {
 
   def apply(out : OutputStream) {
-    val dxf = new DXFFile
+    var dxf = new DXFFile
 
     dxf ++ Drawing.map(t => DXFSection.toDXF(t._2)).toSeq
 
     // TODO: Optimize this!
-    val charSeq = Codec.toUTF8(dxf.toString)
+    var charSeq = Codec.toUTF8(dxf.toString)
 
     // Write
     out.write(charSeq)

@@ -12,12 +12,18 @@ object PDFExporter {
 
   def apply(out : OutputStream) {
     val pdf = new PDFFile
-    val contents = pdf.output(Some("datauri"))
-    val charSeq = Codec.toUTF8(contents.toString)
+    var contents = pdf.output(Some("datauri"))
+    var charSeq = Codec.toUTF8(contents)
 
     // Write
     out.write(charSeq)
     out.close()
+    println("CONTENTS LENGTH "+contents.length)
+    println("PDF "+pdf)
+    contents = ""
+    println("CONTENTS LENGTH2 "+contents.length)
+
+    charSeq = Array()
   }
 
   def extension = "pdf"
