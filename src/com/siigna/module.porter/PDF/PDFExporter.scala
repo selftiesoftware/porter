@@ -17,6 +17,7 @@ object PDFExporter {
 
     // Write
     out.write(charSeq)
+    out.close()
   }
 
   def extension = "pdf"

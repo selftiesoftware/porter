@@ -31,6 +31,7 @@ object DXFExporter {
 
     // Write
     out.write(charSeq)
+    out.close()
   }
 
   def extension = "dxf"

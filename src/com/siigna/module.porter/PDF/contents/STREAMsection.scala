@@ -33,6 +33,19 @@ object STREAMsection {
     out("S")
   }
 
+  //add a closed polyline. TODO: add width and color.
+  def closedPolyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
+    val pts = points.toList
+    println("S: "+s)
+    println("pts: "+pts)
+    //color(a)
+    out(s.x + " " + s.y + " m")
+    pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))
+    out(s.x + " " + s.y + " l")
+    width(a)
+    out("S")
+  }
+
   //add colors to exported shapes
   def color(a : Attributes) {
     if(a.isDefinedAt("Color") && a.get("Color") != Some(None)) {
@@ -57,17 +70,17 @@ object STREAMsection {
 
   //add a line. TODO: add width and color.
   def line(p1 : Vector2D, p2 : Vector2D, a : Attributes) = {
-    color(a)
+    //color(a)
     out(p1.x + " " + p1.y + " m")
     out(p2.x + " " + p2.y + " l")
     width(a)
     out("S")
   }
 
-  //add a polyline. TODO: add width and color.
-  def polyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
+  //add an open polyline. TODO: add width and color.
+  def openPolyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
     val pts = points.toList
-    color(a)
+    //color(a)
     out(s.x + " " + s.y + " m")
     pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))
     width(a)
@@ -102,9 +115,14 @@ object STREAMsection {
           case l : LineShape => {
             line(rePos(l.p1),rePos(l.p2),l.attributes)
           }
-          case p : PolylineShape => {
+          case o : PolylineShape.PolylineShapeOpen => {
+            val points = o.innerShapes
+            openPolyline(rePos(o.startPoint), points, o.attributes)
+          }
+
+          case p : PolylineShape.PolylineShapeClosed => {
             val points = p.innerShapes
-            polyline(rePos(p.startPoint), points, p.attributes)
+            closedPolyline(rePos(p.startPoint), points, p.attributes)
           }
           case t : TextShape => {
             val content = t.text
