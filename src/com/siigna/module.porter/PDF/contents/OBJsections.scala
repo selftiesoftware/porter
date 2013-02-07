@@ -30,7 +30,7 @@ object OBJsections {
   var fontNumber = 1 // TODO: This is temp, replace with real font handling
   var pageScale = 1.0 // Scale factor
   val keywords = None
-  var lineWidth = 0.200025 // 2mm
+  var lineWidth = 0.2 // 0.2 mm
   var objectNumber : Int = 0 // "n" Current object number
   var offsets : List[Int] = List() // List of offsets
   var pdfVersion = "1. 4" // PDF Version

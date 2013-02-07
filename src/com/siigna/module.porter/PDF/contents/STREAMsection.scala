@@ -36,8 +36,6 @@ object STREAMsection {
   //add a closed polyline. TODO: add width and color.
   def closedPolyline(s : Vector2D, points : Seq[InnerPolylineShape], a : Attributes) = {
     val pts = points.toList
-    println("S: "+s)
-    println("pts: "+pts)
     //color(a)
     out(s.x + " " + s.y + " m")
     pts.foreach(p => out(rePos(p.point).x + " " + rePos(p.point).y + " l"))

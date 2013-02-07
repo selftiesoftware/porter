@@ -10,9 +10,16 @@ import io.Codec
  */
 object PDFExporter {
 
+  var pdf: Option[PDFFile] = None
+
   def apply(out : OutputStream) {
-    val pdf = new PDFFile
-    var contents = pdf.output(Some("datauri"))
+    //clear old vars in OBJSections:
+    com.siigna.module.porter.PDF.contents.OBJsections.buffer = List()
+    com.siigna.module.porter.PDF.contents.OBJsections.state = 0
+    com.siigna.module.porter.PDF.contents.OBJsections.objectNumber = 0
+
+    pdf = Some(new PDFFile)
+    var contents = pdf.get.output(Some("datauri"))
     var charSeq = Codec.toUTF8(contents)
 
     // Write
@@ -22,7 +29,7 @@ object PDFExporter {
     println("PDF "+pdf)
     contents = ""
     println("CONTENTS LENGTH2 "+contents.length)
-
+    pdf = None
     charSeq = Array()
   }
 
