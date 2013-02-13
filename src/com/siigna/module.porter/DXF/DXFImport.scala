@@ -26,6 +26,7 @@ object DXFImport {
     val parser : Parser = ParserBuilder.createDefaultParser()
     var shapesCount = 0
     var points : List[Vector2D] = List()
+    var pointsInImport = 0
 
     try {
       parser.parse(input, DXFParser.DEFAULT_ENCODING)//parse
@@ -62,29 +63,41 @@ object DXFImport {
                   var vector = Vector2D(point.getX,point.getY)
                   if (vector.length != 0) points = points :+ vector
                 }
-                shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
-                println("shapes: "+shapes)
-                shapesCount += 1
-                Siigna display ("imported " + shapesCount +" shapes")
+                // TODO: remove this restriction when performance improves.
+                if (pointsInImport < 1000) {
+                  shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
+                  pointsInImport += size
+                  shapesCount += 1
+                  Siigna display ("imported " + shapesCount +" shapes")
+                } else Siigna display ("import limit exceeded")
                 points = List()
               }
               //lines
               case p : DXFLine => {
                 var width = p.getLineWeight.toDouble
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
-                shapesCount += 1
-                Siigna display ("imported " + shapesCount +" shapes")
-                shapes = shapes :+ line.addAttribute("StrokeWidth" -> width/100)
+                // TODO: remove this restriction when performance improves.
+                if (pointsInImport < 1000) {
+                  shapes = shapes :+ line.addAttribute("StrokeWidth" -> width/100)
+                  pointsInImport += 2
+                  shapesCount += 1
+                  Siigna display ("imported " + shapesCount +" shapes")
+                } else Siigna display ("import limit exceeded")
               }
               case c : DXFCircle => {
                 var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
-                shapesCount += 1
-                Siigna display ("imported " + shapesCount +" shapes")
-                shapes = shapes :+circle
+                // TODO: remove this restriction when performance improves.
+                if (pointsInImport < 1000) {
+                  shapes = shapes :+circle
+                  pointsInImport += 2
+                  shapesCount += 1
+                  Siigna display ("imported " + shapesCount +" shapes")
+                } else Siigna display ("import limit exceeded")
               }
             }
           }
         }
+        println("pts in import: "+pointsInImport)
         Create(shapes)
         //clear the shapes list
         shapes = List()
