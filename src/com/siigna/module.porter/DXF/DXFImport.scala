@@ -97,8 +97,22 @@ object DXFImport {
             }
           }
         }
-        println("pts in import: "+pointsInImport)
-        Create(shapes)
+        //if the drawing has a certain complexity, do the Creation in four iterations to prevent server overload
+        if(pointsInImport > 400 && shapes.length > 10) {
+          val a = shapes.take(shapes.length/2)
+          val aFirst = a.take(a.length/2)
+          val aLast = a.drop(a.length/2)
+
+          val b = shapes.drop(shapes.length/2)
+          val bFirst = b.take(b.length/2)
+          val bLast = b.drop(b.length/2)
+
+          Create(aFirst)
+          Create(aLast)
+          Create(bFirst)
+          Create(bLast)
+
+        } else Create(shapes)
         //clear the shapes list
         shapes = List()
       }
