@@ -112,7 +112,9 @@ object DXFImport {
           Create(bFirst)
           Create(bLast)
 
-        } else Create(shapes)
+        } else if (!shapes.isEmpty) {
+          Create(shapes)
+        }
         //clear the shapes list
         shapes = List()
       }
