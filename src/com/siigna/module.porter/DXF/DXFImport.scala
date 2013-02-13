@@ -63,6 +63,7 @@ object DXFImport {
                   if (vector.length != 0) points = points :+ vector
                 }
                 shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
+                println("shapes: "+shapes)
                 shapesCount += 1
                 Siigna display ("imported " + shapesCount +" shapes")
                 points = List()
@@ -85,6 +86,8 @@ object DXFImport {
           }
         }
         Create(shapes)
+        //clear the shapes list
+        shapes = List()
       }
 
 
