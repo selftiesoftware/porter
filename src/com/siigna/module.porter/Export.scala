@@ -11,9 +11,8 @@
 
 package com.siigna.module.porter
 
-import DXF.{DXFFilenameFilter, DXFExporter}
-import PDF.{PDFFilenameFilter, PDFExporter}
 import com.siigna._
+import com.siigna.module.porter.PDF.PDFExporter
 
 class Export extends Module {
 
@@ -22,7 +21,7 @@ class Export extends Module {
       case _ => {
         // Write the DXF or PDF exporter to a file
         //Dialogue.writeOutputStream(DXFExporter.apply, Some(DXFFilenameFilter))
-        Dialogue.writeOutputStream(PDFExporter.apply, Some(PDFFilenameFilter))
+        Dialogue.writeOutputStream(PDFExporter.apply, Seq(PDFFileFilter))
         End
       }
 
