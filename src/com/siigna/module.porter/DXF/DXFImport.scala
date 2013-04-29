@@ -45,12 +45,14 @@ object DXFImport {
         val mLines = layer.getDXFEntities("MLINE")
         val polylines = layer.getDXFEntities("POLYLINE")
         val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
+        val arcs = layer.getDXFEntities("ARC")
 
         //add the entities to a list
-        val entityList = List(lines,mLines,polylines,LwPolylines).toArray
+        val entityList = List(lines,mLines,polylines,LwPolylines,arcs).toArray
 
         //iterate through the list and collect the shapes:
-        for (i <- 0 to 3) {
+
+        for (i <- 0 to 4) {
           val entity = entityList(i)
           if (entity != null) {
             entity.toArray.collect {
@@ -64,7 +66,7 @@ object DXFImport {
                   if (vector.length != 0) points = points :+ vector
                 }
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 1000) {
+                if (pointsInImport < 2000) {
                   shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += size
                   shapesCount += 1
@@ -77,7 +79,7 @@ object DXFImport {
                 var width = p.getLineWeight.toDouble
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 1000) {
+                if (pointsInImport < 2000) {
                   shapes = shapes :+ line.addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += 2
                   shapesCount += 1
@@ -85,15 +87,29 @@ object DXFImport {
                 } else Siigna display ("import limit exceeded")
               }
               case c : DXFCircle => {
+                var width = c.getLineWeight.toDouble
                 var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 1000) {
-                  shapes = shapes :+circle
+                if (pointsInImport < 2000) {
+                  shapes = shapes :+circle.addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += 2
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
                 } else Siigna display ("import limit exceeded")
               }
+
+              case a : DXFArc => {
+                var width = a.getLineWeight.toDouble
+                var arc = ArcShape(Vector2D(a.getCenterPoint.getX,a.getCenterPoint.getY),a.getRadius,a.getStartAngle,a.getTotalAngle)
+                // TODO: remove this restriction when performance improves.
+                if (pointsInImport < 2000) {
+                  shapes = shapes :+ arc.addAttribute("StrokeWidth" -> width/100)
+                  pointsInImport += 2
+                  shapesCount += 1
+                  Siigna display ("imported " + shapesCount +" shapes")
+                } else Siigna display ("import limit exceeded")
+              }
+
             }
           }
         }
