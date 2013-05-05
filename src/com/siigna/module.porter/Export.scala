@@ -13,15 +13,21 @@ package com.siigna.module.porter
 
 import com.siigna._
 import com.siigna.module.porter.PDF.PDFExporter
+import com.siigna.module.porter.DXF.DXFExporter
+import javax.swing.filechooser.FileNameExtensionFilter
+import java.io.OutputStream
 
+/**
+ * An export module for Siigna.
+ * Currently supports PDF and DXF file types
+ */
 class Export extends Module {
 
   val stateMap: StateMap = Map(
     'Start -> {
       case _ => {
         // Write the DXF or PDF exporter to a file
-        //Dialogue.writeOutputStream(DXFExporter.apply, Some(DXFFilenameFilter))
-        Dialogue.writeOutputStream(PDFExporter.apply, Seq(PDFFileFilter))
+        Dialogue.writeOutputStream(Map(PDFFileFilter -> PDFExporter, DXFFileFilter -> DXFExporter))
         End
       }
 

@@ -8,7 +8,7 @@ import io.Codec
 /**
  * Exports the current drawing in PDF format.
  */
-object PDFExporter {
+object PDFExporter extends (OutputStream => Unit) {
 
   var pdf: Option[PDFFile] = None
 

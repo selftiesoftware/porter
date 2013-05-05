@@ -19,7 +19,7 @@ import io.Codec
 /**
  * Exports the current drawing in DXF format.
  */
-object DXFExporter {
+object DXFExporter extends (OutputStream => Unit) {
 
   def apply(out : OutputStream) {
     var dxf = new DXFFile
