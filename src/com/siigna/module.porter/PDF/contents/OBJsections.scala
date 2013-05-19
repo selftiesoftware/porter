@@ -39,7 +39,7 @@ object OBJsections {
   var state = 0 // Current document state
   val subject = None
   val title = None
-  val version = Siigna.version
+  val version = Siigna.string("version").getOrElse("")
 
   //write to buffer
   def out(s : String) = {
