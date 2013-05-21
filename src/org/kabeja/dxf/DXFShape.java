@@ -130,14 +130,14 @@ public class DXFShape extends DXFEntity {
     }
 
     /**
-     * @return Returns the scaleFactor.
+     * @return Returns the scale.
      */
     public double getScaleFactor() {
         return scaleFactor;
     }
 
     /**
-     * @param scaleFactor The scaleFactor to set.
+     * @param scaleFactor The scale to set.
      */
     public void setScaleFactor(double scaleFactor) {
         this.scaleFactor = scaleFactor;

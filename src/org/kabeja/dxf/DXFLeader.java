@@ -201,7 +201,7 @@ public class DXFLeader extends DXFEntity {
     }
 
     /**
-     * @return Returns the scaleFactor.
+     * @return Returns the scale.
      */
     public double getScaleFactor() {
         return scaleFactor;
@@ -209,7 +209,7 @@ public class DXFLeader extends DXFEntity {
 
     /**
      * @param scaleFactor
-     *            The scaleFactor to set.
+     *            The scale to set.
      */
     public void setScaleFactor(double scaleFactor) {
         this.scaleFactor = scaleFactor;
