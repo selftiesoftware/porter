@@ -27,9 +27,8 @@ class Import extends Module {
 
   val stateMap: StateMap = Map(
     'Start -> {
-      case _ => {
+      case e => {
         Dialogue.readInputStream(DXFFileFilter).map(DXFImport.apply)
-
         End
       }
 
