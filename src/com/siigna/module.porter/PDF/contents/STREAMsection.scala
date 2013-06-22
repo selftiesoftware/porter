@@ -139,6 +139,7 @@ object STREAMsection {
 
   //add shapes to the stream
   def stream = {
+    Siigna display "printing PDF..."
     out("<</Length 35>>")
     out("stream")
     //CREATE THE HEADER:
