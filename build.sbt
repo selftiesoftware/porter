@@ -1,6 +1,6 @@
 name := "siigna-porter"
 
-version := "nightly"
+version := "stable"
 
 organization := "com.siigna"
 
@@ -16,6 +16,6 @@ publishTo := Some(Resolver.sftp("Siigna rls", "rls.siigna.com", 22, "/srv/rls") 
 resolvers += "Siigna" at "http://rls.siigna.com"
 
 libraryDependencies ++= Seq(
-  "com.siigna" %% "siigna-main" % "nightly",
-  "com.siigna" %% "siigna-base" % "nightly"
+  "com.siigna" %% "siigna-main" % "stable",
+  "com.siigna" %% "siigna-base" % "stable"
 )
