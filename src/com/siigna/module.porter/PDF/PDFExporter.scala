@@ -18,10 +18,9 @@ object PDFExporter extends (OutputStream => Unit) {
   var mm = 72/25.4
   def apply(out : OutputStream) {
     val orientation = if (pageSize._3) PageSize.A4.rotate() else PageSize.A4
-    if (pageSize._3) println("landscape") else println("portrait")
     var document = new Document(orientation)
 
-    //TODO make the definition of landscape or portrait (PageSize.A4 or PageSize.A4.rotate)
+
     var writer =PdfWriter.getInstance(document, out)
     document.open()
     var canvas = writer.getDirectContent
