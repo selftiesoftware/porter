@@ -9,7 +9,7 @@
  * Share Alike — If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
  */
 
-package com.siigna.module.porter.PDF
+package com.siigna.module.porter.PDF.contents
 
 import com.siigna.module.porter.PDF.contents.OBJsections._
 import com.siigna.module.porter.PDF.contents.STREAMsection._
