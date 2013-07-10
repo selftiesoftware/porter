@@ -60,10 +60,14 @@ object STREAMsection {
   //add a drawing header
   def header = {
     val scaleText = "1: "+ Siigna.paperScale
-    val pos = Vector2D(pageSize._1 - 90, 18)
-    val size = 4
-    text(pos,scaleText,size)
-    text(Vector2D(pageSize._1 - 420, 18),"created @ www.siigna.com - free online drawing app and library", 3)
+    val posScale =1.1
+    val posTradeMark= 3
+    val yPos=18
+
+    val pos = Vector2D(pageSize._1 /posScale, yPos)
+    val textSize = 8
+    text(pos,scaleText,textSize)
+    text(Vector2D(pageSize._1 /posTradeMark, yPos),"created @ www.siigna.com - free online drawing app and library", textSize)
   }
 
   //add a line. TODO: add width and color.
