@@ -66,12 +66,13 @@ object DXFImport {
                   if (vector.length != 0) points = points :+ vector
                 }
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 2000) {
+                if (pointsInImport < 100000) {
                   shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += size
+                  Siigna display ("points in import: "+ pointsInImport)
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
-                } else Siigna display ("import limit exceeded")
+                } else Siigna display ("import AAA limit exceeded")
                 points = List()
               }
               //lines
