@@ -1,12 +1,12 @@
 package com.siigna.module.porter.PDF
 
 
-import java.io.{FileOutputStream, OutputStream}
+import java.io.OutputStream
 import java.awt.Color
 import com.siigna.app.model.Drawing
 import com.siigna.util.geom.TransformationMatrix
 import com.siigna.app.model.shape._
-import com.itextpdf.text.{Element, BaseColor, PageSize, Document}
+import com.itextpdf.text.{PageSize, Document}
 import com.itextpdf.text.pdf.{BaseFont, PdfContentByte, PdfWriter}
 import com.siigna.app.Siigna
 import com.siigna.util.geom.Vector2D
@@ -17,11 +17,6 @@ import com.siigna.app.model.shape.TextShape
 import scala.Some
 import com.siigna.app.model.shape.ArcShape
 import com.siigna.app.model.shape.LineShape
-import com.siigna.module.porter.PDF.contents.OBJsections._
-import scala.Some
-import scala.Some
-import scala.Some
-import com.siigna.app.model.shape.PolylineShape.PolylineShapeClosed
 
 /**
  * Exports the current drawing in PDF format.
