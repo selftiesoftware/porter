@@ -27,7 +27,7 @@ class Import extends Module {
       case e => {
         Dialogue.readInputStream(DXFFileFilter).map(DXFImport.apply)
         //zoom extends
-        View.zoomExtends()
+        View.zoomExtends
         End
       }
     }
