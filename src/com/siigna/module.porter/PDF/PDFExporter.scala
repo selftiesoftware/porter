@@ -2,13 +2,26 @@ package com.siigna.module.porter.PDF
 
 
 import java.io.{FileOutputStream, OutputStream}
+import java.awt.Color
 import com.siigna.app.model.Drawing
 import com.siigna.util.geom.TransformationMatrix
 import com.siigna.app.model.shape._
-import com.itextpdf.text.{PageSize, Document}
-import com.itextpdf.text.pdf.PdfWriter
+import com.itextpdf.text.{Element, BaseColor, PageSize, Document}
+import com.itextpdf.text.pdf.{BaseFont, PdfContentByte, PdfWriter}
 import com.siigna.app.Siigna
 import com.siigna.util.geom.Vector2D
+import com.siigna._
+import com.siigna.app.model.shape.PolylineShape
+import com.siigna.app.model.shape.CircleShape
+import com.siigna.app.model.shape.TextShape
+import scala.Some
+import com.siigna.app.model.shape.ArcShape
+import com.siigna.app.model.shape.LineShape
+import com.siigna.module.porter.PDF.contents.OBJsections._
+import scala.Some
+import scala.Some
+import scala.Some
+import com.siigna.app.model.shape.PolylineShape.PolylineShapeClosed
 
 /**
  * Exports the current drawing in PDF format.
@@ -16,14 +29,18 @@ import com.siigna.util.geom.Vector2D
  */
 object PDFExporter extends (OutputStream => Unit) {
   var mm = 72/25.4
+  var fontDir = getClass.getResource("/miso-light.otf").toString
+  val bf = BaseFont.createFont(fontDir, BaseFont.WINANSI, BaseFont.EMBEDDED);
   def apply(out : OutputStream) {
+
     val orientation = if (pageSize._3) PageSize.A4.rotate() else PageSize.A4
-    var document = new Document(orientation)
+    val document = new Document(orientation)
 
 
-    var writer =PdfWriter.getInstance(document, out)
+    val writer =PdfWriter.getInstance(document, out)
     document.open()
-    var canvas = writer.getDirectContent
+    val canvas = writer.getDirectContent
+    writeHeader(canvas)
 
     shapesEvaluation
 
@@ -35,49 +52,63 @@ object PDFExporter extends (OutputStream => Unit) {
         shapes.foreach(s =>
           s match {
             case c : CircleShape => {
+              println(c.attributes.toString())
               canvas.saveState()
               val center =rePos(c.center)
-              canvas.circle(center.x.toFloat,center.y.toFloat,c.radius.toFloat)
+              val reposRadius=c.radius * (72/25.4) / Siigna.paperScale
+              canvas.circle(center.x.toFloat,center.y.toFloat,reposRadius.toFloat)
+              canvas.setLineWidth(width(c.attributes).toFloat)
+              val col = color(c.attributes)
+              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
               canvas.stroke();
               canvas.restoreState()
             }
             case l : LineShape => {
               canvas.saveState()
               canvas.moveTo(l.p1.x.toFloat,l.p1.y.toFloat)
-              canvas.lineTo(l.p2.x.toFloat,l.p2.y.toFloat);
-              canvas.stroke();
+              canvas.lineTo(l.p2.x.toFloat,l.p2.y.toFloat)
+              canvas.setLineWidth(width(l.attributes).toFloat)
+              val col = color(l.attributes)
+              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.stroke()
               canvas.restoreState()
               // line(rePos(l.p1),rePos(l.p2),l.attributes)
             }
-            case o : PolylineShape.PolylineShapeOpen => {
-              val points = o.innerShapes
+              //takes care of both the open and the closed polylineshapes
+            case o : PolylineShape => {
+              val s=rePos(o.startPoint)
               canvas.saveState()
-
+              canvas.moveTo(s.x.toFloat,s.y.toFloat)
+              for(i <- o.innerShapes){
+                val p = rePos(i.point)
+                canvas.lineTo(p.x.toFloat,p.y.toFloat)
+              }
+              if(o.isInstanceOf[PolylineShape.PolylineShapeClosed]){canvas.lineTo(s.x.toFloat,s.y.toFloat)}
+              canvas.setLineWidth(width(o.attributes).toFloat)
+              val col = color(o.attributes)
+              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.stroke()
               canvas.restoreState()
-                      //TODO: Implement in iText
-              //openPolyline(rePos(o.startPoint), points, o.attributes)
-            }
-
-            case p : PolylineShape.PolylineShapeClosed => {
-              val points = p.innerShapes
-              //TODO: Implement in iText
-              //closedPolyline(rePos(p.startPoint), points, p.attributes)
             }
             case t : TextShape => {
 
               val content = t.text
               val pos = t.position
               val size = t.fontSize.toInt
-              canvas.saveState()
-              canvas.beginText()
-              canvas.moveText(pos.x.toFloat,pos.y.toFloat)
-              //canvas.setFontAndSize(//)
-              //TODO: Implement in iText
-              //canvas.
-              //text(rePos(pos), content, size)
+              writeText(canvas,content,size,pos.x.toFloat,pos.y.toFloat)
             }
             case a : ArcShape => {
-              //TODO: Implement in iText
+              val fst = rePos(a.geometry.startPoint)
+              val scd = rePos(a.geometry.endPoint)
+              val angle = a.geometry.startAngle.toFloat
+              val endAngle=a.geometry.angle.toFloat
+              canvas.saveState()
+              canvas.arc(fst.x.toFloat,fst.y.toFloat,scd.x.toFloat,scd.y.toFloat,angle,endAngle)
+              canvas.setLineWidth(width(a.attributes).toFloat)
+              val col = color(a.attributes)
+              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.stroke()
+              canvas.restoreState()
             }
             case e => println("no match on shapes: "+shapes)
           }
@@ -90,7 +121,15 @@ object PDFExporter extends (OutputStream => Unit) {
     }
 
   }
-
+  def writeText(canvas:PdfContentByte,text:String,size:Int,x:Float,y:Float){
+    canvas.saveState()
+    canvas.beginText()
+    canvas.moveText(x, y)
+    canvas.setFontAndSize(bf, size)
+    canvas.showText(text)
+    canvas.endText()
+    canvas.restoreState()
+  }
   def extension = "pdf"
   //TODO: test if scaling is right across different zoom scales
   def rePos(v : Vector2D) = {
@@ -115,5 +154,27 @@ object PDFExporter extends (OutputStream => Unit) {
       (597,841, false)
     }
   }
+
+  def width(a : Attributes):Double= a.double("StrokeWidth").getOrElse(0.2d)/2
+
+  //add a drawing header
+  def writeHeader (canvas : PdfContentByte) = {
+    val scaleText = "1: "+ Siigna.paperScale
+    val infoText ="created @ www.siigna.com - free online drawing app and library"
+    val posScale =1.1
+    val posTradeMark= 3
+    val yPos=18
+    val xPosScale=(pageSize._1 /posScale).toFloat
+    val xPosInfo =pageSize._1 /posTradeMark
+    val textSize = 8
+
+    writeText(canvas,scaleText,textSize,xPosScale,yPos)
+    writeText(canvas,infoText,textSize,xPosInfo,yPos)
+  }
+  //add colors to exported shapes
+  def color(a : Attributes):Color ={
+    a.color("Color").getOrElse(Color.BLACK)
+  }
+
 }
 
