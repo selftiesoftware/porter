@@ -25,8 +25,7 @@ package com.siigna.module.porter.DXF
 import scala.actors.Debug
 
 import scala.collection.generic.Subtractable
-
-import com.siigna.app.model.shape._
+import com.siigna._
 import com.siigna.util.geom.Vector2D
 
 //import scala.Option.get
@@ -178,6 +177,34 @@ object DXFSection {
 
     try {
       shape match {
+        //export ArcShapes
+        case a: ArcShape => {
+          DXFSection(DXFValue(0, "ARC"),
+            //random identifier number (HEX)
+            DXFValue(5, (scala.util.Random.nextInt.toHexString)),
+            DXFValue(100, "AcDbEntity"),
+            //layer
+            DXFValue(8, 0),
+            DXFValue(100, "AcDbCircle"),
+            //width
+            DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0),
+            //number of points
+            DXFValue(90, 2),
+            DXFValue(70, 0),
+            //LineWeight
+            DXFValue(43, 0.0),
+            //Center point
+            DXFValue(10, a.center.x),
+            DXFValue(20, a.center.y),
+            //radius
+            DXFValue(40, a.radius),
+            DXFValue(100, "AcDbArc"),
+            //start angle
+            DXFValue(50, a.startAngle),
+            DXFValue(51, a.geometry.endAngle)
+          )
+        }
+
         //export lineShapes
         case l: LineShape => {
           DXFSection(DXFValue(0, "LWPOLYLINE"),
@@ -200,7 +227,6 @@ object DXFSection {
         case p: PolylineShape => {
           val vertices = p.geometry.vertices
           val numberOfVertices = vertices.size
-          println ("found PL: "+vertices)
 
           DXFSection(
             DXFValue(0, "LWPOLYLINE"),
@@ -267,9 +293,13 @@ object DXFSection {
             DXFValue(1, t.text)
           )
         }
+        case e => {
+          Siigna display ("DXF export of " + e + " not supported")
+          //TODO: a hack which constructs an empty line if an unrecognized shape is found.
+          DXFSection(DXFValue(0,"LINE"))
+        }
       }
 
     }
   }
-  println("finished")
 }
