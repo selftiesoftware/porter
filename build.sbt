@@ -17,5 +17,6 @@ resolvers += "Siigna" at "http://rls.siigna.com"
 
 libraryDependencies ++= Seq(
   "com.siigna" %% "siigna-main" % "stable",
-  "com.siigna" %% "siigna-base" % "stable"
+  "com.siigna" %% "siigna-base" % "stable",
+  "com.itextpdf" % "itextpdf" % "5.4.2"
 )
