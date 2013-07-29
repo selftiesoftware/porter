@@ -12,11 +12,8 @@
 package com.siigna.module.porter
 
 import com.siigna._
-import app.Siigna
 import DXF._
-import java.awt.Frame
-import javax.swing.{JFileChooser, UIManager}
-import javax.swing.filechooser.FileNameExtensionFilter
+import com.siigna.app.model.{Model, SiignaTree}
 
 /**
  * An import module for Siigna.
@@ -29,9 +26,10 @@ class Import extends Module {
     'Start -> {
       case e => {
         Dialogue.readInputStream(DXFFileFilter).map(DXFImport.apply)
+        //zoom extends
+        View.zoomExtends()
         End
       }
-
     }
   )
 }

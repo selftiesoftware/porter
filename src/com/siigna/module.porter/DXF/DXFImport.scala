@@ -66,9 +66,10 @@ object DXFImport {
                   if (vector.length != 0) points = points :+ vector
                 }
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 2000) {
+                if (pointsInImport < 50000) {
                   shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += size
+                  Siigna display ("points in import: "+ pointsInImport)
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
                 } else Siigna display ("import limit exceeded")
@@ -79,7 +80,7 @@ object DXFImport {
                 var width = p.getLineWeight.toDouble
                 var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 2000) {
+                if (pointsInImport < 50000) {
                   shapes = shapes :+ line.addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += 2
                   shapesCount += 1
@@ -90,7 +91,7 @@ object DXFImport {
                 var width = c.getLineWeight.toDouble
                 var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 2000) {
+                if (pointsInImport < 50000) {
                   shapes = shapes :+circle.addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += 2
                   shapesCount += 1
@@ -102,7 +103,7 @@ object DXFImport {
                 var width = a.getLineWeight.toDouble
                 var arc = ArcShape(Vector2D(a.getCenterPoint.getX,a.getCenterPoint.getY),a.getRadius,a.getStartAngle,a.getTotalAngle)
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 2000) {
+                if (pointsInImport < 50000) {
                   shapes = shapes :+ arc.addAttribute("StrokeWidth" -> width/100)
                   pointsInImport += 2
                   shapesCount += 1
