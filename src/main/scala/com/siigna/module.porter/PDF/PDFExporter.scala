@@ -5,7 +5,6 @@ import java.io.OutputStream
 import java.awt.Color
 import com.siigna.app.model.Drawing
 import com.siigna.util.geom.TransformationMatrix
-import com.siigna.app.model.shape._
 import com.itextpdf.text.{PageSize, Document}
 import com.itextpdf.text.pdf.{BaseFont, PdfContentByte, PdfWriter}
 import com.siigna.app.Siigna
@@ -14,7 +13,6 @@ import com.siigna._
 import com.siigna.app.model.shape.PolylineShape
 import com.siigna.app.model.shape.CircleShape
 import com.siigna.app.model.shape.TextShape
-import scala.Some
 import com.siigna.app.model.shape.ArcShape
 import com.siigna.app.model.shape.LineShape
 
@@ -24,8 +22,7 @@ import com.siigna.app.model.shape.LineShape
  */
 object PDFExporter extends (OutputStream => Unit) {
   var mm = 72/25.4
-  var fontDir = getClass.getResource("/miso-light.otf").toString
-  val bf = BaseFont.createFont(fontDir, BaseFont.WINANSI, BaseFont.EMBEDDED);
+  val bf = BaseFont.createFont(Siigna.fontMiso, BaseFont.WINANSI, BaseFont.EMBEDDED);
   def apply(out : OutputStream) {
 
     val orientation = if (pageSize._3) PageSize.A4.rotate() else PageSize.A4
