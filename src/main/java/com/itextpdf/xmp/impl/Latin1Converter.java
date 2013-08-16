@@ -74,10 +74,10 @@ public class Latin1Converter
 	 * The official Latin-1 characters in the range 0xA0..0xFF are converted into
 	 * the Unicode Latin Supplement range U+00A0 - U+00FF.
 	 * <p>
-	 * <em>Example:</em> If an Euro-symbol (€) appears in the byte buffer (0xE2, 0x82, 0xAC), 
+	 * <em>Example:</em> If an Euro-symbol (?) appears in the byte buffer (0xE2, 0x82, 0xAC), 
 	 * it will be left as is. But if only the first two bytes are appearing, 
 	 * followed by an ASCII char a (0xE2 - 0x82 - 0x41), it will be converted to 
-	 * 0xC3, 0xA2 (â) - 0xE2, 0x80, 0x9A (‚) - 0x41 (a).
+	 * 0xC3, 0xA2 (?) - 0xE2, 0x80, 0x9A (?) - 0x41 (a).
 	 *  
 	 * @param buffer a byte buffer contain
 	 * @return Returns a new buffer containing valid UTF-8
