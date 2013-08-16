@@ -333,7 +333,7 @@ public interface Element {
 	 * @return an <CODE>ArrayList</CODE>
 	 */
 
-	public List<Chunk> getChunks();
+	public java.util.List<Chunk> getChunks();
 
 	/**
 	 * Gets the content of the text element.
