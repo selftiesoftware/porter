@@ -13,6 +13,8 @@ publishTo := Some(Resolver.sftp("Siigna rls", "80.71.132.98", 12022, "/var/www/p
 
 resolvers += "Siigna" at "http://rls.siigna.com"
 
+sources in doc in Compile := List()
+
 libraryDependencies ++= Seq(
   "com.siigna" %% "siigna-main" % "stable",
   "com.siigna" %% "siigna-base" % "stable"
