@@ -14,6 +14,7 @@ import com.siigna.app.model.shape.PolylineShape
 import com.siigna.app.model.shape.CircleShape
 import com.siigna.app.model.shape.TextShape
 import com.siigna.app.model.shape.ArcShape
+import com.siigna.app.model.shape.RectangleShape
 import com.siigna.app.model.shape.LineShape
 
 /**
@@ -27,8 +28,6 @@ object PDFExporter extends (OutputStream => Unit) {
 
     val orientation = if (pageSize._3) PageSize.A4.rotate() else PageSize.A4
     val document = new Document(orientation)
-
-
     val writer =PdfWriter.getInstance(document, out)
     document.open()
     val canvas = writer.getDirectContent
@@ -41,69 +40,101 @@ object PDFExporter extends (OutputStream => Unit) {
       if(Drawing.shapes.size != 0) {
         val shapes = Drawing.shapes.map (t => (t._2))
 
-        shapes.foreach(s =>
+        shapes.foreach(f = s => {
+          println("\t" + s)
           s match {
-            case c : CircleShape => {
+            case c: CircleShape => {
               println(c.attributes.toString())
               canvas.saveState()
-              val center =rePos(c.center)
-              val reposRadius=c.radius * (72/25.4) / Siigna.paperScale
-              canvas.circle(center.x.toFloat,center.y.toFloat,reposRadius.toFloat)
-              canvas.setLineWidth(width(c.attributes).toFloat)
+              val center = rePos(c.center)
+              val reposRadius = c.radius * (72 / 25.4) / Siigna.paperScale
+              canvas.setLineWidth(width(c.attributes))
+              canvas.circle(center.x.toFloat, center.y.toFloat, reposRadius.toFloat)
               val col = color(c.attributes)
-              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.setRGBColorStroke(col.getRed, col.getGreen, col.getBlue)
               canvas.stroke();
               canvas.restoreState()
             }
-            case l : LineShape => {
+            case l: LineShape => {
               canvas.saveState()
-              canvas.moveTo(l.p1.x.toFloat,l.p1.y.toFloat)
-              canvas.lineTo(l.p2.x.toFloat,l.p2.y.toFloat)
-              canvas.setLineWidth(width(l.attributes).toFloat)
+              val p1 = rePos(l.p1)
+              val p2 = rePos(l.p2)
+              print(s"width for line $l: ${width(l.attributes)}")
+              canvas.setLineWidth(width(l.attributes))
+              canvas.moveTo(p1.x.toFloat, p1.y.toFloat)
+              canvas.lineTo(p2.x.toFloat, p2.y.toFloat)
+
               val col = color(l.attributes)
-              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.setRGBColorStroke(col.getRed, col.getGreen, col.getBlue)
               canvas.stroke()
               canvas.restoreState()
               // line(rePos(l.p1),rePos(l.p2),l.attributes)
             }
-              //takes care of both the open and the closed polylineshapes
-            case o : PolylineShape => {
-              val s=rePos(o.startPoint)
+            //takes care of both the open and the closed polylineshapes
+            case o: PolylineShape => {
+              val s = rePos(o.startPoint)
+              println(s"PolyLine start x:$s.x y:$s.y")
               canvas.saveState()
-              canvas.moveTo(s.x.toFloat,s.y.toFloat)
-              for(i <- o.innerShapes){
+              canvas.moveTo(s.x.toFloat, s.y.toFloat)
+              for (i <- o.innerShapes) {
                 val p = rePos(i.point)
-                canvas.lineTo(p.x.toFloat,p.y.toFloat)
+                print(s" end: $p")
+                canvas.lineTo(p.x.toFloat, p.y.toFloat)
               }
-              if(o.isInstanceOf[PolylineShape.PolylineShapeClosed]){canvas.lineTo(s.x.toFloat,s.y.toFloat)}
-              canvas.setLineWidth(width(o.attributes).toFloat)
+              if (o.isInstanceOf[PolylineShape.PolylineShapeClosed]) {
+                canvas.lineTo(s.x.toFloat, s.y.toFloat)
+              }
+              canvas.setLineWidth(width(o.attributes))
               val col = color(o.attributes)
-              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.setRGBColorStroke(col.getRed, col.getGreen, col.getBlue)
               canvas.stroke()
               canvas.restoreState()
             }
-            case t : TextShape => {
+            case t: TextShape => {
 
               val content = t.text
-              val pos = t.position
-              val size = t.fontSize.toInt
-              writeText(canvas,content,size,pos.x.toFloat,pos.y.toFloat)
+              val pos = rePos(t.position)
+              val size = (t.fontSize*10).toInt
+              writeText(canvas, content, size, pos.x.toFloat, pos.y.toFloat)
             }
-            case a : ArcShape => {
-              val fst = rePos(a.geometry.startPoint)
-              val scd = rePos(a.geometry.endPoint)
+            case a: ArcShape => {
+              val circle = Circle2D(a.center, a.radius)
+              val box = circle.boundary
+              val start = rePos(Vector2D(box.xMin, box.yMin))
+              val end = rePos(Vector2D(box.xMax, box.yMax))
+              val x1 = start.x.toFloat
+              val y1 = start.y.toFloat
+              val x2 = end.x.toFloat
+              val y2 = end.y.toFloat
               val angle = a.geometry.startAngle.toFloat
-              val endAngle=a.geometry.angle.toFloat
+              val endAngle = a.geometry.angle.toFloat
               canvas.saveState()
-              canvas.arc(fst.x.toFloat,fst.y.toFloat,scd.x.toFloat,scd.y.toFloat,angle,endAngle)
-              canvas.setLineWidth(width(a.attributes).toFloat)
+              canvas.arc(x1, y1, x2, y2, angle, endAngle)
+              canvas.setLineWidth(width(a.attributes))
               val col = color(a.attributes)
-              canvas.setRGBColorStroke(col.getRed,col.getGreen,col.getBlue)
+              canvas.setRGBColorStroke(col.getRed, col.getGreen, col.getBlue)
               canvas.stroke()
               canvas.restoreState()
             }
-            case e => println("no match on shapes: "+shapes)
+            case r: RectangleShape => {
+
+              r.geometry.segments
+              for (seg <- r.geometry.segments) {
+                canvas.saveState()
+                val p1 = rePos(seg.p1)
+                val p2 = rePos(seg.p2)
+                canvas.moveTo(p1.x.toFloat, p1.y.toFloat)
+                canvas.lineTo(p2.x.toFloat, p2.y.toFloat)
+                canvas.setLineWidth(width(r.attributes))
+                val col = color(r.attributes)
+                canvas.setRGBColorStroke(col.getRed, col.getGreen, col.getBlue)
+                canvas.stroke()
+                canvas.restoreState()
+              }
+            }
+            case e => println("no match on shapes: " + shapes)
           }
+        }
         )
       } else {
         println("no lines in the drawing")
@@ -147,7 +178,7 @@ object PDFExporter extends (OutputStream => Unit) {
     }
   }
 
-  def width(a : Attributes):Double= a.double("StrokeWidth").getOrElse(0.2d)/2
+  def width(a : Attributes):Float= a.double("StrokeWidth").getOrElse(0.2d).toFloat/2
 
   //add a drawing header
   def writeHeader (canvas : PdfContentByte) = {
