@@ -177,8 +177,8 @@ object PDFExporter extends (OutputStream => Unit) {
       (597,841, false)
     }
   }
-
-  def width(a : Attributes):Float= a.double("StrokeWidth").getOrElse(0.2d).toFloat/2
+  //NOTE by OEP: multiplied with 2.54 to get the width in inches.
+  def width(a : Attributes):Float= a.double("StrokeWidth").getOrElse(0.2d).toFloat*2.54f
 
   //add a drawing header
   def writeHeader (canvas : PdfContentByte) = {
