@@ -11,17 +11,6 @@
 
 package com.siigna.module.porter.DXF
 
-/*
- * Copyright (c) 2012. Siigna is released under the creative common license by-nc-sa. You are free
- * to Share — to copy, distribute and transmit the work,
- * to Remix — to adapt the work
- *
- * Under the following conditions:
- * Attribution —  You must attribute the work to http://siigna.com in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).
- * Noncommercial — You may not use this work for commercial purposes.
- * Share Alike — If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
- */
-
 import scala.actors.Debug
 
 import scala.collection.generic.Subtractable
@@ -236,13 +225,10 @@ object DXFSection {
             //layer
             DXFValue(8, 0),
             DXFValue(100, "AcDbPolyline"),
-            //width TODO: something fishy in the width settings! makes the exporter crash.
-            //DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0),
+            DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) shape.attributes.get("StrokeWidth").get.toString.toDouble * 100 else 0),
             //number of points
             DXFValue(90, numberOfVertices),
             DXFValue(70, 0)
-            //LineWeight
-            //DXFValue(43, Siigna.)
             //Points
           ) ++ vertices.map(vectorToDXF).flatten
         }
