@@ -77,9 +77,8 @@ object DXFImport {
                   if (vector.length != 0) points = points :+ vector
                 }
                 // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 50000) {
+                if (pointsInImport < 50000 && points.length > 1) {
                   //TODO: add Attributes so they are only set if not default
-                  println("ATTR: "+attributes)
                   shapes = shapes :+ PolylineShape(points).addAttributes(attributes)
                   pointsInImport += size
                   Siigna display ("points in import: "+ pointsInImport)

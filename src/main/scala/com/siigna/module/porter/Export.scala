@@ -24,6 +24,8 @@ class Export extends Module {
   val stateMap: StateMap = Map(
     'Start -> {
       case _ => {
+        Siigna display "OPENING EXPORT DIALOG..."
+
         // Write the DXF or PDF exporter to a file
         Dialogue.writeOutputStream(Map(PDFFileFilter -> PDFExporter, DXFFileFilter -> DXFExporter))
         End

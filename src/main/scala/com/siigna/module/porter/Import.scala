@@ -24,6 +24,7 @@ class Import extends Module {
   val stateMap: StateMap = Map(
     'Start -> {
       case e => {
+        Siigna display "OPENING IMPORT DIALOG..."
         Dialogue.readInputStream(DXFFileFilter).map(DXFImport.apply)
         //zoom extends
         View.zoomExtends
