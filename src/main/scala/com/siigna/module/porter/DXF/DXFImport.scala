@@ -18,6 +18,8 @@ import org.kabeja.dxf._
 import org.kabeja.parser.Parser
 import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
+import main.scala.com.siigna.module.porter.DXF.ColorParser
+import com.siigna.app.Siigna
 
 object DXFImport {
 
@@ -37,6 +39,7 @@ object DXFImport {
       var shapes = List[Shape]()
 
       while(layers.hasNext) {
+
         val l = layers.next().asInstanceOf[DXFLayer]
         val layer : DXFLayer = doc.getDXFLayer(l.getName)
 
@@ -58,8 +61,16 @@ object DXFImport {
             entity.toArray.collect {
               //Polylines
               case p : DXFPolyline => {
+
+                //a function to set attributes
+                val attributes = {
+                  val color = ColorParser.setColor(p.getColor.toDouble)
+                  val lineWidth = p.getLineWeight.toDouble
+                  Attributes("Color" -> color, "StrokeWidth" -> lineWidth/100)
+                }
+
                 var size = p.getVertexCount
-                var width = p.getLineWeight.toDouble
+
                 for (i <- 0 until size) {
                   var point = (p.getVertex(i).getPoint)
                   var vector = Vector2D(point.getX,point.getY)
@@ -67,7 +78,9 @@ object DXFImport {
                 }
                 // TODO: remove this restriction when performance improves.
                 if (pointsInImport < 50000) {
-                  shapes = shapes :+ PolylineShape(points).addAttribute("StrokeWidth" -> width/100)
+                  //TODO: add Attributes so they are only set if not default
+                  println("ATTR: "+attributes)
+                  shapes = shapes :+ PolylineShape(points).addAttributes(attributes)
                   pointsInImport += size
                   Siigna display ("points in import: "+ pointsInImport)
                   shapesCount += 1
@@ -77,18 +90,24 @@ object DXFImport {
               }
               //lines
               case p : DXFLine => {
-                var width = p.getLineWeight.toDouble
-                var line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttribute("StrokeWidth" -> width/100)
+                //a function to set attributes
+                val attributes = {
+                  val color = ColorParser.setColor(p.getColor.toDouble)
+                  val lineWidth = p.getLineWeight.toDouble
+                  Attributes("Color" -> color, "StrokeWidth" -> lineWidth/100)
+                }
+
+                val line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttributes(attributes)
                 // TODO: remove this restriction when performance improves.
                 if (pointsInImport < 50000) {
-                  shapes = shapes :+ line.addAttribute("StrokeWidth" -> width/100)
+                  shapes = shapes :+ line
                   pointsInImport += 2
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
                 } else Siigna display ("import limit exceeded")
               }
               case c : DXFCircle => {
-                var width = c.getLineWeight.toDouble
+                val width = c.getLineWeight.toDouble
                 var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
                 // TODO: remove this restriction when performance improves.
                 if (pointsInImport < 50000) {
