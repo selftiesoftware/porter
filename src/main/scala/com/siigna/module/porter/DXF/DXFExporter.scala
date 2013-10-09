@@ -14,6 +14,7 @@ package com.siigna.module.porter.DXF
 import java.io.OutputStream
 import com.siigna.app.model.Drawing
 import io.Codec
+import com.siigna.app.Siigna
 
 /**
  * Exports the current drawing in DXF format.
