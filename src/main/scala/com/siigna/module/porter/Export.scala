@@ -14,7 +14,6 @@ package com.siigna.module.porter
 import com.siigna._
 import com.siigna.module.porter.PDF.PDFExporter
 import com.siigna.module.porter.DXF.DXFExporter
-import util.io
 
 /**
  * An export module for Siigna.
@@ -29,9 +28,8 @@ class Export extends Module {
 
         // Write the DXF or PDF exporter to a file
         val a = Dialogue.writeOutputStream(Map(PDFFileFilter -> PDFExporter, DXFFileFilter -> DXFExporter))
-        a
 
-        if (a == true) {
+        if (a) {
           val s = Drawing.size
           Siigna display "EXPORTED "+s+" SHAPE(S)"
 
