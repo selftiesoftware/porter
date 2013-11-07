@@ -12,7 +12,7 @@ import java.awt.Color
 object ColorParser {
   //parse Siigna colors to DXF color codes
   def parseColor(c : String) : Int = {
-    print("C: "+c)
+    print("parsing color: "+c)
     c match {
       case "java.awt.Color[r=0,g=0,b=0]"     => 0   //black
       case "java.awt.Color[r=38,g=38,b=38]"    => 8   //black
@@ -49,6 +49,7 @@ object ColorParser {
 
     c match {
       case 0.0 =>   new Color(0.00f, 0.00f, 0.00f, transp) //black
+      case 255.0 => new Color(0.00f, 0.00f, 0.00f, transp) //black
       case 8.0 =>   new Color(0.25f, 0.25f, 0.25f, transp) //anthracite
       case 251.0 => new Color(0.40f, 0.40f, 0.40f, transp) //dimgrey
       case 252.0 => new Color(0.60f, 0.60f, 0.60f, transp) //grey
@@ -72,6 +73,8 @@ object ColorParser {
       case 3.0 =>   new Color(0.10f, 0.95f, 0.10f, transp) //green
       case 70.0 =>  new Color(0.50f, 0.95f, 0.15f, transp) //lime
       case 60.0 =>  new Color(0.65f, 0.95f, 0.15f, transp) //yellowGreen
+      case _ =>     new Color(0.00f, 0.00f, 0.00f, transp) //black
+
     }
   }
 }

@@ -58,10 +58,10 @@ object DXFImport {
         for (i <- 0 to 4) {
           val entity = entityList(i)
           if (entity != null) {
+            println("entity:" +entity)
             entity.toArray.collect {
               //Polylines
               case p : DXFPolyline => {
-
                 //a function to set attributes
                 val attributes = {
                   val color = ColorParser.setColor(p.getColor.toDouble)
