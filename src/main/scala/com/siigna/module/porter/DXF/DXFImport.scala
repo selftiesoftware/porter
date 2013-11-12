@@ -20,15 +20,17 @@ import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
 import main.scala.com.siigna.module.porter.DXF.ColorParser
 import com.siigna.app.Siigna
+import sun.misc.IOUtils
 
 object DXFImport {
 
-  //a function to read a DXF file and create the shapes in it.
-  def apply(input : InputStream) = {
+  var shapes = List[Shape]()
+  var pointsInImport = 0
+
+    def parse(input : InputStream) {
     val parser : Parser = ParserBuilder.createDefaultParser()
     var shapesCount = 0
     var points : List[Vector2D] = List()
-    var pointsInImport = 0
 
     try {
       parser.parse(input, DXFParser.DEFAULT_ENCODING)//parse
@@ -36,7 +38,6 @@ object DXFImport {
       val doc : DXFDocument = parser.getDocument  //get the document and the layer
       val layers = doc.getDXFLayerIterator //get the layers in the DXF file
       //TODO: extract the layer name and give to the doc.getDXFLayer method
-      var shapes = List[Shape]()
 
       while(layers.hasNext) {
 
@@ -132,41 +133,47 @@ object DXFImport {
             }
           }
         }
-        //if the drawing has a certain complexity, do the Creation in four iterations to prevent server overload
-        if(pointsInImport > 400 && shapes.length > 10) {
-          val a = shapes.take(shapes.length/2)
-          val aFirst = a.take(a.length/2)
-          val aLast = a.drop(a.length/2)
-
-          val b = shapes.drop(shapes.length/2)
-          val bFirst = b.take(b.length/2)
-          val bLast = b.drop(b.length/2)
-
-          Create(aFirst)
-          Create(aLast)
-          Create(bFirst)
-          Create(bLast)
-
-        } else if (!shapes.isEmpty) {
-          Create(shapes)
-        }
-        //clear the shapes list
-        shapes = List()
       }
-
-
-      //var vertex : DXFVertex = line.getVertex(2)
-      //iterate over all vertex of the polyline
-      //for (i <- line) {
-      //var vertex = line.getVertex(i)
-      //}
     } catch {
       case e : Throwable => {
-      input.close()
-      println("found error: "+ e)
-      Nil
+        println("found error: "+ e)
+        Nil
       }
     }
+  }
+  //create shapes from the imported DXF file content.
+  //if the drawing has a certain complexity, do the Creation in four iterations to prevent server overload
+  def createShapes(s : List[Shape]) = {
+    if(pointsInImport > 400 && shapes.length > 10) {
+      val a = shapes.take(shapes.length/2)
+      val aFirst = a.take(a.length/2)
+      val aLast = a.drop(a.length/2)
+
+      val b = shapes.drop(shapes.length/2)
+      val bFirst = b.take(b.length/2)
+      val bLast = b.drop(b.length/2)
+
+      Create(aFirst)
+      Create(aLast)
+      Create(bFirst)
+      Create(bLast)
+
+    } else if (!shapes.isEmpty) {
+      Create(shapes)
+    }
+    //clear the shapes list
+    shapes = List()
+  }
+
+  //a function to read a DXF file and create the shapes in it.
+  def apply(input : InputStream) = {
+
+    //val s = scala.io.Source.fromInputStream(input).mkString("")
+
+    //run the parser
+    parse(input)
+    //create the shapes
+    if(!shapes.isEmpty) createShapes(shapes)
     input.close()
   }
 }

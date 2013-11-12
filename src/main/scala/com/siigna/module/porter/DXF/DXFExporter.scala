@@ -14,19 +14,32 @@ package com.siigna.module.porter.DXF
 import java.io.OutputStream
 import com.siigna.app.model.Drawing
 import io.Codec
-import com.siigna.app.Siigna
+import com.siigna.app.model.shape.Shape
+import java.awt.Toolkit
+import java.awt.datatransfer.StringSelection
+import java.io.InputStream
+import java.io.ByteArrayInputStream
 
 /**
  * Exports the current drawing in DXF format.
  */
 object DXFExporter extends (OutputStream => Unit) {
 
+  def toDXFtoClipboard(shape : Map[Int,Shape]) {
+    val dxf = new DXFFile
+
+    dxf ++ Drawing.map(t => DXFSection.toDXF(t._2)).toSeq
+
+    val clip = Toolkit.getDefaultToolkit.getSystemClipboard
+    val s : StringSelection = new StringSelection(dxf.toString)
+
+    clip.setContents(s,s)
+  }
+
   def apply(out : OutputStream) {
     var dxf = new DXFFile
 
     dxf ++ Drawing.map(t => DXFSection.toDXF(t._2)).toSeq
-
-    // TODO: Optimize this!
     var charSeq = Codec.toUTF8(dxf.toString)
 
     // Write
