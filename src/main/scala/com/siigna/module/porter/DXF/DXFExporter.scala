@@ -26,6 +26,7 @@ import java.io.ByteArrayInputStream
 object DXFExporter extends (OutputStream => Unit) {
 
   //save a given selection to the computer's  clipboard (used by cad-suite/Copy and Paste to copy artwork between drawings)
+
   def toDXFtoClipboard(shape : Map[Int,Shape]) {
     val dxf = new DXFFile
 

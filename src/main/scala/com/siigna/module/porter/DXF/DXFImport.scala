@@ -23,10 +23,12 @@ import com.siigna.app.Siigna
 import sun.misc.IOUtils
 import java.awt.Color
 
+
 object DXFImport {
 
   var shapes = List[Shape]()
   var pointsInImport = 0
+
 
   //evaluate what kind of
   def attributesAdd(color : Option[Color], width : Double) : Option[Attributes] = {
@@ -41,7 +43,6 @@ object DXFImport {
     val parser : Parser = ParserBuilder.createDefaultParser()
     var shapesCount = 0
     var points : List[Vector2D] = List()
-    val defaultColor = "java.awt.Color[r=0,g=0,b=0]"
 
     try {
       parser.parse(input, DXFParser.DEFAULT_ENCODING)//parse
