@@ -44,36 +44,36 @@ object ColorParser {
   }
 
   //a function to make a Siigna color FROM a DXF color
-  def setColor(c: Double) : Color = {
+  def setColor(c: Double) : Option[Color] = {
     val transp = 1.00f
 
     c match {
-      case 0.0 =>   new Color(0.00f, 0.00f, 0.00f, transp) //black
-      case 255.0 => new Color(0.00f, 0.00f, 0.00f, transp) //black
-      case 8.0 =>   new Color(0.25f, 0.25f, 0.25f, transp) //anthracite
-      case 251.0 => new Color(0.40f, 0.40f, 0.40f, transp) //dimgrey
-      case 252.0 => new Color(0.60f, 0.60f, 0.60f, transp) //grey
-      case 253.0 => new Color(0.75f, 0.75f, 0.75f, transp) //lightGrey
-      case 254.0 => new Color(0.90f, 0.90f, 0.90f, transp) //brightGrey
-      case 2.0 =>   new Color(1.00f, 1.00f, 0.40f, transp) //yellow
-      case 30.0 =>  new Color(1.00f, 0.75f, 0.30f, transp) //orange
-      case 20.0 =>  new Color(0.95f, 0.45f, 0.22f, transp) //orangeRed
-      case 10.0 =>  new Color(0.95f, 0.12f, 0.30f, transp) //red
-      case 240.0 => new Color(0.95f, 0.14f, 0.46f, transp) //radicalRed
-      case 232.0 => new Color(0.95f, 0.15f, 0.58f, transp) //violetRed
-      case 6.0 =>   new Color(0.95f, 0.15f, 0.80f, transp) //magenta
-      case 222.0 => new Color(0.64f, 0.18f, 0.85f, transp) //plum
-      case 220.0 => new Color(0.35f, 0.22f, 0.90f, transp) //purple
-      case 180.0 => new Color(0.12f, 0.25f, 0.95f, transp) //blue
-      case 160.0 => new Color(0.10f, 0.45f, 0.95f, transp) //navyBlue
-      case 140.0 => new Color(0.10f, 0.65f, 0.95f, transp) //pacificBlue
-      case 4.0 =>   new Color(0.10f, 0.95f, 0.95f, transp) //cyan
-      case 130.0 => new Color(0.10f, 0.95f, 0.75f, transp) //turquise
-      case 120.0 => new Color(0.10f, 0.95f, 0.50f, transp) //caribbean
-      case 3.0 =>   new Color(0.10f, 0.95f, 0.10f, transp) //green
-      case 70.0 =>  new Color(0.50f, 0.95f, 0.15f, transp) //lime
-      case 60.0 =>  new Color(0.65f, 0.95f, 0.15f, transp) //yellowGreen
-      case _ =>     new Color(0.00f, 0.00f, 0.00f, transp) //black
+      case 0.0 =>   None //leave blank
+      case 255.0 => Some(new Color(0.00f, 0.00f, 0.00f, transp)) //black
+      case 8.0 =>   Some(new Color(0.25f, 0.25f, 0.25f, transp)) //anthracite
+      case 251.0 => Some(new Color(0.40f, 0.40f, 0.40f, transp)) //dimgrey
+      case 252.0 => Some(new Color(0.60f, 0.60f, 0.60f, transp)) //grey
+      case 253.0 => Some(new Color(0.75f, 0.75f, 0.75f, transp)) //lightGrey
+      case 254.0 => Some(new Color(0.90f, 0.90f, 0.90f, transp)) //brightGrey
+      case 2.0 =>   Some(new Color(1.00f, 1.00f, 0.40f, transp)) //yellow
+      case 30.0 =>  Some(new Color(1.00f, 0.75f, 0.30f, transp)) //orange
+      case 20.0 =>  Some(new Color(0.95f, 0.45f, 0.22f, transp)) //orangeRed
+      case 10.0 =>  Some(new Color(0.95f, 0.12f, 0.30f, transp)) //red
+      case 240.0 => Some(new Color(0.95f, 0.14f, 0.46f, transp)) //radicalRed
+      case 232.0 => Some(new Color(0.95f, 0.15f, 0.58f, transp)) //violetRed
+      case 6.0 =>   Some(new Color(0.95f, 0.15f, 0.80f, transp)) //magenta
+      case 222.0 => Some(new Color(0.64f, 0.18f, 0.85f, transp)) //plum
+      case 220.0 => Some(new Color(0.35f, 0.22f, 0.90f, transp)) //purple
+      case 180.0 => Some(new Color(0.12f, 0.25f, 0.95f, transp)) //blue
+      case 160.0 => Some(new Color(0.10f, 0.45f, 0.95f, transp)) //navyBlue
+      case 140.0 => Some(new Color(0.10f, 0.65f, 0.95f, transp)) //pacificBlue
+      case 4.0 =>   Some(new Color(0.10f, 0.95f, 0.95f, transp)) //cyan
+      case 130.0 => Some(new Color(0.10f, 0.95f, 0.75f, transp)) //turquise
+      case 120.0 => Some(new Color(0.10f, 0.95f, 0.50f, transp)) //caribbean
+      case 3.0 =>   Some(new Color(0.10f, 0.95f, 0.10f, transp)) //green
+      case 70.0 =>  Some(new Color(0.50f, 0.95f, 0.15f, transp)) //lime
+      case 60.0 =>  Some(new Color(0.65f, 0.95f, 0.15f, transp)) //yellowGreen
+      case _ =>     Some(new Color(0.00f, 0.00f, 0.00f, transp)) //black
 
     }
   }

@@ -20,15 +20,28 @@ import org.kabeja.parser.DXFParser
 import org.kabeja.parser.ParserBuilder
 import main.scala.com.siigna.module.porter.DXF.ColorParser
 import com.siigna.app.Siigna
+import sun.misc.IOUtils
+import java.awt.Color
 
 object DXFImport {
 
-  //a function to read a DXF file and create the shapes in it.
-  def apply(input : InputStream) = {
+  var shapes = List[Shape]()
+  var pointsInImport = 0
+
+  //evaluate what kind of
+  def attributesAdd(color : Option[Color], width : Double) : Option[Attributes] = {
+    if(color.isDefined && width != 0) Some(Attributes("StrokeWidth" -> width/100, "Color" -> color.get))
+    else if(!color.isDefined && width != 0) Some(Attributes("StrokeWidth" -> width/100))
+    else if(color.isDefined && width == 0) Some(Attributes("Color" -> color.get))
+    else None
+  }
+
+
+  def parse(input : InputStream) {
     val parser : Parser = ParserBuilder.createDefaultParser()
     var shapesCount = 0
     var points : List[Vector2D] = List()
-    var pointsInImport = 0
+    val defaultColor = "java.awt.Color[r=0,g=0,b=0]"
 
     try {
       parser.parse(input, DXFParser.DEFAULT_ENCODING)//parse
@@ -36,7 +49,6 @@ object DXFImport {
       val doc : DXFDocument = parser.getDocument  //get the document and the layer
       val layers = doc.getDXFLayerIterator //get the layers in the DXF file
       //TODO: extract the layer name and give to the doc.getDXFLayer method
-      var shapes = List[Shape]()
 
       while(layers.hasNext) {
 
@@ -58,28 +70,28 @@ object DXFImport {
         for (i <- 0 to 4) {
           val entity = entityList(i)
           if (entity != null) {
-            println("entity:" +entity)
             entity.toArray.collect {
               //Polylines
               case p : DXFPolyline => {
                 //a function to set attributes
-                val attributes = {
+                val attributes : Option[Attributes] = {
                   val color = ColorParser.setColor(p.getColor.toDouble)
                   val lineWidth = p.getLineWeight.toDouble
-                  Attributes("Color" -> color, "StrokeWidth" -> lineWidth/100)
+                  val a = attributesAdd(color,lineWidth)
+                   if(a.isDefined) a else None//check if attributes should be set
                 }
-
                 var size = p.getVertexCount
 
                 for (i <- 0 until size) {
-                  var point = (p.getVertex(i).getPoint)
-                  var vector = Vector2D(point.getX,point.getY)
+                  val point = (p.getVertex(i).getPoint)
+                  val vector = Vector2D(point.getX,point.getY)
                   if (vector.length != 0) points = points :+ vector
                 }
-                // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 50000 && points.length > 1) {
-                  //TODO: add Attributes so they are only set if not default
-                  shapes = shapes :+ PolylineShape(points).addAttributes(attributes)
+
+                if (pointsInImport < 50000 && points.length > 1) { // TODO: remove this restriction when performance improves.
+
+                  if(attributes.isDefined) shapes = shapes :+ PolylineShape(points).addAttributes(attributes.get)
+                  else shapes = shapes :+ PolylineShape(points)
                   pointsInImport += size
                   Siigna display ("points in import: "+ pointsInImport)
                   shapesCount += 1
@@ -90,27 +102,36 @@ object DXFImport {
               //lines
               case p : DXFLine => {
                 //a function to set attributes
-                val attributes = {
+                val attributes : Option[Attributes] = {
                   val color = ColorParser.setColor(p.getColor.toDouble)
                   val lineWidth = p.getLineWeight.toDouble
-                  Attributes("Color" -> color, "StrokeWidth" -> lineWidth/100)
+                  val a = attributesAdd(color,lineWidth)
+                  if(a.isDefined) a else None//check if attributes should be set
                 }
 
-                val line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY)).addAttributes(attributes)
-                // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 50000) {
-                  shapes = shapes :+ line
+                val line = LineShape(Vector2D(p.getStartPoint.getX,p.getStartPoint.getY),Vector2D(p.getEndPoint.getX,p.getEndPoint.getY))
+
+                if (pointsInImport < 50000) {// TODO: remove this restriction when performance improves.
+                  if(attributes.isDefined) shapes = shapes :+ line.addAttributes(attributes.get)
+                  else shapes = shapes :+ line
                   pointsInImport += 2
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
                 } else Siigna display ("import limit exceeded")
               }
               case c : DXFCircle => {
-                val width = c.getLineWeight.toDouble
-                var circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
-                // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 50000) {
-                  shapes = shapes :+circle.addAttribute("StrokeWidth" -> width/100)
+                //a function to set attributes
+                val attributes : Option[Attributes] = {
+                  val color = ColorParser.setColor(c.getColor.toDouble)
+                  val lineWidth = c.getLineWeight.toDouble
+                  val a = attributesAdd(color,lineWidth)
+                  if(a.isDefined) a else None//check if attributes should be set
+                }
+                val circle = CircleShape(Vector2D(c.getCenterPoint.getX,c.getCenterPoint.getY),c.getRadius)
+
+                if (pointsInImport < 50000) { // TODO: remove this restriction when performance improves.
+                  if(attributes.isDefined) shapes = shapes :+ circle.addAttributes(attributes.get)
+                  else shapes = shapes :+ circle
                   pointsInImport += 2
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
@@ -118,12 +139,18 @@ object DXFImport {
               }
 
               case a : DXFArc => {
-                var width = a.getLineWeight.toDouble
-                var arc = ArcShape(Vector2D(a.getCenterPoint.getX,a.getCenterPoint.getY),a.getRadius,a.getStartAngle,a.getTotalAngle)
-                // TODO: remove this restriction when performance improves.
-                if (pointsInImport < 50000) {
-                  shapes = shapes :+ arc.addAttribute("StrokeWidth" -> width/100)
-                  pointsInImport += 2
+                //a function to set attributes
+                val attributes : Option[Attributes] = {
+                  val color = ColorParser.setColor(a.getColor.toDouble)
+                  val lineWidth = a.getLineWeight.toDouble
+                  val attr = attributesAdd(color,lineWidth)
+                  if(attr.isDefined) attr else None//check if attributes should be set
+                }
+                val arc = ArcShape(Vector2D(a.getCenterPoint.getX,a.getCenterPoint.getY),a.getRadius,a.getStartAngle,a.getTotalAngle)
+
+                if (pointsInImport < 50000) {  // TODO: remove this restriction when performance improves.
+                  if(attributes.isDefined) shapes = shapes :+ arc.addAttributes(attributes.get)
+                  else shapes = shapes :+ arc
                   shapesCount += 1
                   Siigna display ("imported " + shapesCount +" shapes")
                 } else Siigna display ("import limit exceeded")
@@ -132,41 +159,47 @@ object DXFImport {
             }
           }
         }
-        //if the drawing has a certain complexity, do the Creation in four iterations to prevent server overload
-        if(pointsInImport > 400 && shapes.length > 10) {
-          val a = shapes.take(shapes.length/2)
-          val aFirst = a.take(a.length/2)
-          val aLast = a.drop(a.length/2)
-
-          val b = shapes.drop(shapes.length/2)
-          val bFirst = b.take(b.length/2)
-          val bLast = b.drop(b.length/2)
-
-          Create(aFirst)
-          Create(aLast)
-          Create(bFirst)
-          Create(bLast)
-
-        } else if (!shapes.isEmpty) {
-          Create(shapes)
-        }
-        //clear the shapes list
-        shapes = List()
       }
-
-
-      //var vertex : DXFVertex = line.getVertex(2)
-      //iterate over all vertex of the polyline
-      //for (i <- line) {
-      //var vertex = line.getVertex(i)
-      //}
     } catch {
       case e : Throwable => {
-      input.close()
-      println("found error: "+ e)
-      Nil
+        println("found error: "+ e)
+        Nil
       }
     }
+  }
+  //create shapes from the imported DXF file content.
+  //if the drawing has a certain complexity, do the Creation in four iterations to prevent server overload
+  def createShapes(s : List[Shape]) = {
+    if(pointsInImport > 400 && shapes.length > 10) {
+      val a = shapes.take(shapes.length/2)
+      val aFirst = a.take(a.length/2)
+      val aLast = a.drop(a.length/2)
+
+      val b = shapes.drop(shapes.length/2)
+      val bFirst = b.take(b.length/2)
+      val bLast = b.drop(b.length/2)
+
+      Create(aFirst)
+      Create(aLast)
+      Create(bFirst)
+      Create(bLast)
+
+    } else if (!shapes.isEmpty) {
+      Create(shapes)
+    }
+    //clear the shapes list
+    shapes = List()
+  }
+
+  //a function to read a DXF file and create the shapes in it.
+  def apply(input : InputStream) = {
+
+    //val s = scala.io.Source.fromInputStream(input).mkString("")
+
+    //run the parser
+    parse(input)
+    //create the shapes
+    if(!shapes.isEmpty) createShapes(shapes)
     input.close()
   }
 }

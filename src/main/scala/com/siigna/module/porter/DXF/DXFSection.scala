@@ -17,6 +17,7 @@ import scala.collection.generic.Subtractable
 import com.siigna._
 import com.siigna.util.geom.Vector2D
 import main.scala.com.siigna.module.porter.DXF.ColorParser
+import com.siigna.app.model.shape.RectangleShape
 
 /**
  * A DXF section, represented by list of DXFValues.
@@ -181,6 +182,32 @@ object DXFSection {
             DXFValue(1, t.text)
           )
         }
+
+        //rectangles are exported to closed polylines
+        case r : RectangleShape => {
+          val vertices = r.geometry.vertices
+          val closedVertices = vertices :+ vertices.head
+          val numberOfVertices = closedVertices
+
+          DXFSection(
+            DXFValue(0, "LWPOLYLINE"),
+            //random identifier number (HEX)
+            DXFValue(5, (scala.util.Random.nextInt.toHexString)),
+            DXFValue(100, "AcDbEntity"),
+            //layer
+            DXFValue(8, 0),
+            DXFValue(100, "AcDbPolyline"),
+            //color
+            DXFValue(62, if (!shape.attributes.get("Color").isEmpty) ColorParser.parseColor(shape.attributes.get("Color").get.toString) else 0),
+            //Line width
+            DXFValue(370, if (!shape.attributes.get("StrokeWidth").isEmpty) (shape.attributes.get("StrokeWidth").get.toString.toDouble * 100).toInt else 0),
+            //number of points
+            DXFValue(90, numberOfVertices),
+            DXFValue(70, 0)
+            //Points
+          ) ++ closedVertices.map(vectorToDXF).flatten
+        }
+
         case e => {
           Siigna display ("DXF export of " + e + " not supported")
           //TODO: a hack which constructs an empty line if an unrecognized shape is found.
