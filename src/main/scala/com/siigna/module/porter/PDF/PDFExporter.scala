@@ -28,7 +28,6 @@ class PDFExporter extends (OutputStream => Unit) {
 
   //get the paper size and orientaion
   val orientation = {
-    println("pageSize; "+pageSize._1)
     if (pageSize._1 == 0) {
       if(pageSize._2) PageSize.A0.rotate()
       else PageSize.A0
@@ -194,14 +193,11 @@ class PDFExporter extends (OutputStream => Unit) {
     //find the bounding box of the drawing
     Drawing.calculateBoundary() //get the current boundary
     val box = Drawing.calculateBoundary().center
-    println("CENTER; "+box)
     val landscape = pageSize._2
     //transform all objects so that the center point of the bounding box matches that of the PDF.
     val paperCenter = {
       val cX = orientation.getWidth/2
       val cY = orientation.getHeight/2
-      println(cX)
-      println(cY)
       if (!landscape) Vector2D(cX, cY) else Vector2D(cY,cX)
 
       //if (landscape) Vector2D(420.5, 298.5) else Vector2D(298.5,420.5)
@@ -246,13 +242,11 @@ class PDFExporter extends (OutputStream => Unit) {
 
   //add a drawing header
   def writeHeader (canvas : PdfContentByte) = {
-    val scaleText = "1: "+ Siigna.paperScale
-    val infoText ="created @ www.siigna.com - free online drawing app and library"
-    val posScale =1.1
-    val posTradeMark= 3
-    val yPos=18
-    val xPosScale=(pageSize._1 /posScale).toFloat
-    val xPosInfo =pageSize._1 /posTradeMark
+    val scaleText = "SCALE: 1: "+ Siigna.paperScale
+    val infoText ="created @ www.siigna.com - free online 2D CAD drawing and library"
+    val yPos = 18
+    val xPosScale=(orientation.getWidth/1.2).toFloat
+    val xPosInfo =orientation.getWidth/20
     val textSize = 8
 
     writeText(canvas,scaleText,textSize,xPosScale,yPos)
