@@ -21,14 +21,45 @@ import com.siigna.app.model.shape.LineShape
  * Exports the current drawing in PDF format.
  * For help and other examples; see http://itextpdf.com/book/examples.php
  */
-object PDFExporter extends (OutputStream => Unit) {
+
+class PDFExporter extends (OutputStream => Unit) {
   var mm = 72/25.4
   val bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED)
+
+  //get the paper size and orientaion
+  val orientation = {
+    println("pageSize; "+pageSize._1)
+    if (pageSize._1 == 0) {
+      if(pageSize._2) PageSize.A0.rotate()
+      else PageSize.A0
+    }
+    else if (pageSize._1 == 1) {
+      if(pageSize._2) PageSize.A1.rotate()
+      else PageSize.A1
+    }
+    else if (pageSize._1 == 2) {
+      if(pageSize._2) {
+        PageSize.A2.rotate()
+      }
+      else {
+        PageSize.A2
+      }
+    }
+    else if (pageSize._1 == 3) {
+      if(pageSize._2) PageSize.A3.rotate()
+      else PageSize.A3
+    }
+    //default: A4
+    else {
+      if(pageSize._2) PageSize.A4.rotate()
+      else PageSize.A4
+    }
+  }
+
   def apply(out : OutputStream) {
 
-    val orientation = if (pageSize._3) PageSize.A4.rotate() else PageSize.A4
     val document = new Document(orientation)
-    val writer =PdfWriter.getInstance(document, out)
+    val writer = PdfWriter.getInstance(document, out)
     document.open()
     val canvas = writer.getDirectContent
     writeHeader(canvas)
@@ -41,10 +72,10 @@ object PDFExporter extends (OutputStream => Unit) {
         val shapes = Drawing.shapes.map (t => (t._2))
 
         shapes.foreach(f = s => {
-          println("\t" + s)
+          //println("\t" + s)
           s match {
             case c: CircleShape => {
-              println(c.attributes.toString())
+              //println(c.attributes.toString())
               canvas.saveState()
               val center = rePos(c.center)
               val reposRadius = c.radius * (72 / 25.4) / Siigna.paperScale
@@ -52,14 +83,14 @@ object PDFExporter extends (OutputStream => Unit) {
               canvas.circle(center.x.toFloat, center.y.toFloat, reposRadius.toFloat)
               val col = color(c.attributes)
               canvas.setRGBColorStroke(col.getRed, col.getGreen, col.getBlue)
-              canvas.stroke();
+              canvas.stroke()
               canvas.restoreState()
             }
             case l: LineShape => {
               canvas.saveState()
               val p1 = rePos(l.p1)
               val p2 = rePos(l.p2)
-              print(s"width for line $l: ${width(l.attributes)}")
+              //print(s"width for line $l: ${width(l.attributes)}")
               canvas.setLineWidth(width(l.attributes))
               canvas.moveTo(p1.x.toFloat, p1.y.toFloat)
               canvas.lineTo(p2.x.toFloat, p2.y.toFloat)
@@ -73,12 +104,12 @@ object PDFExporter extends (OutputStream => Unit) {
             //takes care of both the open and the closed polylineshapes
             case o: PolylineShape => {
               val s = rePos(o.startPoint)
-              println(s"PolyLine start x:$s.x y:$s.y")
+              //println(s"PolyLine start x:$s.x y:$s.y")
               canvas.saveState()
               canvas.moveTo(s.x.toFloat, s.y.toFloat)
               for (i <- o.innerShapes) {
                 val p = rePos(i.point)
-                print(s" end: $p")
+                //print(s" end: $p")
                 canvas.lineTo(p.x.toFloat, p.y.toFloat)
               }
               if (o.isInstanceOf[PolylineShape.PolylineShapeClosed]) {
@@ -142,7 +173,10 @@ object PDFExporter extends (OutputStream => Unit) {
       }
 
     }
-
+    //CLEAR THE DOCUMENT
+    //document = null
+    //writer = null
+    //canvas = null
   }
   def writeText(canvas:PdfContentByte,text:String,size:Int,x:Float,y:Float){
     canvas.saveState()
@@ -154,13 +188,24 @@ object PDFExporter extends (OutputStream => Unit) {
     canvas.restoreState()
   }
   def extension = "pdf"
-  //TODO: test if scaling is right across different zoom scales
+
+  //parse the drawing content from drwing coordinates to the coordinate system of the PDF
   def rePos(v : Vector2D) = {
     //find the bounding box of the drawing
-    val box = Drawing.boundary.center
-    val landscape = pageSize._3
+    Drawing.calculateBoundary() //get the current boundary
+    val box = Drawing.calculateBoundary().center
+    println("CENTER; "+box)
+    val landscape = pageSize._2
     //transform all objects so that the center point of the bounding box matches that of the PDF.
-    val paperCenter = if (landscape) Vector2D(420.5, 298.5) else Vector2D(298.5,420.5)
+    val paperCenter = {
+      val cX = orientation.getWidth/2
+      val cY = orientation.getHeight/2
+      println(cX)
+      println(cY)
+      if (!landscape) Vector2D(cX, cY) else Vector2D(cY,cX)
+
+      //if (landscape) Vector2D(420.5, 298.5) else Vector2D(298.5,420.5)
+    }
     //move the center of the shapes to 0,0, then scale them to millimeters. (PDF is in inches per default)
     val t = TransformationMatrix(-box,1) //move to 0,0
     val t2 = TransformationMatrix(Vector2D(0,0),mm / Siigna.paperScale) //scale to mm and divide by the paper scale.
@@ -170,11 +215,30 @@ object PDFExporter extends (OutputStream => Unit) {
     val transformed3 = transformed2.transform(t3) //perform the third.
     transformed3
   }
-  def pageSize : (Int, Int, Boolean) = {
-    if(Drawing.boundary.width > Drawing.boundary.height) {
-      (841,597, true)
-    } else {
-      (597,841, false)
+  //get the current paper size
+  def pageSize : (Int, Boolean) = {
+    val isLandscape : Boolean = Drawing.boundary.width > Drawing.boundary.height
+    val a = Siigna.double("printFormatMin").get.toInt
+
+    //A3
+    if(a == 296) {
+      if(isLandscape) (3, true) else (3, false)
+    }
+    //A2
+    else if(a == 420) {
+      if(isLandscape) (2, true) else (2, false)
+    }
+    //A1
+    else if(a == 593) {
+      if(isLandscape) (1, true) else (1, false)
+    }
+    //A0
+    else if(a == 840) {
+      if(isLandscape) (0, true) else (0, false)
+    }
+    //A4
+    else {
+      if(isLandscape) (4, true) else (4, false)
     }
   }
   //NOTE by OEP: multiplied with 2.54 to get the width in inches.
