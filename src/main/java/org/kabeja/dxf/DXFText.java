@@ -37,7 +37,7 @@ public class DXFText extends DXFEntity {
     public static final int ALIGN_MIDDLE = 4;
     public static final int ALIGN_FIT = 5;
     protected double rotation = 0.0;
-    protected double height = 0.0;
+    public double height = 0.0;
     protected double scale_x = 1.0;
     protected double oblique_angle = 0.0;
     protected double align_x = 0.0;
@@ -51,7 +51,7 @@ public class DXFText extends DXFEntity {
     protected int valign = 0;
     protected String text = "";
     protected String textStyle = "";
-    protected Point p;
+    public Point p;
     protected Point align_p1;
     protected Point align_p2;
     protected boolean upsideDown = false;

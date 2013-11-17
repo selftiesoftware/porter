@@ -62,13 +62,15 @@ object DXFImport {
         val polylines = layer.getDXFEntities("POLYLINE")
         val LwPolylines = layer.getDXFEntities("LWPOLYLINE")
         val arcs = layer.getDXFEntities("ARC")
+        val circles = layer.getDXFEntities("CIRCLE")
+        val text = layer.getDXFEntities("MTEXT")
 
         //add the entities to a list
-        val entityList = List(lines,mLines,polylines,LwPolylines,arcs).toArray
+        val entityList = List(lines,mLines,polylines,LwPolylines,arcs,circles,text).toArray
 
         //iterate through the list and collect the shapes:
 
-        for (i <- 0 to 4) {
+        for (i <- 0 to 6) {
           val entity = entityList(i)
           if (entity != null) {
             entity.toArray.collect {
@@ -157,6 +159,20 @@ object DXFImport {
                 } else Siigna display ("import limit exceeded")
               }
 
+              case t : DXFMText => {
+                   //string, alignment, Vector2D
+                val x = t.getInsertPoint.getX
+                val y = t.getInsertPoint.getY
+                val text = TextShape(t.getText,Vector2D(x,y),t.height)
+
+                if (pointsInImport < 50000) {  // TODO: remove this restriction when performance improves.
+                  shapes = shapes :+ text
+                  shapesCount += 1
+                  Siigna display ("imported " + shapesCount +" shapes")
+                } else Siigna display ("import limit exceeded")
+              }
+
+              case e => println("cannot import "+e)
             }
           }
         }
