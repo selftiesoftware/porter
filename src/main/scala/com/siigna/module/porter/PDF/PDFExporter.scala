@@ -28,6 +28,7 @@ class PDFExporter extends (OutputStream => Unit) {
 
   //get the paper size and orientaion
   val orientation = {
+    println("pagesize: "+pageSize._1)
     if (pageSize._1 == 0) {
       if(pageSize._2) PageSize.A0.rotate()
       else PageSize.A0
@@ -56,7 +57,7 @@ class PDFExporter extends (OutputStream => Unit) {
   }
 
   def apply(out : OutputStream) {
-
+    println("orientation in apply;: "+orientation)
     val document = new Document(orientation)
     val writer = PdfWriter.getInstance(document, out)
     document.open()
@@ -196,9 +197,10 @@ class PDFExporter extends (OutputStream => Unit) {
     val landscape = pageSize._2
     //transform all objects so that the center point of the bounding box matches that of the PDF.
     val paperCenter = {
+      println("is landscape "+landscape)
       val cX = orientation.getWidth/2
       val cY = orientation.getHeight/2
-      if (!landscape) Vector2D(cX, cY) else Vector2D(cY,cX)
+      Vector2D(cX, cY)
 
       //if (landscape) Vector2D(420.5, 298.5) else Vector2D(298.5,420.5)
     }
@@ -258,4 +260,3 @@ class PDFExporter extends (OutputStream => Unit) {
   }
 
 }
-
