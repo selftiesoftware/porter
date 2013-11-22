@@ -13,6 +13,7 @@ package com.siigna.module.porter
 
 import com.siigna._
 import DXF._
+import JPG._
 
 /**
  * An import module for Siigna.
@@ -21,14 +22,34 @@ import DXF._
 
 class Import extends Module {
 
+  var placeJPG = false
+  var goOut = false
+
   val stateMap: StateMap = Map(
     'Start -> {
       case e => {
-        Siigna display "OPENING IMPORT DIALOG..."
-        Dialogue.readInputStream(DXFFileFilter).map(DXFImport.apply)
-        //zoom extends
-        View.zoomExtends
-        End
+        if(goOut == false) { //TODO: very ugly hack preventing the dialog from opening again after image import.
+          Siigna display "Opening import dialog..."
+
+          //Dialogue.readInputStream(Map(DXFFileFilter -> DXFImport))
+          val a = Dialogue.readInputStream(DXFFileFilter,JPGFileFilter)
+          //try the available parsers
+
+          //TODO: run both parsers, and be sure the JPG image in JGPImport is not set if it is not used
+          //a.map(DXFImport.apply)
+          a.map(JPGImport.apply) //currently only JPGs are evaluated. // CHANGE THIS!!!
+
+          //exit the dialogue and goto the module in which the background can be placed:
+          if(Siigna.imageBackground._1.isDefined) {
+            goOut = true
+            Start('cad,"file.ImageBackground")
+          }
+          else {
+          //zoom extends
+          View.zoomExtends
+          End
+          }
+        } else End
       }
     }
   )

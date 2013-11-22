@@ -17,4 +17,9 @@ package object porter {
    */
   lazy val DXFFileFilter = new FileNameExtensionFilter("DXF files", "dxf")
 
+  /**
+   * A file name filter for .jpg files.
+   */
+  lazy val JPGFileFilter = new FileNameExtensionFilter("JPG files", "jpg")
+
 }
