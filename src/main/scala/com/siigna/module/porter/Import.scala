@@ -35,8 +35,8 @@ class Import extends Module {
           //Dialogue.readInputStream(Map(DXFFileFilter -> DXFImport))
           val a = Dialogue.readInputStream(DXFFileFilter, JPGFileFilter)
            //read the file extension and use it to call the correct parser
-           if((a.get._1 takeRight 3) == "dxf") a.map(t => DXFImport(t._2))
-           if((a.get._1 takeRight 3) == "jpg") a.map(t => JPGImport(t._2))
+           if((a.get._1 takeRight 3) == "dxf" || (a.get._1 takeRight 3) == "DXF") a.map(t => DXFImport(t._2))
+           if((a.get._1 takeRight 3) == "jpg" || (a.get._1 takeRight 3) == "JPG") a.map(t => JPGImport(t._2))
 
           //exit the dialogue and goto the module in which the background can be placed:
           if (Siigna.imageBackground._1.isDefined) {
