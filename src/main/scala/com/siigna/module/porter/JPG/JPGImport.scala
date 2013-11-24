@@ -25,11 +25,12 @@ object JPGImport {
 
     //get a background image and save (the info is stored in siigna/app(Siigna)
     val image = Some(ImageIO.read(input).asInstanceOf[java.awt.Image])
-
-    Siigna.imageBackground = (image,None,1.0)
-    //track when the image is loaded. Necessary since width and height parameters are unavailable before then.
-    tracker.addImage(image.get, 0)
-    tracker.waitForID(0)
+    if(image.isDefined){
+      Siigna.imageBackground = (Some(image.get),None,1.0)
+      //track when the image is loaded. Necessary since width and height parameters are unavailable before then.
+      tracker.addImage(image.get, 0)
+      tracker.waitForID(0)
+    }
   }
 
 }

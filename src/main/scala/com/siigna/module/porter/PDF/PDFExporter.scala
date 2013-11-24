@@ -197,7 +197,6 @@ class PDFExporter extends (OutputStream => Unit) {
     val landscape = pageSize._2
     //transform all objects so that the center point of the bounding box matches that of the PDF.
     val paperCenter = {
-      println("is landscape "+landscape)
       val cX = orientation.getWidth/2
       val cY = orientation.getHeight/2
       Vector2D(cX, cY)
