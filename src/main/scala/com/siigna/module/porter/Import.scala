@@ -28,26 +28,27 @@ class Import extends Module {
   val stateMap: StateMap = Map(
     'Start -> {
       case e => {
-        if(goOut == false) { //TODO: very ugly hack preventing the dialog from opening again after image import.
+        if (goOut == false) {
+          //TODO: very ugly hack preventing the dialog from opening again after image import.
           Siigna display "Opening import dialog..."
 
           //Dialogue.readInputStream(Map(DXFFileFilter -> DXFImport))
-          val a = Dialogue.readInputStream(DXFFileFilter,JPGFileFilter)
+          val a = Dialogue.readInputStream(DXFFileFilter, JPGFileFilter)
           //try the available parsers
 
           //TODO: run both parsers, and be sure the JPG image in JGPImport is not set if it is not used
           //a.map(DXFImport.apply)
-          a.map(JPGImport.apply) //currently only JPGs are evaluated. // CHANGE THIS!!!
+          a.map(t => JPGImport(t._2)) //currently only JPGs are evaluated. // CHANGE THIS!!!
 
           //exit the dialogue and goto the module in which the background can be placed:
-          if(Siigna.imageBackground._1.isDefined) {
+          if (Siigna.imageBackground._1.isDefined) {
             goOut = true
-            Start('cad,"file.ImageBackground")
+            Start('cad, "file.ImageBackground")
           }
           else {
-          //zoom extends
-          View.zoomExtends
-          End
+            //zoom extends
+            View.zoomExtends
+            End
           }
         } else End
       }
