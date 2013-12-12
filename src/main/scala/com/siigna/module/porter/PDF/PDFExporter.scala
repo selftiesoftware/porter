@@ -24,6 +24,7 @@ import com.siigna.app.model.shape.LineShape
 
 class PDFExporter extends (OutputStream => Unit) {
   var mm = 72/25.4
+  val helvetica = com.siigna.util.ITextFonts.helvetica
 
   //get the paper size and orientaion
   lazy val orientation = {
@@ -61,11 +62,8 @@ class PDFExporter extends (OutputStream => Unit) {
     val writer = PdfWriter.getInstance(document, out)
     document.open()
 
-    // The basic font. Initialized here to make sure the document has been opened
-    lazy val bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED)
-
     val canvas = writer.getDirectContent
-    writeHeader(canvas, bf)
+    writeHeader(canvas)
 
     shapesEvaluation
 
@@ -129,7 +127,7 @@ class PDFExporter extends (OutputStream => Unit) {
               val content = t.text
               val pos = rePos(t.position)
               val size = (t.fontSize*10).toInt
-              writeText(canvas, bf, content, size, pos.x.toFloat, pos.y.toFloat)
+              writeText(canvas, content, size, pos.x.toFloat, pos.y.toFloat)
             }
             case a: ArcShape => {
               val circle = Circle2D(a.center, a.radius)
@@ -181,11 +179,11 @@ class PDFExporter extends (OutputStream => Unit) {
     //writer = null
     //canvas = null
   }
-  def writeText(canvas:PdfContentByte, bf : BaseFont, text:String, size:Int, x:Float, y:Float){
+  def writeText(canvas:PdfContentByte, text:String, size:Int, x:Float, y:Float){
     canvas.saveState()
     canvas.beginText()
     canvas.moveText(x, y)
-    canvas.setFontAndSize(bf, size)
+    canvas.setFontAndSize(helvetica, size)
     canvas.showText(text)
     canvas.endText()
     canvas.restoreState()
@@ -245,7 +243,7 @@ class PDFExporter extends (OutputStream => Unit) {
   def width(a : Attributes):Float= a.double("StrokeWidth").getOrElse(0.2d).toFloat*2.54f
 
   //add a drawing header
-  def writeHeader (canvas : PdfContentByte, bf : BaseFont) {
+  def writeHeader (canvas : PdfContentByte) {
     val scaleText = "SCALE: 1: "+ Siigna.paperScale
     val infoText ="created @ www.siigna.com - free online 2D CAD drawing and library"
     val yPos = 18
@@ -253,8 +251,8 @@ class PDFExporter extends (OutputStream => Unit) {
     val xPosInfo =orientation.getWidth/20
     val textSize = 8
 
-    writeText(canvas,bf, scaleText,textSize,xPosScale,yPos)
-    writeText(canvas,bf, infoText,textSize,xPosInfo,yPos)
+    writeText(canvas,scaleText,textSize,xPosScale,yPos)
+    writeText(canvas,infoText,textSize,xPosInfo,yPos)
   }
   //add colors to exported shapes
   def color(a : Attributes):Color ={
