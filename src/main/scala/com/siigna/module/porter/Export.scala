@@ -26,7 +26,7 @@ class Export extends Module {
       case _ => {
         Siigna display "Opening export dialog..."
         // Write the DXF or PDF exporter to a file
-        val a = Dialogue.writeOutputStream(Map(PDFFileFilter -> new PDFExporter, DXFFileFilter -> DXFExporter))
+        val a = Dialogue.writeOutputStream(Map(PDFFileFilter -> new PDFExporter(Drawing).apply, DXFFileFilter -> DXFExporter))
 
         if (a) {
           val s = Drawing.size
